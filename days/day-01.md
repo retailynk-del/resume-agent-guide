@@ -22,11 +22,11 @@ Before starting work, add these 8 tasks to your Jira board:
 
 ---
 
-### Task AG-1: LangGraph Tutorial Part 1 - Basics
+### Task AG-7: LangGraph Tutorial Part 1 - Basics
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-1 |
+| **Task ID** | AG-7 |
 | **Title** | LangGraph Tutorial Part 1: Basics |
 | **Type** | Task |
 | **Epic** | Learning & Setup |
@@ -142,7 +142,7 @@ Define the ResumeAgentState TypedDict that will flow through the entire agent wo
 - [ ] Helper factory function created
 - [ ] Test file validates state creation
 
-**Related Tasks:** AG-1 (builds on tutorial knowledge)
+**Related Tasks:** AG-7 (builds on tutorial knowledge)
 
 ---
 
@@ -416,12 +416,12 @@ On whiteboard or Miro, draw the agent flow:
 
 | When | Action |
 |------|--------|
-| 9:30 AM | Move AG-1 to "In Progress" |
-| 12:30 PM | Move AG-1 to "Done" |
+| 9:30 AM | Move AG-7 to "In Progress" |
+| 12:30 PM | Move AG-7 to "Done" |
 
 ---
 
-## 🕑 2:00 PM - Dev 2 (Sinan): AG-11 - Supabase Setup
+## 🕑 2:00 PM - Dev 2 (Sinan): AG-71 - Supabase Setup
 
 ### What to Learn First (15 minutes)
 
@@ -565,8 +565,8 @@ This is cloud setup only - no code to commit yet.
 
 | When | Action |
 |------|--------|
-| 2:00 PM | Move AG-11 to "In Progress" |
-| 2:45 PM | Move AG-11 to "Done" |
+| 2:00 PM | Move AG-71 to "In Progress" |
+| 2:45 PM | Move AG-71 to "Done" |
 
 ---
 
@@ -996,7 +996,7 @@ resume-agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-1: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
+| AG-7: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
 | AG-2: LangGraph Tutorial Part 2 | Dev 2 | 2 | ✓ Done |
 | AG-3: LangGraph Tutorial Part 3 | Dev 3 | 2 | ✓ Done |
 | AG-4: Agent State Schema | Dev 1 | 3 | ✓ Done |
