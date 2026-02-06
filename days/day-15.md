@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-51: History Page Component
+### Task AG-57: History Page Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-51 |
+| **Task ID** | AG-57 |
 | **Title** | History Page Component |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -44,11 +44,11 @@ Create history page showing list of user's past optimization runs with basic inf
 
 ---
 
-### Task AG-52: History List Navigation
+### Task AG-58: History List Navigation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-52 |
+| **Task ID** | AG-58 |
 | **Title** | History List Navigation |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -70,11 +70,11 @@ Add navigation from history page to view full details of any past run. Integrate
 
 ---
 
-### Task AG-53: Detail View for Past Runs
+### Task AG-59: Detail View for Past Runs
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-53 |
+| **Task ID** | AG-59 |
 | **Title** | Detail View for Past Runs |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -96,13 +96,13 @@ Update Results page to load past runs from API by ID. Show full details includin
 
 ---
 
-## 👨‍💻 Dev 3: AG-20 - History Page
+## 👨‍💻 Dev 3: AG-26 - History Page
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-20-history-page
+git checkout -b feature/AG-26-history-page
 ```
 
 ### Step 2: Update API Service
@@ -415,14 +415,14 @@ Update `Results.jsx` to add a cover letter tab:
 
 ```bash
 git add frontend/
-git commit -m "AG-20: Create history page
+git commit -m "AG-26: Create history page
 
 - Show past optimization runs
 - Link to view full results
 - Add cover letter tab to results
 - Add navigation between pages"
 
-git push origin feature/AG-20-history-page
+git push origin feature/AG-26-history-page
 ```
 
 ---
@@ -439,9 +439,9 @@ git push origin feature/AG-20-history-page
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-51: History Page Component | Dev 3 | 5 | ✓ Done |
-| AG-52: History List Navigation | Dev 1 | 2 | ✓ Done |
-| AG-53: Detail View for Past Runs | Dev 2 | 3 | ✓ Done |
+| AG-57: History Page Component | Dev 3 | 5 | ✓ Done |
+| AG-58: History List Navigation | Dev 1 | 2 | ✓ Done |
+| AG-59: Detail View for Past Runs | Dev 2 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 10  
 **Dev 1:** 2 points | **Dev 2:** 3 points | **Dev 3:** 5 points

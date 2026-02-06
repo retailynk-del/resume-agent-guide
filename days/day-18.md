@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-60: Backend Bug Fixes
+### Task AG-66: Backend Bug Fixes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-60 |
+| **Task ID** | AG-66 |
 | **Title** | Backend Bug Fixes |
 | **Type** | Task |
 | **Epic** | Bug Fixes |
@@ -43,11 +43,11 @@ Fix all backend issues found during testing. Address API errors, database issues
 
 ---
 
-### Task AG-61: Frontend Bug Fixes
+### Task AG-67: Frontend Bug Fixes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-61 |
+| **Task ID** | AG-67 |
 | **Title** | Frontend Bug Fixes |
 | **Type** | Task |
 | **Epic** | Bug Fixes |
@@ -68,11 +68,11 @@ Fix all frontend issues found during testing. Address UI bugs, navigation issues
 
 ---
 
-### Task AG-62: Agent Bug Fixes
+### Task AG-68: Agent Bug Fixes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-62 |
+| **Task ID** | AG-68 |
 | **Title** | Agent Bug Fixes |
 | **Type** | Task |
 | **Epic** | Bug Fixes |
@@ -120,7 +120,7 @@ Assign bugs to developers based on expertise:
 git checkout feature/bugfix-description
 # Fix the issue
 # Test the fix
-git commit -m "AG-35b: Fix [description]"
+git commit -m "AG-41b: Fix [description]"
 git push origin feature/bugfix-description
 # Open PR, get review, merge
 ```
@@ -207,9 +207,9 @@ npm run format  # if configured
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-60: Backend Bug Fixes | Dev 2 | 3 | ✓ Done |
-| AG-61: Frontend Bug Fixes | Dev 3 | 3 | ✓ Done |
-| AG-62: Agent Bug Fixes | Dev 1 | 3 | ✓ Done |
+| AG-66: Backend Bug Fixes | Dev 2 | 3 | ✓ Done |
+| AG-67: Frontend Bug Fixes | Dev 3 | 3 | ✓ Done |
+| AG-68: Agent Bug Fixes | Dev 1 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 9  
 **Dev 1:** 3 points | **Dev 2:** 3 points | **Dev 3:** 3 points

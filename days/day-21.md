@@ -30,11 +30,11 @@ By end of today:
 
 ## 📋 Jira Tasks for Day 21
 
-### Task AG-69: Sprint 2 Demo Presentation
+### Task AG-75: Sprint 2 Demo Presentation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-69 |
+| **Task ID** | AG-75 |
 | **Title** | Sprint 2 Demo Presentation |
 | **Type** | Task |
 | **Epic** | Project Management |
@@ -56,11 +56,11 @@ Present Sprint 2 demo to stakeholders showcasing all features: iterative agent, 
 
 ---
 
-### Task AG-70: Sprint 2 Retrospective
+### Task AG-76: Sprint 2 Retrospective
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-70 |
+| **Task ID** | AG-76 |
 | **Title** | Sprint 2 Retrospective |
 | **Type** | Task |
 | **Epic** | Project Management |
@@ -81,11 +81,11 @@ Facilitate Sprint 2 retrospective. Document learnings, action items, and celebra
 
 ---
 
-### Task AG-71: PDF Upload Feature (Bonus)
+### Task AG-77: PDF Upload Feature (Bonus)
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-71 |
+| **Task ID** | AG-77 |
 | **Title** | PDF Upload Feature |
 | **Type** | Task |
 | **Epic** | Future Features |
@@ -107,7 +107,7 @@ Start Sprint 3 work: Add PDF upload capability to parse resume files. Extra cred
 
 ---
 
-## 👨‍💻 Dev 1: AG-39 - PDF Parsing
+## 👨‍💻 Dev 1: AG-45 - PDF Parsing
 
 ### Step 1: Install Dependencies
 
@@ -209,7 +209,7 @@ if __name__ == "__main__":
 
 ---
 
-## 👨‍💻 Dev 2: AG-40 - File Upload Endpoint
+## 👨‍💻 Dev 2: AG-46 - File Upload Endpoint
 
 ### Create Upload Router
 
@@ -335,9 +335,9 @@ curl -X POST http://localhost:8000/api/upload/resume \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-69: Sprint 2 Demo Presentation | Dev 1 | 2 | ✓ Done |
-| AG-70: Sprint 2 Retrospective | Dev 2 | 1 | ✓ Done |
-| AG-71: PDF Upload Feature (Bonus) | Dev 3 | 5 | ✓ Done |
+| AG-75: Sprint 2 Demo Presentation | Dev 1 | 2 | ✓ Done |
+| AG-76: Sprint 2 Retrospective | Dev 2 | 1 | ✓ Done |
+| AG-77: PDF Upload Feature (Bonus) | Dev 3 | 5 | ✓ Done |
 
 **Total Story Points Completed:** 8  
 **Dev 1:** 2 points | **Dev 2:** 1 point | **Dev 3:** 5 points

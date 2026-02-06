@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-57: Backend Integration Tests
+### Task AG-63: Backend Integration Tests
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-57 |
+| **Task ID** | AG-63 |
 | **Title** | Backend Integration Tests |
 | **Type** | Task |
 | **Epic** | Testing & QA |
@@ -44,11 +44,11 @@ Write integration tests for all backend API endpoints. Test auth, agent runs, an
 
 ---
 
-### Task AG-58: Frontend E2E Tests
+### Task AG-64: Frontend E2E Tests
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-58 |
+| **Task ID** | AG-64 |
 | **Title** | Frontend E2E Tests |
 | **Type** | Task |
 | **Epic** | Testing & QA |
@@ -70,11 +70,11 @@ Create end-to-end tests for critical user flows using Playwright or similar. Tes
 
 ---
 
-### Task AG-59: Test Documentation
+### Task AG-65: Test Documentation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-59 |
+| **Task ID** | AG-65 |
 | **Title** | Test Documentation |
 | **Type** | Task |
 | **Epic** | Documentation |
@@ -201,9 +201,9 @@ headers: {
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-57: Backend Integration Tests | Dev 2 | 5 | ✓ Done |
-| AG-58: Frontend E2E Tests | Dev 3 | 5 | ✓ Done |
-| AG-59: Test Documentation | Dev 1 | 2 | ✓ Done |
+| AG-63: Backend Integration Tests | Dev 2 | 5 | ✓ Done |
+| AG-64: Frontend E2E Tests | Dev 3 | 5 | ✓ Done |
+| AG-65: Test Documentation | Dev 1 | 2 | ✓ Done |
 
 **Total Story Points Completed:** 12  
 **Dev 1:** 2 points | **Dev 2:** 5 points | **Dev 3:** 5 points

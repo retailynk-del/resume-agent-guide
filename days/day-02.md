@@ -20,11 +20,11 @@ By end of today:
 
 ---
 
-### Task AG-9: Job Requirements Extraction Node
+### Task AG-15: Job Requirements Extraction Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-9 |
+| **Task ID** | AG-15 |
 | **Title** | Job Requirements Extraction Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -49,17 +49,17 @@ Build the FIRST LangGraph node for the resume agent. This node uses GPT-4o-mini 
 - [ ] Includes example test with sample job description
 - [ ] PR merged to main
 
-**Dependencies:** AG-4 (State schema must be defined first)
+**Dependencies:** AG-10 (State schema must be defined first)
 
 **Related Tasks:** All developers learning LangGraph together
 
 ---
 
-### Task AG-10: Test Workflow for Single Node
+### Task AG-16: Test Workflow for Single Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-10 |
+| **Task ID** | AG-16 |
 | **Title** | Test Workflow for Single Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -69,7 +69,7 @@ Build the FIRST LangGraph node for the resume agent. This node uses GPT-4o-mini 
 | **Priority** | High |
 
 **Description:**
-Create a simple LangGraph workflow that runs just the Job Requirements node (AG-9). This tests that our first node works correctly and introduces the team to workflow compilation and invocation.
+Create a simple LangGraph workflow that runs just the Job Requirements node (AG-15). This tests that our first node works correctly and introduces the team to workflow compilation and invocation.
 
 **What You'll Learn:**
 - Building StateGraph workflows
@@ -85,17 +85,17 @@ Create a simple LangGraph workflow that runs just the Job Requirements node (AG-
 - [ ] Prints extracted requirements in readable format
 - [ ] Successfully runs end-to-end
 
-**Dependencies:** AG-9 (Job requirements node must exist first)
+**Dependencies:** AG-15 (Job requirements node must exist first)
 
 **Related Tasks:** Testing what Dev 1 built
 
 ---
 
-### Task AG-11: React Project Setup
+### Task AG-17: React Project Setup
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-11 |
+| **Task ID** | AG-17 |
 | **Title** | React Project Setup |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -122,7 +122,7 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 - [ ] `.env.example` file created for API URL
 - [ ] PR merged to main
 
-**Dependencies:** AG-7 (Frontend CI/CD must be set up first)
+**Dependencies:** AG-13 (Frontend CI/CD must be set up first)
 
 ---
 
@@ -134,9 +134,9 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 3. Any blockers?
 
 **Expected Answers:**
-- **Dev 1:** Yesterday: LangGraph tutorial. Today: AG-2 Agent State. No blockers.
-- **Dev 2:** Yesterday: Supabase setup. Today: AG-12 FastAPI structure. No blockers.
-- **Dev 3:** Yesterday: CI/CD pipelines. Today: AG-15 React setup. No blockers.
+- **Dev 1:** Yesterday: LangGraph tutorial. Today: AG-8 Agent State. No blockers.
+- **Dev 2:** Yesterday: Supabase setup. Today: AG-18 FastAPI structure. No blockers.
+- **Dev 3:** Yesterday: CI/CD pipelines. Today: AG-81 React setup. No blockers.
 
 **After Standup:**
 - Add today's tasks to Jira
@@ -144,7 +144,7 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 
 ---
 
-## 👨‍💻 Dev 1 (Shabas): AG-2 - Agent State Schema
+## 👨‍💻 Dev 1 (Shabas): AG-8 - Agent State Schema
 
 ### What to Learn First (10 minutes)
 
@@ -183,10 +183,10 @@ git pull origin main
 #### Step 2: Create Feature Branch
 
 ```bash
-git checkout -b feature/AG-2-agent-state-schema
+git checkout -b feature/AG-8-agent-state-schema
 ```
 
-**Jira Update:** Move AG-2 to "In Progress"
+**Jira Update:** Move AG-8 to "In Progress"
 
 #### Step 3: Create Folder Structure
 
@@ -470,7 +470,7 @@ Untracked files:
 ```bash
 git add backend/agent/
 
-git commit -m "AG-2: Define ResumeAgentState TypedDict with all fields
+git commit -m "AG-8: Define ResumeAgentState TypedDict with all fields
 
 - Create state.py with complete state definition
 - Add all required fields: identifiers, inputs, scoring, planning, outputs
@@ -482,10 +482,10 @@ git commit -m "AG-2: Define ResumeAgentState TypedDict with all fields
 #### Step 9: Push to Feature Branch
 
 ```bash
-git push origin feature/AG-2-agent-state-schema
+git push origin feature/AG-8-agent-state-schema
 ```
 
-**Jira Update:** Move AG-2 to "In Review"
+**Jira Update:** Move AG-8 to "In Review"
 
 #### Step 10: Open Pull Request
 
@@ -495,7 +495,7 @@ git push origin feature/AG-2-agent-state-schema
 
 **Title:**
 ```
-AG-2: Define ResumeAgentState TypedDict with all fields
+AG-8: Define ResumeAgentState TypedDict with all fields
 ```
 
 **Description:**
@@ -504,7 +504,7 @@ AG-2: Define ResumeAgentState TypedDict with all fields
 Define the complete state schema for the Resume Optimization Agent.
 
 ## Jira Task
-AG-2: Agent State Schema
+AG-8: Agent State Schema
 
 ## What This State Contains
 - **Identifiers:** run_id, user_id
@@ -544,14 +544,14 @@ python test_state.py
 ```bash
 git checkout dev-shabas
 git pull origin main
-git branch -d feature/AG-2-agent-state-schema
+git branch -d feature/AG-8-agent-state-schema
 ```
 
-**Jira Update:** Move AG-2 to "Done"
+**Jira Update:** Move AG-8 to "Done"
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-12 - FastAPI Project Structure
+## 👨‍💻 Dev 2 (Sinan): AG-18 - FastAPI Project Structure
 
 ### What to Learn First (30 minutes)
 
@@ -579,10 +579,10 @@ git pull origin main
 #### Step 2: Create Feature Branch
 
 ```bash
-git checkout -b feature/AG-12-fastapi-structure
+git checkout -b feature/AG-18-fastapi-structure
 ```
 
-**Jira Update:** Move AG-12 to "In Progress"
+**Jira Update:** Move AG-18 to "In Progress"
 
 #### Step 3: Create Folder Structure
 
@@ -829,7 +829,7 @@ curl http://localhost:8000/
 ```bash
 cd ..  # Back to resume-agent root
 git add .
-git commit -m "AG-12: Setup FastAPI project structure with database connection
+git commit -m "AG-18: Setup FastAPI project structure with database connection
 
 - Create api/ and database/ directories
 - Add database connection with SQLAlchemy
@@ -837,20 +837,20 @@ git commit -m "AG-12: Setup FastAPI project structure with database connection
 - Create .env.example with all required variables
 - Update requirements.txt with all dependencies"
 
-git push origin feature/AG-12-fastapi-structure
+git push origin feature/AG-18-fastapi-structure
 ```
 
-**Jira Update:** Move AG-12 to "In Review"
+**Jira Update:** Move AG-18 to "In Review"
 
 #### Step 10: Open Pull Request
 
 Similar to previous PRs - request review, merge, cleanup.
 
-**Jira Update:** After merge, move AG-12 to "Done"
+**Jira Update:** After merge, move AG-18 to "Done"
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-15 - React Project Setup
+## 👨‍💻 Dev 3 (Marva): AG-81 - React Project Setup
 
 ### What to Learn First (30 minutes)
 
@@ -878,10 +878,10 @@ git pull origin main
 #### Step 2: Create Feature Branch
 
 ```bash
-git checkout -b feature/AG-15-react-setup
+git checkout -b feature/AG-81-react-setup
 ```
 
-**Jira Update:** Move AG-15 to "In Progress"
+**Jira Update:** Move AG-81 to "In Progress"
 
 #### Step 3: Create React App with Vite
 
@@ -1112,7 +1112,7 @@ cd ..  # Back to resume-agent root
 
 git add frontend/
 
-git commit -m "AG-15: Initialize React project with Vite and routing
+git commit -m "AG-81: Initialize React project with Vite and routing
 
 - Create React app using Vite
 - Install react-router-dom and axios
@@ -1121,16 +1121,16 @@ git commit -m "AG-15: Initialize React project with Vite and routing
 - Add global CSS styling
 - Create .env.example for API URL configuration"
 
-git push origin feature/AG-15-react-setup
+git push origin feature/AG-81-react-setup
 ```
 
-**Jira Update:** Move AG-15 to "In Review"
+**Jira Update:** Move AG-81 to "In Review"
 
 #### Step 9: Open PR, Merge, Cleanup
 
 Similar to previous PRs.
 
-**Jira Update:** After merge, move AG-15 to "Done"
+**Jira Update:** After merge, move AG-81 to "Done"
 
 ---
 
@@ -1238,9 +1238,9 @@ resume-agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-9: Job Requirements Extraction Node | Dev 1 | 5 | ✓ Done |
-| AG-10: Test Workflow for Single Node | Dev 2 | 3 | ✓ Done |
-| AG-11: React Setup | Dev 3 | 5 | ✓ Done |
+| AG-15: Job Requirements Extraction Node | Dev 1 | 5 | ✓ Done |
+| AG-16: Test Workflow for Single Node | Dev 2 | 3 | ✓ Done |
+| AG-17: React Setup | Dev 3 | 5 | ✓ Done |
 
 **Total Story Points Completed:** 13  
 **Dev 1:** 5 points | **Dev 2:** 3 points | **Dev 3:** 5 points

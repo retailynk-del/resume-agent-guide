@@ -20,11 +20,11 @@ By end of today:
 
 ---
 
-### Task AG-30: Agent Run Endpoint
+### Task AG-36: Agent Run Endpoint
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-30 |
+| **Task ID** | AG-36 |
 | **Title** | Agent Run Endpoint |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -47,11 +47,11 @@ Create POST /api/agent/run endpoint that triggers the LangGraph workflow and ret
 
 ---
 
-### Task AG-31: AgentRun Database Model
+### Task AG-37: AgentRun Database Model
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-31 |
+| **Task ID** | AG-37 |
 | **Title** | AgentRun Database Model |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -72,11 +72,11 @@ Create database model to persist agent run results. Stores user_id, inputs, outp
 
 ---
 
-### Task AG-32: Save Results to Database
+### Task AG-38: Save Results to Database
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-32 |
+| **Task ID** | AG-38 |
 | **Title** | Save Results to Database |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -90,7 +90,7 @@ Add database persistence to agent endpoint. After workflow runs, save all result
 
 **Acceptance Criteria:**
 - [ ] After agent runs, save to database
-- [ ] Uses AgentRun model from AG-31
+- [ ] Uses AgentRun model from AG-37
 - [ ] Saves all inputs and outputs
 - [ ] Returns database ID in response
 - [ ] Error handling for DB failures
@@ -98,16 +98,16 @@ Add database persistence to agent endpoint. After workflow runs, save all result
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-14 - Agent Run Endpoint
+## 👨‍💻 Dev 2 (Sinan): AG-20 - Agent Run Endpoint
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-14-agent-endpoint
+git checkout -b feature/AG-20-agent-endpoint
 ```
 
-**Jira:** Move AG-14 to "In Progress"
+**Jira:** Move AG-20 to "In Progress"
 
 ### Step 2: Create Agent Router
 
@@ -288,30 +288,30 @@ curl -X POST http://localhost:8000/api/agent/run-public \
 
 ```bash
 git add backend/api/ backend/main.py
-git commit -m "AG-14: Create agent run endpoint
+git commit -m "AG-20: Create agent run endpoint
 
 - POST /api/agent/run (authenticated)
 - POST /api/agent/run-public (demo)
 - Validate input lengths
 - Return optimization results"
 
-git push origin feature/AG-14-agent-endpoint
+git push origin feature/AG-20-agent-endpoint
 ```
 
-**Jira:** Move AG-14 to "Done"
+**Jira:** Move AG-20 to "Done"
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-18 - Dashboard UI
+## 👨‍💻 Dev 3 (Marva): AG-24 - Dashboard UI
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-18-dashboard
+git checkout -b feature/AG-24-dashboard
 ```
 
-**Jira:** Move AG-18 to "In Progress"
+**Jira:** Move AG-24 to "In Progress"
 
 ### Step 2: Update API Service
 
@@ -682,17 +682,17 @@ import Dashboard from './pages/Dashboard';
 
 ```bash
 git add frontend/
-git commit -m "AG-18: Create dashboard with optimization form
+git commit -m "AG-24: Create dashboard with optimization form
 
 - Add runOptimization API function
 - Create Dashboard page with JD and resume inputs
 - Add loading state with spinner
 - Store results and redirect to results page"
 
-git push origin feature/AG-18-dashboard
+git push origin feature/AG-24-dashboard
 ```
 
-**Jira:** Move AG-18 to "Done"
+**Jira:** Move AG-24 to "Done"
 
 ---
 
@@ -735,9 +735,9 @@ curl -X POST http://localhost:8000/api/agent/run-public \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-30: Agent Run Endpoint | Dev 2 | 5 | ✓ Done |
-| AG-31: AgentRun Database Model | Dev 1 | 3 | ✓ Done |
-| AG-32: Save Results to Database | Dev 3 | 3 | ✓ Done |
+| AG-36: Agent Run Endpoint | Dev 2 | 5 | ✓ Done |
+| AG-37: AgentRun Database Model | Dev 1 | 3 | ✓ Done |
+| AG-38: Save Results to Database | Dev 3 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 11  
 **Dev 1:** 3 points | **Dev 2:** 5 points | **Dev 3:** 3 points

@@ -30,11 +30,11 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-39: Demo Preparation
+### Task AG-45: Demo Preparation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-39 |
+| **Task ID** | AG-45 |
 | **Title** | Demo Preparation |
 | **Type** | Task |
 | **Epic** | Project Management |
@@ -56,11 +56,11 @@ Prepare Sprint 1 demo presentation, test flow, and ensure environment is ready. 
 
 ---
 
-### Task AG-40: Retrospective Notes
+### Task AG-46: Retrospective Notes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-40 |
+| **Task ID** | AG-46 |
 | **Title** | Retrospective Notes |
 | **Type** | Task |
 | **Epic** | Project Management |
@@ -81,11 +81,11 @@ Facilitate Sprint 1 retrospective session. Document what went well, what didn't,
 
 ---
 
-### Task AG-41: Sprint 2 Planning
+### Task AG-47: Sprint 2 Planning
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-41 |
+| **Task ID** | AG-47 |
 | **Title** | Sprint 2 Planning |
 | **Type** | Task |
 | **Epic** | Project Management |
@@ -106,16 +106,16 @@ Initialize Sprint 2 planning - create task list, estimate story points, and set 
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-28 - User Database Model
+## 👨‍💻 Dev 2 (Sinan): AG-34 - User Database Model
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-28-user-model
+git checkout -b feature/AG-34-user-model
 ```
 
-**Jira:** Move AG-28 to "In Progress"
+**Jira:** Move AG-34 to "In Progress"
 
 ### Step 2: Create Models Directory
 
@@ -436,30 +436,30 @@ curl -X POST http://localhost:8000/api/auth/login \
 
 ```bash
 git add backend/database/ backend/api/auth.py
-git commit -m "AG-28: Migrate auth to Supabase
+git commit -m "AG-34: Migrate auth to Supabase
 
 - Create User SQLAlchemy model
 - Update auth endpoints to use database
 - Add database init script
 - All existing auth tests pass"
 
-git push origin feature/AG-28-user-model
+git push origin feature/AG-34-user-model
 ```
 
-**Jira:** Move AG-28 to "Done"
+**Jira:** Move AG-34 to "Done"
 
 ---
 
-## 👨‍💻 Dev 1 (Shabas): AG-29 - Run History Model
+## 👨‍💻 Dev 1 (Shabas): AG-35 - Run History Model
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-29-run-model
+git checkout -b feature/AG-35-run-model
 ```
 
-**Jira:** Move AG-29 to "In Progress"
+**Jira:** Move AG-35 to "In Progress"
 
 ### Step 2: Create Run Model
 
@@ -596,17 +596,17 @@ python init_db.py
 
 ```bash
 git add backend/database/
-git commit -m "AG-29: Create AgentRun model
+git commit -m "AG-35: Create AgentRun model
 
 - Store optimization runs in database
 - Include all scores and content
 - Add status tracking
 - Link to user (optional for anonymous)"
 
-git push origin feature/AG-29-run-model
+git push origin feature/AG-35-run-model
 ```
 
-**Jira:** Move AG-29 to "Done"
+**Jira:** Move AG-35 to "Done"
 
 ---
 
@@ -637,9 +637,9 @@ curl -X POST http://localhost:8000/api/auth/register \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-39: Demo Preparation | Dev 1 | 2 | ✓ Done |
-| AG-40: Retrospective Notes | Dev 2 | 1 | ✓ Done |
-| AG-41: Sprint 2 Planning | Dev 3 | 1 | ✓ Done |
+| AG-45: Demo Preparation | Dev 1 | 2 | ✓ Done |
+| AG-46: Retrospective Notes | Dev 2 | 1 | ✓ Done |
+| AG-47: Sprint 2 Planning | Dev 3 | 1 | ✓ Done |
 
 **Total Story Points Completed:** 4  
 **Dev 1:** 2 points | **Dev 2:** 1 point | **Dev 3:** 1 point

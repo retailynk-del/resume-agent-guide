@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-42: Decision Node (Loop Logic)
+### Task AG-48: Decision Node (Loop Logic)
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-42 |
+| **Task ID** | AG-48 |
 | **Title** | Decision Node (Loop Logic) |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -44,11 +44,11 @@ Create LangGraph decision node that determines whether to iterate or finish base
 
 ---
 
-### Task AG-43: Conditional Edge Implementation
+### Task AG-49: Conditional Edge Implementation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-43 |
+| **Task ID** | AG-49 |
 | **Title** | Conditional Edge Implementation |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -70,11 +70,11 @@ Update workflow.py to use conditional edges that route based on decision node ou
 
 ---
 
-### Task AG-44: Iteration Testing
+### Task AG-50: Iteration Testing
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-44 |
+| **Task ID** | AG-50 |
 | **Title** | Iteration Testing |
 | **Type** | Task |
 | **Epic** | Testing & QA |
@@ -97,7 +97,7 @@ Test the iterative workflow with various scenarios: early stopping, max iteratio
 
 ---
 
-## 👨‍💻 Dev 2: AG-30 - Save Runs
+## 👨‍💻 Dev 2: AG-36 - Save Runs
 
 ### Update Agent Router
 
@@ -202,7 +202,7 @@ def run_agent(
 
 ---
 
-## 👨‍💻 Dev 1: AG-31 - History Endpoint
+## 👨‍💻 Dev 1: AG-37 - History Endpoint
 
 ### Add to Agent Router
 
@@ -294,9 +294,9 @@ curl http://localhost:8000/api/agent/history \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-42: Decision Node (Loop Logic) | Dev 2 | 5 | ✓ Done |
-| AG-43: Conditional Edge Implementation | Dev 1 | 3 | ✓ Done |
-| AG-44: Iteration Testing | Dev 3 | 3 | ✓ Done |
+| AG-48: Decision Node (Loop Logic) | Dev 2 | 5 | ✓ Done |
+| AG-49: Conditional Edge Implementation | Dev 1 | 3 | ✓ Done |
+| AG-50: Iteration Testing | Dev 3 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 11  
 **Dev 1:** 3 points | **Dev 2:** 5 points | **Dev 3:** 3 points

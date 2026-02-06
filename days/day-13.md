@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Task
 
-### Task AG-45: Cover Letter Node
+### Task AG-51: Cover Letter Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-45 |
+| **Task ID** | AG-51 |
 | **Title** | Cover Letter Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -44,11 +44,11 @@ Create LangGraph node that generates personalized cover letter using optimized r
 
 ---
 
-### Task AG-46: Workflow Integration
+### Task AG-52: Workflow Integration
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-46 |
+| **Task ID** | AG-52 |
 | **Title** | Workflow Integration |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -70,11 +70,11 @@ Add cover letter node to workflow graph as optional final step after modificatio
 
 ---
 
-### Task AG-47: Cover Letter API Endpoint
+### Task AG-53: Cover Letter API Endpoint
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-47 |
+| **Task ID** | AG-53 |
 | **Title** | Cover Letter API Endpoint |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -96,13 +96,13 @@ Update agent API to support cover letter generation as optional parameter. Retur
 
 ---
 
-## 👥 Dev 1 + Dev 2 (PAIR): AG-9
+## 👥 Dev 1 + Dev 2 (PAIR): AG-15
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-9-conditional-edges
+git checkout -b feature/AG-15-conditional-edges
 ```
 
 ### Step 2: Create Decision Function
@@ -315,7 +315,7 @@ python test_workflow.py
 
 ```bash
 git add backend/agent/
-git commit -m "AG-9: Add conditional edges for iteration
+git commit -m "AG-15: Add conditional edges for iteration
 
 - Create decision node to check score vs target
 - Add conditional edge to loop back or finish
@@ -324,7 +324,7 @@ git commit -m "AG-9: Add conditional edges for iteration
 
 Co-authored-by: Sinan <sinan@example.com>"
 
-git push origin feature/AG-9-conditional-edges
+git push origin feature/AG-15-conditional-edges
 ```
 
 ---
@@ -342,9 +342,9 @@ Run workflow and check:
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-45: Cover Letter Node | Dev 3 | 5 | ✓ Done |
-| AG-46: Workflow Integration | Dev 2 | 2 | ✓ Done |
-| AG-47: Cover Letter API Endpoint | Dev 1 | 3 | ✓ Done |
+| AG-51: Cover Letter Node | Dev 3 | 5 | ✓ Done |
+| AG-52: Workflow Integration | Dev 2 | 2 | ✓ Done |
+| AG-53: Cover Letter API Endpoint | Dev 1 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 10  
 **Dev 1:** 3 points | **Dev 2:** 2 points | **Dev 3:** 5 points

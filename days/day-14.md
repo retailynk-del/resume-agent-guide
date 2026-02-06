@@ -18,11 +18,11 @@ By end of today:
 
 ## 📋 Jira Task
 
-### Task AG-48: History Database Schema
+### Task AG-54: History Database Schema
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-48 |
+| **Task ID** | AG-54 |
 | **Title** | History Database Schema |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -44,11 +44,11 @@ Update agent_runs table to fully support history feature. Add indexes for effici
 
 ---
 
-### Task AG-49: Save Runs to Database
+### Task AG-55: Save Runs to Database
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-49 |
+| **Task ID** | AG-55 |
 | **Title** | Save Runs to Database |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -70,11 +70,11 @@ Update agent endpoint to save all optimization runs to database with full detail
 
 ---
 
-### Task AG-50: History API Endpoints
+### Task AG-56: History API Endpoints
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-50 |
+| **Task ID** | AG-56 |
 | **Title** | History API Endpoints |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -96,13 +96,13 @@ Create API endpoints to retrieve user's optimization history. List view + detail
 
 ---
 
-## 👨‍💻 Dev 3: AG-11 - Cover Letter Node
+## 👨‍💻 Dev 3: AG-17 - Cover Letter Node
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-11-cover-letter
+git checkout -b feature/AG-17-cover-letter
 ```
 
 ### Step 2: Create Cover Letter Node
@@ -247,13 +247,13 @@ python test_workflow.py
 
 ```bash
 git add backend/agent/
-git commit -m "AG-11: Add cover letter generation node
+git commit -m "AG-17: Add cover letter generation node
 
 - Create LLM-based cover letter generation
 - Integrate into workflow after final score
 - Highlight matching skills"
 
-git push origin feature/AG-11-cover-letter
+git push origin feature/AG-17-cover-letter
 ```
 
 ---
@@ -270,9 +270,9 @@ git push origin feature/AG-11-cover-letter
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-48: History Database Schema | Dev 1 | 3 | ✓ Done |
-| AG-49: Save Runs to Database | Dev 2 | 3 | ✓ Done |
-| AG-50: History API Endpoints | Dev 3 | 4 | ✓ Done |
+| AG-54: History Database Schema | Dev 1 | 3 | ✓ Done |
+| AG-55: Save Runs to Database | Dev 2 | 3 | ✓ Done |
+| AG-56: History API Endpoints | Dev 3 | 4 | ✓ Done |
 
 **Total Story Points Completed:** 10  
 **Dev 1:** 3 points | **Dev 2:** 3 points | **Dev 3:** 4 points

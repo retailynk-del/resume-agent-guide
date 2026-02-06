@@ -21,11 +21,11 @@ By end of today:
 
 ---
 
-### Task AG-26: Login Page Component
+### Task AG-32: Login Page Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-26 |
+| **Task ID** | AG-32 |
 | **Title** | Login Page Component |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -48,11 +48,11 @@ Create a polished login page component with email/password form, validation, and
 
 ---
 
-### Task AG-27: Register Page Component
+### Task AG-33: Register Page Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-27 |
+| **Task ID** | AG-33 |
 | **Title** | Register Page Component |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -75,11 +75,11 @@ Create a registration page component with email, password, and confirm password 
 
 ---
 
-### Task AG-28: Auth API Service Module
+### Task AG-34: Auth API Service Module
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-28 |
+| **Task ID** | AG-34 |
 | **Title** | Auth API Service Module |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -101,11 +101,11 @@ Create frontend API service module for authentication. Handles API calls to back
 
 ---
 
-### Task AG-29: Protected Routes Setup
+### Task AG-35: Protected Routes Setup
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-29 |
+| **Task ID** | AG-35 |
 | **Title** | Protected Routes Setup |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -127,17 +127,17 @@ Create React Router protected route wrapper that redirects to login if user is n
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-13 - Auth Endpoints
+## 👨‍💻 Dev 2 (Sinan): AG-19 - Auth Endpoints
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-13-auth-endpoints
+git checkout -b feature/AG-19-auth-endpoints
 ```
 
-**Jira:** Move AG-13 to "In Progress"
+**Jira:** Move AG-19 to "In Progress"
 
 ### Step 2: Create Auth Router
 
@@ -446,7 +446,7 @@ curl http://localhost:8000/api/auth/me \
 
 ```bash
 git add backend/api/ backend/main.py
-git commit -m "AG-13: Create auth endpoints
+git commit -m "AG-19: Create auth endpoints
 
 - POST /api/auth/register - Create new user
 - POST /api/auth/login - Return JWT token
@@ -454,23 +454,23 @@ git commit -m "AG-13: Create auth endpoints
 - Password hashing with bcrypt
 - JWT with 24h expiry"
 
-git push origin feature/AG-13-auth-endpoints
+git push origin feature/AG-19-auth-endpoints
 ```
 
-**Jira:** Move AG-13 to "Done"
+**Jira:** Move AG-19 to "Done"
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-17 - Frontend API Connection
+## 👨‍💻 Dev 3 (Marva): AG-23 - Frontend API Connection
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-17-api-connection
+git checkout -b feature/AG-23-api-connection
 ```
 
-**Jira:** Move AG-17 to "In Progress"
+**Jira:** Move AG-23 to "In Progress"
 
 ### Step 2: Create API Service
 
@@ -850,7 +850,7 @@ cd frontend && npm run dev
 
 ```bash
 git add frontend/
-git commit -m "AG-17: Connect frontend to auth API
+git commit -m "AG-23: Connect frontend to auth API
 
 - Create API service with login/register functions
 - Store JWT token in localStorage
@@ -858,10 +858,10 @@ git commit -m "AG-17: Connect frontend to auth API
 - Update Register page to call API
 - Redirect on success"
 
-git push origin feature/AG-17-api-connection
+git push origin feature/AG-23-api-connection
 ```
 
-**Jira:** Move AG-17 to "Done"
+**Jira:** Move AG-23 to "Done"
 
 ---
 
@@ -932,10 +932,10 @@ frontend/src/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-26: Login Page Component | Dev 3 | 3 | ✓ Done |
-| AG-27: Register Page Component | Dev 3 | 3 | ✓ Done |
-| AG-28: Auth API Service Module | Dev 1 | 3 | ✓ Done |
-| AG-29: Protected Routes Setup | Dev 2 | 2 | ✓ Done |
+| AG-32: Login Page Component | Dev 3 | 3 | ✓ Done |
+| AG-33: Register Page Component | Dev 3 | 3 | ✓ Done |
+| AG-34: Auth API Service Module | Dev 1 | 3 | ✓ Done |
+| AG-35: Protected Routes Setup | Dev 2 | 2 | ✓ Done |
 
 **Total Story Points Completed:** 11  
 **Dev 1:** 3 points | **Dev 2:** 2 points | **Dev 3:** 6 points

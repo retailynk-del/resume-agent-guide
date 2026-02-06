@@ -21,11 +21,11 @@ By end of today:
 
 ---
 
-### Task AG-22: User Database Model
+### Task AG-28: User Database Model
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-22 |
+| **Task ID** | AG-28 |
 | **Title** | User Database Model |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -46,11 +46,11 @@ Create Supabase database schema for users table with email, hashed password, and
 
 ---
 
-### Task AG-23: Registration Endpoint
+### Task AG-29: Registration Endpoint
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-23 |
+| **Task ID** | AG-29 |
 | **Title** | Registration Endpoint |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -73,11 +73,11 @@ Create POST /api/auth/register endpoint that hashes passwords and creates user a
 
 ---
 
-### Task AG-24: Login & JWT Endpoint
+### Task AG-30: Login & JWT Endpoint
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-24 |
+| **Task ID** | AG-30 |
 | **Title** | Login & JWT Endpoint |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -100,11 +100,11 @@ Create POST /api/auth/login endpoint that verifies credentials and returns JWT a
 
 ---
 
-### Task AG-25: Auth Middleware
+### Task AG-31: Auth Middleware
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-25 |
+| **Task ID** | AG-31 |
 | **Title** | Auth Middleware |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -152,10 +152,10 @@ Create FastAPI dependency that validates JWT tokens and protects endpoints. Dev 
 ```bash
 cd resume-agent
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-10-workflow-assembly
+git checkout -b feature/AG-16-workflow-assembly
 ```
 
-**Jira:** Move AG-10 to "In Progress"
+**Jira:** Move AG-16 to "In Progress"
 
 ### Step 2: Create Workflow File
 
@@ -647,7 +647,7 @@ cd ../..  # Back to resume-agent root
 
 git add backend/agent/
 
-git commit -m "AG-10: Assemble complete LangGraph workflow
+git commit -m "AG-16: Assemble complete LangGraph workflow
 
 - Connect all nodes: extract → analyze → score → plan → modify → score
 - Create workflow.py with StateGraph configuration
@@ -657,23 +657,23 @@ git commit -m "AG-10: Assemble complete LangGraph workflow
 
 Team effort: Shabas, Sinan, Marva"
 
-git push origin feature/AG-10-workflow-assembly
+git push origin feature/AG-16-workflow-assembly
 ```
 
-**Jira:** Move AG-10 to "In Review"
+**Jira:** Move AG-16 to "In Review"
 
 ### Step 7: Open PR and Merge
 
-PR Title: `AG-10: Complete LangGraph Workflow Assembly`
+PR Title: `AG-16: Complete LangGraph Workflow Assembly`
 
 After review and merge:
 ```bash
 git checkout dev-shabas
 git pull origin main
-git branch -d feature/AG-10-workflow-assembly
+git branch -d feature/AG-16-workflow-assembly
 ```
 
-**Jira:** Move AG-10 to "Done"
+**Jira:** Move AG-16 to "Done"
 
 ---
 
@@ -739,10 +739,10 @@ backend/agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-22: User Database Model | Dev 2 | 3 | ✓ Done |
-| AG-23: Registration Endpoint | Dev 1 | 3 | ✓ Done |
-| AG-24: Login & JWT Endpoint | Dev 2 | 3 | ✓ Done |
-| AG-25: Auth Middleware | Dev 3 | 3 | ✓ Done |
+| AG-28: User Database Model | Dev 2 | 3 | ✓ Done |
+| AG-29: Registration Endpoint | Dev 1 | 3 | ✓ Done |
+| AG-30: Login & JWT Endpoint | Dev 2 | 3 | ✓ Done |
+| AG-31: Auth Middleware | Dev 3 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 12  
 **Dev 1:** 3 points | **Dev 2:** 6 points | **Dev 3:** 3 points

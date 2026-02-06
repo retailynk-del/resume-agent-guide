@@ -26,7 +26,7 @@ Before starting work, add these 8 tasks to your Jira board:
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-7 |
+| **Task ID** | AG-13 |
 | **Title** | LangGraph Tutorial Part 1: Basics |
 | **Type** | Task |
 | **Epic** | Learning & Setup |
@@ -53,11 +53,11 @@ Complete Part 1 of the LangGraph tutorial focusing on basic concepts. Each devel
 
 ---
 
-### Task AG-2: LangGraph Tutorial Part 2 - State Management
+### Task AG-8: LangGraph Tutorial Part 2 - State Management
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-2 |
+| **Task ID** | AG-8 |
 | **Title** | LangGraph Tutorial Part 2: State Management |
 | **Type** | Task |
 | **Epic** | Learning & Setup |
@@ -84,11 +84,11 @@ Complete Part 2 of the LangGraph tutorial focusing on state management using Typ
 
 ---
 
-### Task AG-3: LangGraph Tutorial Part 3 - Workflow Building
+### Task AG-9: LangGraph Tutorial Part 3 - Workflow Building
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-3 |
+| **Task ID** | AG-9 |
 | **Title** | LangGraph Tutorial Part 3: Workflow Building |
 | **Type** | Task |
 | **Epic** | Learning & Setup |
@@ -115,11 +115,11 @@ Complete Part 3 of the LangGraph tutorial focusing on connecting nodes and build
 
 ---
 
-### Task AG-4: Agent State Schema
+### Task AG-10: Agent State Schema
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-4 |
+| **Task ID** | AG-10 |
 | **Title** | Agent State Schema |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -142,15 +142,15 @@ Define the ResumeAgentState TypedDict that will flow through the entire agent wo
 - [ ] Helper factory function created
 - [ ] Test file validates state creation
 
-**Related Tasks:** AG-7 (builds on tutorial knowledge)
+**Related Tasks:** AG-13 (builds on tutorial knowledge)
 
 ---
 
-### Task AG-5: Supabase Database Setup
+### Task AG-11: Supabase Database Setup
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-5 |
+| **Task ID** | AG-11 |
 | **Title** | Supabase Database Setup |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -176,11 +176,11 @@ Create a new Supabase project and set up the required database tables. This incl
 
 ---
 
-### Task AG-6: Backend CI/CD Pipeline
+### Task AG-12: Backend CI/CD Pipeline
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-6 |
+| **Task ID** | AG-12 |
 | **Title** | Backend CI/CD Pipeline |
 | **Type** | Task |
 | **Epic** | DevOps & Infrastructure |
@@ -208,11 +208,11 @@ Set up GitHub Actions workflow to automatically run tests for the backend when c
 
 ---
 
-### Task AG-7: Frontend CI/CD Pipeline
+### Task AG-13: Frontend CI/CD Pipeline
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-7 |
+| **Task ID** | AG-13 |
 | **Title** | Frontend CI/CD Pipeline |
 | **Type** | Task |
 | **Epic** | DevOps & Infrastructure |
@@ -239,11 +239,11 @@ Set up GitHub Actions workflow to automatically build and test the frontend when
 
 ---
 
-### Task AG-8: FastAPI Basic Setup
+### Task AG-14: FastAPI Basic Setup
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-8 |
+| **Task ID** | AG-14 |
 | **Title** | FastAPI Basic Setup |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -416,12 +416,12 @@ On whiteboard or Miro, draw the agent flow:
 
 | When | Action |
 |------|--------|
-| 9:30 AM | Move AG-7 to "In Progress" |
-| 12:30 PM | Move AG-7 to "Done" |
+| 9:30 AM | Move AG-13 to "In Progress" |
+| 12:30 PM | Move AG-13 to "Done" |
 
 ---
 
-## 🕑 2:00 PM - Dev 2 (Sinan): AG-71 - Supabase Setup
+## 🕑 2:00 PM - Dev 2 (Sinan): AG-137 - Supabase Setup
 
 ### What to Learn First (15 minutes)
 
@@ -565,12 +565,12 @@ This is cloud setup only - no code to commit yet.
 
 | When | Action |
 |------|--------|
-| 2:00 PM | Move AG-71 to "In Progress" |
-| 2:45 PM | Move AG-71 to "Done" |
+| 2:00 PM | Move AG-137 to "In Progress" |
+| 2:45 PM | Move AG-137 to "Done" |
 
 ---
 
-## 🕑 2:00 PM - Dev 3 (Marva): AG-21, AG-22 - CI/CD Setup
+## 🕑 2:00 PM - Dev 3 (Marva): AG-87, AG-88 - CI/CD Setup
 
 ### What to Learn First (20 minutes)
 
@@ -606,12 +606,12 @@ git branch
 git checkout dev-marva
 ```
 
-**Jira Update:** Move AG-21 and AG-22 to "In Progress"
+**Jira Update:** Move AG-87 and AG-88 to "In Progress"
 
 #### Step 4: Create Feature Branch
 
 ```bash
-git checkout -b feature/AG-21-cicd-setup
+git checkout -b feature/AG-87-cicd-setup
 ```
 
 #### Step 5: Create Folder Structure
@@ -826,7 +826,7 @@ Untracked files:
 
 ```bash
 git add .
-git commit -m "AG-21: Setup CI/CD pipelines and basic FastAPI backend
+git commit -m "AG-87: Setup CI/CD pipelines and basic FastAPI backend
 
 - Add GitHub Actions workflow for backend (test on push)
 - Add GitHub Actions workflow for frontend (build on push)
@@ -837,21 +837,21 @@ git commit -m "AG-21: Setup CI/CD pipelines and basic FastAPI backend
 #### Step 13: Push to Feature Branch
 
 ```bash
-git push origin feature/AG-21-cicd-setup
+git push origin feature/AG-87-cicd-setup
 ```
 
-**Jira Update:** Move AG-21 and AG-22 to "In Review"
+**Jira Update:** Move AG-87 and AG-88 to "In Review"
 
 #### Step 14: Open Pull Request
 
 1. Go to your GitHub repository in browser
-2. You should see a yellow banner: "feature/AG-21-cicd-setup had recent pushes"
+2. You should see a yellow banner: "feature/AG-87-cicd-setup had recent pushes"
 3. Click "Compare & pull request"
 4. Fill in PR details:
 
 **Title:**
 ```
-AG-21: Setup CI/CD pipelines and basic FastAPI backend
+AG-87: Setup CI/CD pipelines and basic FastAPI backend
 ```
 
 **Description:**
@@ -860,8 +860,8 @@ AG-21: Setup CI/CD pipelines and basic FastAPI backend
 Setup the CI/CD infrastructure and basic backend application.
 
 ## Jira Tasks
-- AG-21: Backend CI/CD Pipeline
-- AG-22: Frontend CI/CD Pipeline
+- AG-87: Backend CI/CD Pipeline
+- AG-88: Frontend CI/CD Pipeline
 
 ## Changes Made
 - Created `.github/workflows/backend.yml` - triggers on backend changes
@@ -904,7 +904,7 @@ git checkout dev-marva
 git pull origin main
 
 # Delete the feature branch (no longer needed)
-git branch -d feature/AG-21-cicd-setup
+git branch -d feature/AG-87-cicd-setup
 ```
 
 ---
@@ -913,9 +913,9 @@ git branch -d feature/AG-21-cicd-setup
 
 | When | Action |
 |------|--------|
-| 2:00 PM | Move AG-21, AG-22 to "In Progress" |
-| ~3:00 PM | Move AG-21, AG-22 to "In Review" (after push) |
-| After merge | Move AG-21, AG-22 to "Done" |
+| 2:00 PM | Move AG-87, AG-88 to "In Progress" |
+| ~3:00 PM | Move AG-87, AG-88 to "In Review" (after push) |
+| After merge | Move AG-87, AG-88 to "Done" |
 
 ---
 
@@ -996,14 +996,14 @@ resume-agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-7: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
-| AG-2: LangGraph Tutorial Part 2 | Dev 2 | 2 | ✓ Done |
-| AG-3: LangGraph Tutorial Part 3 | Dev 3 | 2 | ✓ Done |
-| AG-4: Agent State Schema | Dev 1 | 3 | ✓ Done |
-| AG-5: Supabase Setup | Dev 2 | 3 | ✓ Done |
-| AG-6: Backend CI/CD | Dev 1 | 2 | ✓ Done |
-| AG-7: Frontend CI/CD | Dev 3 | 2 | ✓ Done |
-| AG-8: FastAPI Basic Setup | Dev 2 | 2 | ✓ Done |
+| AG-13: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
+| AG-8: LangGraph Tutorial Part 2 | Dev 2 | 2 | ✓ Done |
+| AG-9: LangGraph Tutorial Part 3 | Dev 3 | 2 | ✓ Done |
+| AG-10: Agent State Schema | Dev 1 | 3 | ✓ Done |
+| AG-11: Supabase Setup | Dev 2 | 3 | ✓ Done |
+| AG-12: Backend CI/CD | Dev 1 | 2 | ✓ Done |
+| AG-13: Frontend CI/CD | Dev 3 | 2 | ✓ Done |
+| AG-14: FastAPI Basic Setup | Dev 2 | 2 | ✓ Done |
 
 **Total Story Points Completed:** 18  
 **Dev 1:** 7 points | **Dev 2:** 7 points | **Dev 3:** 4 points

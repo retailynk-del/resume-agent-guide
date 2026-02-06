@@ -20,11 +20,11 @@ By end of today:
 
 ---
 
-### Task AG-33: Dashboard Form Component
+### Task AG-39: Dashboard Form Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-33 |
+| **Task ID** | AG-39 |
 | **Title** | Dashboard Form Component |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -47,11 +47,11 @@ Create the main dashboard page with form for submitting resume and job descripti
 
 ---
 
-### Task AG-34: Form Validation
+### Task AG-40: Form Validation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-34 |
+| **Task ID** | AG-40 |
 | **Title** | Form Validation |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -73,11 +73,11 @@ Add client-side validation to dashboard form. Check minimum character counts and
 
 ---
 
-### Task AG-35: Agent API Integration
+### Task AG-41: Agent API Integration
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-35 |
+| **Task ID** | AG-41 |
 | **Title** | Agent API Integration |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
@@ -99,16 +99,16 @@ Connect dashboard form to backend agent API. Handle API calls, loading states, e
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-19 - Results Page
+## 👨‍💻 Dev 3 (Marva): AG-25 - Results Page
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-19-results-page
+git checkout -b feature/AG-25-results-page
 ```
 
-**Jira:** Move AG-19 to "In Progress"
+**Jira:** Move AG-25 to "In Progress"
 
 ### Step 2: Create Results Page
 
@@ -687,7 +687,7 @@ import Results from './pages/Results';
 
 ```bash
 git add frontend/src/pages/
-git commit -m "AG-19: Create results display page
+git commit -m "AG-25: Create results display page
 
 - Score comparison cards (before/after/improvement)
 - Visual progress bar
@@ -695,14 +695,14 @@ git commit -m "AG-19: Create results display page
 - Copy to clipboard functionality
 - Responsive design"
 
-git push origin feature/AG-19-results-page
+git push origin feature/AG-25-results-page
 ```
 
-**Jira:** Move AG-19 to "Done"
+**Jira:** Move AG-25 to "Done"
 
 ---
 
-## 👥 All Developers: AG-25 - Integration Testing
+## 👥 All Developers: AG-31 - Integration Testing
 
 ### Test Checklist
 
@@ -827,9 +827,9 @@ frontend/src/pages/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-33: Dashboard Form Component | Dev 3 | 5 | ✓ Done |
-| AG-34: Form Validation | Dev 1 | 2 | ✓ Done |
-| AG-35: Agent API Integration | Dev 2 | 3 | ✓ Done |
+| AG-39: Dashboard Form Component | Dev 3 | 5 | ✓ Done |
+| AG-40: Form Validation | Dev 1 | 2 | ✓ Done |
+| AG-41: Agent API Integration | Dev 2 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 10  
 **Dev 1:** 2 points | **Dev 2:** 3 points | **Dev 3:** 5 points

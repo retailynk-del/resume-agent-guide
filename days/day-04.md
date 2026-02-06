@@ -20,11 +20,11 @@ By end of today:
 
 ---
 
-### Task AG-15: Improvement Planning Node
+### Task AG-21: Improvement Planning Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-15 |
+| **Task ID** | AG-21 |
 | **Title** | Improvement Planning Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -50,15 +50,15 @@ Build a LangGraph node that compares job requirements with resume analysis to cr
 - [ ] Test file validates planning logic
 - [ ] PR merged to main
 
-**Dependencies:** AG-9 (job requirements), AG-12 (resume analysis), AG-13 (scoring)
+**Dependencies:** AG-15 (job requirements), AG-18 (resume analysis), AG-19 (scoring)
 
 ---
 
-### Task AG-16: Resume Modification Node
+### Task AG-22: Resume Modification Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-16 |
+| **Task ID** | AG-22 |
 | **Title** | Resume Modification Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -85,17 +85,17 @@ Build a LangGraph node that takes the improvement plan and actually modifies the
 - [ ] Test file shows clear improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-15 (improvement plan must exist)
+**Dependencies:** AG-21 (improvement plan must exist)
 
 **Related Tasks:** Dev 3's 2nd LangGraph node!
 
 ---
 
-### Task AG-17: Modified Resume Scoring Node
+### Task AG-23: Modified Resume Scoring Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-17 |
+| **Task ID** | AG-23 |
 | **Title** | Modified Resume Scoring Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -115,30 +115,30 @@ Build a LangGraph node that scores the MODIFIED resume against job requirements 
 
 **Acceptance Criteria:**
 - [ ] File created: `backend/agent/nodes/rescore.py`
-- [ ] Scores modified resume (reuses AG-13 scoring logic)
+- [ ] Scores modified resume (reuses AG-19 scoring logic)
 - [ ] Updates state's `ats_score_after` field
 - [ ] Calculates `improvement_delta` (after - before)
 - [ ] Adds to `score_history` list
 - [ ] Test shows score improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-16 (modified resume must exist), AG-13 (scoring logic)
+**Dependencies:** AG-22 (modified resume must exist), AG-19 (scoring logic)
 
 **Related Tasks:** Shows the agent actually improved the resume!
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-4 - Resume Analysis Node
+## 👨‍💻 Dev 2 (Sinan): AG-10 - Resume Analysis Node
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-4-resume-analysis
+git checkout -b feature/AG-10-resume-analysis
 ```
 
-**Jira:** Move AG-4 to "In Progress"
+**Jira:** Move AG-10 to "In Progress"
 
 ### Step 2: Create Resume Analysis Node
 
@@ -311,32 +311,32 @@ python test_resume_analysis.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-4: Create resume analysis node
+git commit -m "AG-10: Create resume analysis node
 
 - Extract skills, experience, achievements from resume
 - Return structured JSON analysis
 - Add decision logging"
 
-git push origin feature/AG-4-resume-analysis
+git push origin feature/AG-10-resume-analysis
 ```
 
 Open PR → Merge
 
-**Jira:** Move AG-4 to "Done"
+**Jira:** Move AG-10 to "Done"
 
 ---
 
-## 👥 Dev 1 + Dev 3 (PAIR): AG-7 - Planning Node
+## 👥 Dev 1 + Dev 3 (PAIR): AG-13 - Planning Node
 
 ### Step 1: Setup (Dev 1 drives first)
 
 ```bash
 cd resume-agent
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-7-planning-node
+git checkout -b feature/AG-13-planning-node
 ```
 
-**Jira:** Move AG-7 to "In Progress"
+**Jira:** Move AG-13 to "In Progress"
 
 ### Step 2: Create Planning Node
 
@@ -492,7 +492,7 @@ python test_planning.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-7: Create improvement planning node
+git commit -m "AG-13: Create improvement planning node
 
 - Compare requirements vs resume analysis
 - Generate prioritized improvement plan
@@ -500,12 +500,12 @@ git commit -m "AG-7: Create improvement planning node
 
 Co-authored-by: Marva <marva@example.com>"
 
-git push origin feature/AG-7-planning-node
+git push origin feature/AG-13-planning-node
 ```
 
 Open PR → Merge
 
-**Jira:** Move AG-7 to "Done"
+**Jira:** Move AG-13 to "Done"
 
 ---
 
@@ -548,9 +548,9 @@ backend/agent/nodes/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-15: Improvement Planning Node | Dev 1 | 5 | ✓ Done |
-| AG-16: Resume Modification Node | Dev 3 | 5 | ✓ Done |
-| AG-17: Modified Resume Scoring Node | Dev 2 | 3 | ✓ Done |
+| AG-21: Improvement Planning Node | Dev 1 | 5 | ✓ Done |
+| AG-22: Resume Modification Node | Dev 3 | 5 | ✓ Done |
+| AG-23: Modified Resume Scoring Node | Dev 2 | 3 | ✓ Done |
 
 **Total Story Points Completed:** 13  
 **Dev 1:** 5 points | **Dev 2:** 3 points | **Dev 3:** 5 points

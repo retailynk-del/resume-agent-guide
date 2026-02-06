@@ -21,11 +21,11 @@ By end of today:
 
 ---
 
-### Task AG-18: Workflow Graph Construction
+### Task AG-24: Workflow Graph Construction
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-18 |
+| **Task ID** | AG-24 |
 | **Title** | Workflow Graph Construction |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
@@ -52,15 +52,15 @@ Connect ALL 6 LangGraph nodes into the complete agent workflow graph. This creat
 - [ ] Test file shows all nodes executing
 - [ ] PR merged to main
 
-**Dependencies:** AG-9, AG-12, AG-13, AG-15, AG-16, AG-17 (all nodes exist)
+**Dependencies:** AG-15, AG-18, AG-19, AG-21, AG-22, AG-23 (all nodes exist)
 
 ---
 
-### Task AG-19: State Flow Testing
+### Task AG-25: State Flow Testing
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-19 |
+| **Task ID** | AG-25 |
 | **Title** | State Flow Testing |
 | **Type** | Task |
 | **Epic** | Testing |
@@ -86,15 +86,15 @@ Create comprehensive tests that validate state flows correctly through all 6 nod
 - [ ] All tests pass
 - [ ] PR merged to main
 
-**Dependencies:** AG-18 (workflow must be assembled)
+**Dependencies:** AG-24 (workflow must be assembled)
 
 ---
 
-### Task AG-20: End-to-End Agent Test
+### Task AG-26: End-to-End Agent Test
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-20 |
+| **Task ID** | AG-26 |
 | **Title** | End-to-End Agent Test |
 | **Type** | Task |
 | **Epic** | Testing |
@@ -120,15 +120,15 @@ Create a real-world end-to-end test with actual job description and resume. Run 
 - [ ] Test passes successfully
 - [ ] PR merged to main
 
-**Dependencies:** AG-18 (workflow must exist)
+**Dependencies:** AG-24 (workflow must exist)
 
 ---
 
-### Task AG-21: Score History Tracking
+### Task AG-27: Score History Tracking
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-21 |
+| **Task ID** | AG-27 |
 | **Title** | Score History Tracking |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -151,21 +151,21 @@ Add functionality to track score changes across iterations. This will be useful 
 - [ ] Test validates history list grows
 - [ ] PR merged to main
 
-**Dependencies:** AG-18, AG-19
+**Dependencies:** AG-24, AG-25
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-8 - Modification Node
+## 👨‍💻 Dev 3 (Marva): AG-14 - Modification Node
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-8-modification-node
+git checkout -b feature/AG-14-modification-node
 ```
 
-**Jira:** Move AG-8 to "In Progress"
+**Jira:** Move AG-14 to "In Progress"
 
 ### Step 2: Create Modification Node
 
@@ -348,29 +348,29 @@ python test_modification.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-8: Create resume modification node
+git commit -m "AG-14: Create resume modification node
 
 - Apply improvement plan to resume
 - Maintain authentic voice
 - Track iteration count and changes applied"
 
-git push origin feature/AG-8-modification-node
+git push origin feature/AG-14-modification-node
 ```
 
-**Jira:** Move AG-8 to "Done"
+**Jira:** Move AG-14 to "Done"
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-6 - Scoring Nodes
+## 👨‍💻 Dev 2 (Sinan): AG-12 - Scoring Nodes
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-6-scoring-nodes
+git checkout -b feature/AG-12-scoring-nodes
 ```
 
-**Jira:** Move AG-6 to "In Progress"
+**Jira:** Move AG-12 to "In Progress"
 
 ### Step 2: Create Scoring Nodes
 
@@ -550,16 +550,16 @@ python test_scoring_nodes.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-6: Create scoring nodes for workflow
+git commit -m "AG-12: Create scoring nodes for workflow
 
 - score_initial for baseline score
 - score_modified for post-change score
 - Track improvement delta and history"
 
-git push origin feature/AG-6-scoring-nodes
+git push origin feature/AG-12-scoring-nodes
 ```
 
-**Jira:** Move AG-6 to "Done"
+**Jira:** Move AG-12 to "Done"
 
 ---
 
@@ -608,10 +608,10 @@ backend/agent/nodes/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-18: Workflow Graph Construction | Dev 1 | 5 | ✓ Done |
-| AG-19: State Flow Testing | Dev 2 | 3 | ✓ Done |
-| AG-20: End-to-End Agent Test | Dev 3 | 3 | ✓ Done |
-| AG-21: Score History Tracking | Dev 2 | 2 | ✓ Done |
+| AG-24: Workflow Graph Construction | Dev 1 | 5 | ✓ Done |
+| AG-25: State Flow Testing | Dev 2 | 3 | ✓ Done |
+| AG-26: End-to-End Agent Test | Dev 3 | 3 | ✓ Done |
+| AG-27: Score History Tracking | Dev 2 | 2 | ✓ Done |
 
 **Total Story Points Completed:** 13  
 **Dev 1:** 5 points | **Dev 2:** 5 points | **Dev 3:** 3 points
