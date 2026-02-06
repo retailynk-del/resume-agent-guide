@@ -1,17 +1,18 @@
-# Day 9: Results Page + Testing
+# Day 9: Dashboard UI
 
 > **Date:** Sprint 1, Day 9  
-> **Focus:** Display optimization results, integration testing  
-> **Vertical Slice:** Slice 4 COMPLETES - Full flow working!
+> **Focus:** User interface for resume submission  
+> **Vertical Slice:** User can submit resume + JD through UI
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Results page shows scores and improved resume
-- ✅ Full user flow tested end-to-end
-- ✅ Ready for Sprint 1 demo
+- ✅ Dashboard form component ready (Dev 3)
+- ✅ Form validation implemented (Dev 1 - frontend cross-training!)
+- ✅ Agent API integration complete (Dev 2 - frontend cross-training!)
+- ✅ User fills form → clicks submit → agent runs → waits for results
 
 ---
 
@@ -19,40 +20,82 @@ By end of today:
 
 ---
 
-### Task AG-19: Results Page
+### Task AG-33: Dashboard Form Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-19 |
-| **Title** | Results Display Page |
+| **Task ID** | AG-33 |
+| **Title** | Dashboard Form Component |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
 | **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Build page displaying optimization results: before/after scores, improvement delta, modified resume, and improvement plan.
+Create the main dashboard page with form for submitting resume and job description. Includes text areas, character counts, and loading state.
 
 **Acceptance Criteria:**
-- [ ] Score comparison (before vs after)
-- [ ] Visual improvement indicator
-- [ ] Modified resume display
-- [ ] Copy button for resume
-- [ ] Back to dashboard button
+- [ ] File created: `frontend/src/pages/Dashboard.jsx`
+- [ ] Text area for job description
+- [ ] Text area for resume
+- [ ] Character count display
+- [ ] Submit button
+- [ ] Loading state with spinner during optimization
+- [ ] PR merged
 
 ---
 
-### Task AG-25: Integration Testing
+### Task AG-34: Form Validation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-25 |
-| **Title** | Full Integration Testing |
-| **Assignees** | All Developers |
-| **Story Points** | 5 |
+| **Task ID** | AG-34 |
+| **Title** | Form Validation |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Test the complete user flow from registration to results. Document any bugs found.
+Add client-side validation to dashboard form. Check minimum character counts and show helpful error messages. Dev 1 learns frontend validation!
+
+**Acceptance Criteria:**
+- [ ] Job description: minimum 50 characters
+- [ ] Resume: minimum 100 characters
+- [ ] Error messages display clearly
+- [ ] Submit button disabled when invalid
+- [ ] Visual feedback for validation states
+- [ ] PR merged
+
+---
+
+### Task AG-35: Agent API Integration
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-35 |
+| **Title** | Agent API Integration |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Connect dashboard form to backend agent API. Handle API calls, loading states, errors, and redirect to results page on success. Dev 2 learns frontend API integration!
+
+**Acceptance Criteria:**
+- [ ] API call to /api/agent/run on submit
+- [ ] Loading state management
+- [ ] Error handling and display
+- [ ] Store results in localStorage
+- [ ] Redirect to /results/:id on success
+- [ ] PR merged
 
 ---
 
@@ -784,10 +827,12 @@ frontend/src/pages/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-19: Results Page | Dev 3 | 5 | ✓ Done |
-| AG-25: Integration Testing | All | 5 | ✓ Done |
+| AG-33: Dashboard Form Component | Dev 3 | 5 | ✓ Done |
+| AG-34: Form Validation | Dev 1 | 2 | ✓ Done |
+| AG-35: Agent API Integration | Dev 2 | 3 | ✓ Done |
 
-**Total:** 10 points
+**Total Story Points Completed:** 10  
+**Dev 1:** 2 points | **Dev 2:** 3 points | **Dev 3:** 5 points
 
 ---
 

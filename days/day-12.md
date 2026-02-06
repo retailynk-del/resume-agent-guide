@@ -1,41 +1,99 @@
-# Day 12: Save Run History
+# Day 12: Iterative Agent
 
-> **Date:** Sprint 2, Day 2  
-> **Focus:** Save runs to database, create history endpoint  
-> **Vertical Slice:** Slice 5 continues
+> **Date:** Sprint 2, Day 12  
+> **Focus:** Add iteration capability to agent workflow  
+> **Vertical Slice:** Agent loops to improve score
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Runs saved to database after completion
-- ✅ History API endpoint working
-- ✅ User can see their past runs
+- ✅ Decision node with loop logic created (Dev 2 - more LangGraph!)
+- ✅ Conditional edge implementation (Dev 1)
+- ✅ Iteration testing complete (Dev 3)
+- ✅ Agent loops up to 3x until target score reached
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-30: Save Runs to Database
+### Task AG-42: Decision Node (Loop Logic)
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-30 |
-| **Title** | Save Agent Runs to Database |
+| **Task ID** | AG-42 |
+| **Title** | Decision Node (Loop Logic) |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
 | **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 3 |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Create LangGraph decision node that determines whether to iterate or finish based on score and iteration count. Dev 2 gets more advanced LangGraph experience!
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/nodes/decision.py`
+- [ ] Checks if score >= target (70) OR max iterations (3) reached
+- [ ] Returns "continue" or "finish"
+- [ ] Updates iteration_count in state
+- [ ] Logs decision reasoning
+- [ ] PR merged
 
 ---
 
-### Task AG-31: History API Endpoint
+### Task AG-43: Conditional Edge Implementation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-31 |
-| **Title** | Run History Endpoint |
+| **Task ID** | AG-43 |
+| **Title** | Conditional Edge Implementation |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
 | **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Update workflow.py to use conditional edges that route based on decision node output. Creates loop back to planning for iteration.
+
+**Acceptance Criteria:**
+- [ ] Add decision node to workflow
+- [ ] Conditional edge after rescore: decision node
+- [ ] If "continue" → route back to planning node
+- [ ] If "finish" → route to END
+- [ ] State properly maintained through loop
+- [ ] PR merged
+
+---
+
+### Task AG-44: Iteration Testing
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-44 |
+| **Title** | Iteration Testing |
+| **Type** | Task |
+| **Epic** | Testing & QA |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Test the iterative workflow with various scenarios: early stopping, max iterations, and score improvement patterns.
+
+**Acceptance Criteria:**
+- [ ] Test: Agent stops when score >= 70
+- [ ] Test: Agent stops at max 3 iterations
+- [ ] Test: Score improves each iteration
+- [ ] Test: iteration_count increments correctly
+- [ ] Test: Decision log tracks all iterations
+- [ ] All tests pass
+- [ ] PR merged
 
 ---
 
@@ -234,12 +292,14 @@ curl http://localhost:8000/api/agent/history \
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-30: Save Runs | 3 | ✓ Done |
-| AG-31: History API | 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-42: Decision Node (Loop Logic) | Dev 2 | 5 | ✓ Done |
+| AG-43: Conditional Edge Implementation | Dev 1 | 3 | ✓ Done |
+| AG-44: Iteration Testing | Dev 3 | 3 | ✓ Done |
 
-**Total:** 6 points
+**Total Story Points Completed:** 11  
+**Dev 1:** 3 points | **Dev 2:** 5 points | **Dev 3:** 3 points
 
 ---
 

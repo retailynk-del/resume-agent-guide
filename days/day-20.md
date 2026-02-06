@@ -1,34 +1,98 @@
-# Day 20: Sprint 2 Demo & Retrospective
+# Day 20: Documentation
 
-> **Date:** Sprint 2, Day 10 (Final)  
-> **Focus:** Demo Sprint 2 features, retrospective  
-> **Milestone:** Feature Complete! 🎉
+> **Date:** Sprint 2, Day 20  
+> **Focus:** Comprehensive project documentation  
+> **Vertical Slice:** Project ready for handoff
 
 ---
 
-## 🎯 Today's Agenda
+## 🎯 Today's Goal
 
-| Time | Activity |
-|------|----------|
-| 9:00 - 9:30 | Demo preparation |
-| 9:30 - 10:00 | Sprint 2 Demo |
-| 10:00 - 10:30 | Q&A |
-| 10:30 - 11:30 | Retrospective |
-| 11:30 - 12:00 | Sprint 3 Planning Preview |
-| PM | Documentation |
+By end of today:
+- ✅ README updated (Dev 1)
+- ✅ API documentation complete (Dev 2)
+- ✅ Developer guide created (Dev 3)
+- ✅ Project fully documented for any developer
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-38: Sprint 2 Demo
+### Task AG-66: Update README
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-38 |
-| **Title** | Sprint 2 Demo |
-| **Assignees** | All |
+| **Task ID** | AG-66 |
+| **Title** | Update README |
+| **Type** | Task |
+| **Epic** | Documentation |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Update README with comprehensive setup instructions, features list, tech stack, and contribution guidelines.
+
+**Acceptance Criteria:**
+- [ ] Installation instructions clear
+- [ ] Environment variables documented
+- [ ] Features list complete
+- [ ] Tech stack detailed
+- [ ] Contributing guidelines added
+- [ ] PR merged
+
+---
+
+### Task AG-67: API Documentation
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-67 |
+| **Title** | API Documentation |
+| **Type** | Task |
+| **Epic** | Documentation |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Document all API endpoints with request/response examples. Ensure FastAPI auto-docs are complete and accurate.
+
+**Acceptance Criteria:**
+- [ ] All endpoints documented in code
+- [ ] Request/response examples added
+- [ ] Error responses documented
+- [ ] FastAPI /docs complete
+- [ ] Postman collection created
+- [ ] PR merged
+
+---
+
+### Task AG-68: Developer Guide
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-68 |
+| **Title** | Developer Guide |
+| **Type** | Task |
+| **Epic** | Documentation |
+| **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 2 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Create developer guide explaining architecture, LangGraph workflow, database schema, and how to extend the agent.
+
+**Acceptance Criteria:**
+- [ ] File created: `docs/developer-guide.md`
+- [ ] Architecture diagram included
+- [ ] LangGraph workflow explained
+- [ ] Database schema documented
+- [ ] How to add new nodes
+- [ ] PR merged
 
 ---
 

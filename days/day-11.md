@@ -1,18 +1,19 @@
-# Day 11: Sprint 2 - Supabase Integration
+# Day 11: Sprint 1 Demo
 
-> **Date:** Sprint 2, Day 1  
-> **Focus:** Migrate from in-memory to Supabase database  
-> **Vertical Slice:** Slice 5 - Persistent data
+> **Date:** Sprint 1, Day 11  
+> **Focus:** Present working MVP to stakeholders  
+> **Vertical Slice:** Demo + retrospective + planning
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ User model in database
-- ✅ Registration saves to Supabase
-- ✅ Login reads from Supabase
-- ✅ All existing tests pass
+- ✅ Demo preparation complete (Dev 1)
+- ✅ Retrospective notes documented (Dev 2)
+- ✅ Sprint 2 planning initialized (Dev 3)
+- ✅ MVP successfully demonstrated to stakeholders
+- ✅ Team alignment on Sprint 2 priorities
 
 ---
 
@@ -29,44 +30,79 @@ By end of today:
 
 ## 📋 Jira Tasks
 
-### Task AG-28: User Database Model
+### Task AG-39: Demo Preparation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-28 |
-| **Title** | User Database Model |
-| **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 5 |
-| **Sprint** | Sprint 2 |
+| **Task ID** | AG-39 |
+| **Title** | Demo Preparation |
+| **Type** | Task |
+| **Epic** | Project Management |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Create SQLAlchemy model for users and migrate auth to use database.
+Prepare Sprint 1 demo presentation, test flow, and ensure environment is ready. Create demo script showcasing MVP functionality.
 
 **Acceptance Criteria:**
-- [ ] User model with id, email, password_hash, created_at
-- [ ] Registration saves to database
-- [ ] Login reads from database
-- [ ] Existing users can still login
+- [ ] Demo script created
+- [ ] Test account prepared
+- [ ] Sample resume + JD ready
+- [ ] Full flow tested and working
+- [ ] Presentation materials ready
+- [ ] Q&A prep done
 
 ---
 
-### Task AG-29: Run History Model
+### Task AG-40: Retrospective Notes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-29 |
-| **Title** | Agent Run History Model |
-| **Assignee** | Dev 1 (Shabas) |
-| **Story Points** | 5 |
-| **Sprint** | Sprint 2 |
+| **Task ID** | AG-40 |
+| **Title** | Retrospective Notes |
+| **Type** | Task |
+| **Epic** | Project Management |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 1 |
+| **Sprint** | Sprint 1 |
+| **Priority** | Medium |
 
 **Description:**
-Create model to store optimization runs for history feature.
+Facilitate Sprint 1 retrospective session. Document what went well, what didn't, and action items for improvement.
 
 **Acceptance Criteria:**
-- [ ] Run model with id, user_id, scores, status
-- [ ] Runs saved after completion
-- [ ] Can query runs by user
+- [ ] Retrospective session facilitated
+- [ ] Start/Stop/Continue notes documented
+- [ ] Action items identified
+- [ ] Team feedback captured
+- [ ] Document shared with team
+
+---
+
+### Task AG-41: Sprint 2 Planning
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-41 |
+| **Title** | Sprint 2 Planning |
+| **Type** | Task |
+| **Epic** | Project Management |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 1 |
+| **Sprint** | Sprint 1 |
+| **Priority** | Medium |
+
+**Description:**
+Initialize Sprint 2 planning - create task list, estimate story points, and set sprint goals based on MVP learnings.
+
+**Acceptance Criteria:**
+- [ ] Sprint 2 goals defined
+- [ ] Task list created in Jira
+- [ ] Story points estimated
+- [ ] Sprint capacity planned
+- [ ] Team aligned on priorities
 
 ---
 
@@ -601,10 +637,12 @@ curl -X POST http://localhost:8000/api/auth/register \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-28: User Model | Dev 2 | 5 | ✓ Done |
-| AG-29: Run Model | Dev 1 | 5 | ✓ Done |
+| AG-39: Demo Preparation | Dev 1 | 2 | ✓ Done |
+| AG-40: Retrospective Notes | Dev 2 | 1 | ✓ Done |
+| AG-41: Sprint 2 Planning | Dev 3 | 1 | ✓ Done |
 
-**Total:** 10 points
+**Total Story Points Completed:** 4  
+**Dev 1:** 2 points | **Dev 2:** 1 point | **Dev 3:** 1 point
 
 ---
 

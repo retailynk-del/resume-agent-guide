@@ -1,18 +1,18 @@
-# Day 2: Foundation
+# Day 2: First Agent Node
 
 > **Date:** Sprint 1, Day 2  
-> **Focus:** Agent state schema, FastAPI structure, React setup  
-> **Vertical Slice:** Slice 1 - Foundation continues
+> **Focus:** Build FIRST working LangGraph node + test workflow  
+> **Vertical Slice:** First agent node works end-to-end
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Agent state schema defined (TypedDict)
-- ✅ FastAPI project structure with database connection
-- ✅ React app with routing for all pages
-- ✅ Everyone works on their stack
+- ✅ First LangGraph node (Job Requirements Extraction) working
+- ✅ Test workflow validates the node runs correctly
+- ✅ React project initialized with Vite
+- ✅ Can test one complete agent node
 
 ---
 
@@ -20,101 +20,109 @@ By end of today:
 
 ---
 
-### Task AG-2: Agent State Schema
+### Task AG-9: Job Requirements Extraction Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-2 |
-| **Title** | Agent State Schema |
+| **Task ID** | AG-9 |
+| **Title** | Job Requirements Extraction Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
 | **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Build the FIRST LangGraph node for the resume agent. This node uses GPT-4o-mini to extract structured requirements from a job description (skills, experience, keywords). This is everyone's introduction to building real agent nodes.
+
+**What You'll Learn:**
+- Creating LangGraph nodes (functions that transform state)
+- Using OpenAI API for structured extraction
+- Returning partial state updates from nodes
+- Testing individual nodes
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/nodes/job_requirements.py`
+- [ ] Node extracts: required_skills, preferred_skills, experience_years, key_keywords
+- [ ] Returns dict that updates state's `job_requirements` field
+- [ ] Includes example test with sample job description
+- [ ] PR merged to main
+
+**Dependencies:** AG-4 (State schema must be defined first)
+
+**Related Tasks:** All developers learning LangGraph together
+
+---
+
+### Task AG-10: Test Workflow for Single Node
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-10 |
+| **Title** | Test Workflow for Single Node |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Define the ResumeAgentState TypedDict that holds all data flowing through the agent workflow. This is the "memory" of the agent - every node reads from it and writes to it.
+Create a simple LangGraph workflow that runs just the Job Requirements node (AG-9). This tests that our first node works correctly and introduces the team to workflow compilation and invocation.
 
 **What You'll Learn:**
-- Python TypedDict for type-safe dictionaries
-- How LangGraph state works
-- Planning state structure for multi-step agents
+- Building StateGraph workflows
+- Adding nodes to graphs
+- Setting entry points and edges
+- Compiling and invoking workflows
+- Testing agent outputs
 
 **Acceptance Criteria:**
-- [ ] File created: `backend/agent/state.py`
-- [ ] All required fields defined with proper types
-- [ ] TypedDict includes: identifiers, inputs, extracted data, scoring, planning, outputs
-- [ ] Basic test file validates state creation
-- [ ] PR merged to main
+- [ ] File created: `backend/agent/test_workflow.py`
+- [ ] Workflow includes only the job_requirements node
+- [ ] Can invoke with test job description
+- [ ] Prints extracted requirements in readable format
+- [ ] Successfully runs end-to-end
 
-**Dependencies:** AG-21 (CI/CD must be set up first)
+**Dependencies:** AG-9 (Job requirements node must exist first)
+
+**Related Tasks:** Testing what Dev 1 built
 
 ---
 
-### Task AG-12: FastAPI Project Structure
+### Task AG-11: React Project Setup
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-12 |
-| **Title** | FastAPI Project Structure |
-| **Type** | Task |
-| **Epic** | Backend API & Database |
-| **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 2 |
-| **Sprint** | Sprint 1 |
-| **Priority** | High |
-
-**Description:**
-Set up the FastAPI project folder structure with separate directories for API routes, database connection, and agent logic. Configure database connection to Supabase.
-
-**What You'll Learn:**
-- FastAPI project organization best practices
-- SQLAlchemy database connection
-- Environment variables with python-dotenv
-
-**Acceptance Criteria:**
-- [ ] Folders created: `api/`, `database/`, `agent/`
-- [ ] Database connection configured in `database/connection.py`
-- [ ] CORS middleware configured properly
-- [ ] `requirements.txt` updated with all dependencies
-- [ ] `.env.example` file created
-- [ ] PR merged to main
-
-**Dependencies:** AG-11 (Supabase must be set up first)
-
----
-
-### Task AG-15: React Project Setup
-
-| Field | Value |
-|-------|-------|
-| **Task ID** | AG-15 |
+| **Task ID** | AG-11 |
 | **Title** | React Project Setup |
 | **Type** | Task |
 | **Epic** | Frontend & UI |
 | **Assignee** | Dev 3 (Marva) |
-| **Story Points** | 2 |
+| **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Initialize React project using Vite. Set up React Router with routes for all pages: Home, Login, Register, Dashboard, and Results.
+Initialize React project using Vite. Set up React Router with routes for all pages: Home, Login, Register, Dashboard, and Results. Create basic page components (can be placeholder content for now).
 
 **What You'll Learn:**
 - Creating React apps with Vite
 - React Router v6 setup
 - Project structure for React apps
+- Component-based architecture
 
 **Acceptance Criteria:**
 - [ ] React app created with Vite (react template)
 - [ ] React Router DOM installed and configured
 - [ ] Routes defined for: `/`, `/login`, `/register`, `/dashboard`, `/results/:id`
+- [ ] Basic page components created (can show "Page Name" for now)
 - [ ] App runs without errors on `npm run dev`
 - [ ] `.env.example` file created for API URL
 - [ ] PR merged to main
 
-**Dependencies:** AG-22 (Frontend CI/CD must be set up)
+**Dependencies:** AG-7 (Frontend CI/CD must be set up first)
 
 ---
 
@@ -1228,13 +1236,14 @@ resume-agent/
 
 ## 📝 Daily Summary
 
-| Task | Assignee | Status |
-|------|----------|--------|
-| AG-2: Agent State Schema | Dev 1 | ✓ Done |
-| AG-12: FastAPI Structure | Dev 2 | ✓ Done |
-| AG-15: React Setup | Dev 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-9: Job Requirements Extraction Node | Dev 1 | 5 | ✓ Done |
+| AG-10: Test Workflow for Single Node | Dev 2 | 3 | ✓ Done |
+| AG-11: React Setup | Dev 3 | 5 | ✓ Done |
 
-**Total Story Points Completed:** 7
+**Total Story Points Completed:** 13  
+**Dev 1:** 5 points | **Dev 2:** 3 points | **Dev 3:** 5 points
 
 ---
 

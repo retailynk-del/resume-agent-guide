@@ -1,17 +1,18 @@
-# Day 4: Remaining Nodes
+# Day 4: Planning & Modification Nodes
 
 > **Date:** Sprint 1, Day 4  
-> **Focus:** Resume analysis and planning nodes  
-> **Vertical Slice:** Slice 2 starts - Agent workflow building
+> **Focus:** Build planning & modification nodes + re-scoring  
+> **Vertical Slice:** Plan generation and resume modification working
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Resume Analysis node working
-- ✅ Planning node working
-- ✅ All extraction/analysis nodes complete
+- ✅ Improvement Planning node working (Dev 1)
+- ✅ Resume Modification node working (Dev 3 - 2nd LangGraph node!)
+- ✅ Modified Resume Scoring node working (Dev 2)
+- ✅ Can see resume improvement in action
 
 ---
 
@@ -19,49 +20,111 @@ By end of today:
 
 ---
 
-### Task AG-4: Resume Analysis Node
+### Task AG-15: Improvement Planning Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-4 |
-| **Title** | Resume Analysis Node |
-| **Type** | Task |
-| **Epic** | LangGraph Agent Core |
-| **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 5 |
-| **Sprint** | Sprint 1 |
-
-**Description:**
-Create node that analyzes a resume and extracts: current skills, experience level, strengths, gaps compared to typical roles.
-
-**Acceptance Criteria:**
-- [ ] File: `backend/agent/nodes/resume_analysis.py`
-- [ ] Uses LLM to analyze resume content
-- [ ] Returns structured analysis as JSON
-- [ ] Tests passing
-
----
-
-### Task AG-7: Planning Node
-
-| Field | Value |
-|-------|-------|
-| **Task ID** | AG-7 |
+| **Task ID** | AG-15 |
 | **Title** | Improvement Planning Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
-| **Assignees** | Dev 1 (Shabas) + Dev 3 (Marva) - PAIR |
+| **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Create node that compares requirements vs resume and creates an improvement plan with specific changes.
+Build a LangGraph node that compares job requirements with resume analysis to create an actionable improvement plan. This node decides WHAT changes to make to optimize the resume.
+
+**What You'll Learn:**
+- Strategic planning with LLMs
+- Comparing two data structures
+- Generating actionable recommendations
+- Decision-making in agent workflows
 
 **Acceptance Criteria:**
-- [ ] File: `backend/agent/nodes/planning.py`
+- [ ] File created: `backend/agent/nodes/planning.py`
 - [ ] Takes job_requirements and resume_analysis from state
-- [ ] Creates actionable improvement plan
-- [ ] Prioritizes changes by impact
+- [ ] Creates prioritized improvement plan
+- [ ] Returns specific, actionable changes
+- [ ] Test file validates planning logic
+- [ ] PR merged to main
+
+**Dependencies:** AG-9 (job requirements), AG-12 (resume analysis), AG-13 (scoring)
+
+---
+
+### Task AG-16: Resume Modification Node
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-16 |
+| **Title** | Resume Modification Node |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Build a LangGraph node that takes the improvement plan and actually modifies the resume text. This is Dev 3's SECOND LangGraph node - getting more experience! Uses GPT-4o to intelligently rewrite resume sections.
+
+**What You'll Learn:**
+- Text modification with LLMs
+- Implementing planned changes 
+- Preserving resume structure while improving content
+- More LangGraph node patterns
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/nodes/modification.py`
+- [ ] Takes improvement_plan and original_resume from state
+- [ ] Returns modified resume text
+- [ ] Preserves resume format
+- [ ] Updates state's `modified_resume` field
+- [ ] Test file shows clear improvement
+- [ ] PR merged to main
+
+**Dependencies:** AG-15 (improvement plan must exist)
+
+**Related Tasks:** Dev 3's 2nd LangGraph node!
+
+---
+
+### Task AG-17: Modified Resume Scoring Node
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-17 |
+| **Title** | Modified Resume Scoring Node |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Build a LangGraph node that scores the MODIFIED resume against job requirements to see if the changes improved the score. This calculates the "after" score and improvement delta.
+
+**What You'll Learn:**
+- Reusing scoring logic in new contexts
+- Calculating deltas and improvements
+- Updating multiple state fields in one node
+- Testing score improvements
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/nodes/rescore.py`
+- [ ] Scores modified resume (reuses AG-13 scoring logic)
+- [ ] Updates state's `ats_score_after` field
+- [ ] Calculates `improvement_delta` (after - before)
+- [ ] Adds to `score_history` list
+- [ ] Test shows score improvement
+- [ ] PR merged to main
+
+**Dependencies:** AG-16 (modified resume must exist), AG-13 (scoring logic)
+
+**Related Tasks:** Shows the agent actually improved the resume!
 
 ---
 
@@ -485,10 +548,12 @@ backend/agent/nodes/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-4: Resume Analysis | Dev 2 | 5 | ✓ Done |
-| AG-7: Planning Node | Dev 1 + Dev 3 | 5 | ✓ Done |
+| AG-15: Improvement Planning Node | Dev 1 | 5 | ✓ Done |
+| AG-16: Resume Modification Node | Dev 3 | 5 | ✓ Done |
+| AG-17: Modified Resume Scoring Node | Dev 2 | 3 | ✓ Done |
 
-**Total:** 10 points
+**Total Story Points Completed:** 13  
+**Dev 1:** 5 points | **Dev 2:** 3 points | **Dev 3:** 5 points
 
 ---
 

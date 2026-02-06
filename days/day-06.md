@@ -1,20 +1,19 @@
-# Day 6: Workflow Assembly (KEY DAY!)
+# Day 6: Auth Backend
 
 > **Date:** Sprint 1, Day 6  
-> **Focus:** Connect all nodes into complete workflow  
-> **Vertical Slice:** Slice 2 COMPLETES - Agent runs end-to-end!
+> **Focus:** User authentication backend (registration + login)  
+> **Vertical Slice:** Users can register and login via API
 
 ---
 
 ## 🎯 Today's Goal
 
-**THIS IS A CRITICAL TEAM DAY!**
-
 By end of today:
-- ✅ All nodes connected in LangGraph workflow
-- ✅ Agent runs from start to finish
-- ✅ Input goes in, optimized resume comes out
-- ✅ Score improves! 🎉
+- ✅ User database model created (Dev 2)
+- ✅ Registration endpoint working (Dev 1 - cross-training!)
+- ✅ Login + JWT endpoint working (Dev 2)
+- ✅ Auth middleware protecting routes (Dev 3 - learning backend!)
+- ✅ Can test auth flow with curl/Postman
 
 ---
 
@@ -22,35 +21,109 @@ By end of today:
 
 ---
 
-### Task AG-10: Workflow Assembly
+### Task AG-22: User Database Model
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-10 |
-| **Title** | Workflow Assembly |
+| **Task ID** | AG-22 |
+| **Title** | User Database Model |
 | **Type** | Task |
-| **Epic** | LangGraph Agent Core |
-| **Assignees** | ALL DEVELOPERS |
-| **Story Points** | 8 |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
 | **Sprint** | Sprint 1 |
-| **Priority** | Critical |
+| **Priority** | High |
 
 **Description:**
-Connect all LangGraph nodes into a complete workflow. The workflow should:
-1. Extract job requirements
-2. Analyze resume
-3. Score initial resume
-4. Plan improvements
-5. Modify resume
-6. Score modified resume
+Create Supabase database schema for users table with email, hashed password, and timestamps. This is the foundation for auth.
 
 **Acceptance Criteria:**
-- [ ] File: `backend/agent/workflow.py`
-- [ ] All nodes connected with proper edges
-- [ ] Workflow compiles without errors
-- [ ] End-to-end test passes
-- [ ] Score improves after modification
-- [ ] PR merged to main
+- [ ] Supabase migration created for users table
+- [ ] Fields: id, email, hashed_password, created_at
+- [ ] Email is unique and indexed
+- [ ] Migration runs successfully
+- [ ] PR merged
+
+---
+
+### Task AG-23: Registration Endpoint
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-23 |
+| **Title** | Registration Endpoint |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create POST /api/auth/register endpoint that hashes passwords and creates user accounts. Dev 1 gets backend API experience!
+
+**Acceptance Criteria:**
+- [ ] Endpoint: POST /api/auth/register
+- [ ] Accepts: email, password
+- [ ] Validates email format
+- [ ] Hashes password with bcrypt
+- [ ] Returns user_id on success
+- [ ] Handles duplicate email error
+- [ ] PR merged
+
+---
+
+### Task AG-24: Login & JWT Endpoint
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-24 |
+| **Title** | Login & JWT Endpoint |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create POST /api/auth/login endpoint that verifies credentials and returns JWT access tokens.
+
+**Acceptance Criteria:**
+- [ ] Endpoint: POST /api/auth/login
+- [ ] Accepts: email, password
+- [ ] Verifies password with bcrypt
+- [ ] Generates JWT with secret key
+- [ ] Returns access_token + user info
+- [ ] Returns 401 for invalid credentials
+- [ ] PR merged
+
+---
+
+### Task AG-25: Auth Middleware
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-25 |
+| **Title** | Auth Middleware |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create FastAPI dependency that validates JWT tokens and protects endpoints. Dev 3 learns backend middleware patterns!
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/api/middleware/auth.py`
+- [ ] Dependency function validates JWT
+- [ ] Extracts user_id from token
+- [ ] Returns 401 for invalid/missing token
+- [ ] Can be added to routes with `dependencies=[Depends(auth)]`
+- [ ] Test file validates middleware
+- [ ] PR merged
 
 ---
 
@@ -666,9 +739,13 @@ backend/agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-10: Workflow Assembly | ALL | 8 | ✓ Done |
+| AG-22: User Database Model | Dev 2 | 3 | ✓ Done |
+| AG-23: Registration Endpoint | Dev 1 | 3 | ✓ Done |
+| AG-24: Login & JWT Endpoint | Dev 2 | 3 | ✓ Done |
+| AG-25: Auth Middleware | Dev 3 | 3 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 12  
+**Dev 1:** 3 points | **Dev 2:** 6 points | **Dev 3:** 3 points
 
 ---
 

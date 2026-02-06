@@ -1,41 +1,95 @@
-# Day 18: Bug Fixes & Documentation
+# Day 18: Bug Fixes
 
-> **Date:** Sprint 2, Day 8  
-> **Focus:** Continue testing, fix bugs, update docs  
-> **Vertical Slice:** Quality assurance continues
+> **Date:** Sprint 2, Day 18  
+> **Focus:** Fix issues found during testing  
+> **Vertical Slice:** Stability and reliability
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ All remaining bugs fixed
-- ✅ Documentation updated
-- ✅ Code cleanup complete
+- ✅ Backend bugs fixed (Dev 2)
+- ✅ Frontend bugs fixed (Dev 3)
+- ✅ Agent bugs fixed (Dev 1)
+- ✅ All critical issues resolved
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-35b: Bug Fixes
+### Task AG-60: Backend Bug Fixes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-35b |
-| **Title** | Bug Fixes from Testing |
-| **Assignees** | All Developers |
-| **Story Points** | 5 |
+| **Task ID** | AG-60 |
+| **Title** | Backend Bug Fixes |
+| **Type** | Task |
+| **Epic** | Bug Fixes |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Fix all backend issues found during testing. Address API errors, database issues, and auth problems.
+
+**Acceptance Criteria:**
+- [ ] Fix auth token expiration handling
+- [ ] Fix database connection pooling
+- [ ] Fix API error responses
+- [ ] All backend tests passing
+- [ ] PR merged
 
 ---
 
-### Task AG-34: Documentation Update
+### Task AG-61: Frontend Bug Fixes
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-34 |
-| **Title** | Update README and API Docs |
+| **Task ID** | AG-61 |
+| **Title** | Frontend Bug Fixes |
+| **Type** | Task |
+| **Epic** | Bug Fixes |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Fix all frontend issues found during testing. Address UI bugs, navigation issues, and state management problems.
+
+**Acceptance Criteria:**
+- [ ] Fix form validation edge cases
+- [ ] Fix navigation state persistence
+- [ ] Fix localStorage handling
+- [ ] All frontend tests passing
+- [ ] PR merged
+
+---
+
+### Task AG-62: Agent Bug Fixes
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-62 |
+| **Title** | Agent Bug Fixes |
+| **Type** | Task |
+| **Epic** | Bug Fixes |
 | **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Fix all LangGraph agent issues found during testing. Address workflow bugs, iteration problems, and scoring issues.
+
+**Acceptance Criteria:**
+- [ ] Fix iteration loop edge cases
+- [ ] Fix score calculation accuracy
+- [ ] Fix decision node logic
+- [ ] All agent tests passing
+- [ ] PR merged
 
 ---
 
@@ -151,12 +205,14 @@ npm run format  # if configured
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-35b: Bug Fixes | 5 | ✓ Done |
-| AG-34: Documentation | 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-60: Backend Bug Fixes | Dev 2 | 3 | ✓ Done |
+| AG-61: Frontend Bug Fixes | Dev 3 | 3 | ✓ Done |
+| AG-62: Agent Bug Fixes | Dev 1 | 3 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 9  
+**Dev 1:** 3 points | **Dev 2:** 3 points | **Dev 3:** 3 points
 
 ---
 

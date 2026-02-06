@@ -1,40 +1,98 @@
-# Day 13: Iterative Agent
+# Day 13: Cover Letter
 
-> **Date:** Sprint 2, Day 3  
-> **Focus:** Add conditional edges for iteration  
-> **Vertical Slice:** Slice 6 - Agent loops until target
+> **Date:** Sprint 2, Day 13  
+> **Focus:** Add cover letter generation to agent  
+> **Vertical Slice:** Generate optimized cover letter from resume + JD
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Agent can iterate multiple times
-- ✅ Conditional edge checks score
-- ✅ Stops when target reached or max iterations
+- ✅ Cover letter node created (Dev 3 - LangGraph training!)
+- ✅ Letter integrated into workflow (Dev 2)
+- ✅ Cover letter API endpoint (Dev 1)
+- ✅ User can generate cover letter with optimized resume
 
 ---
 
 ## 📋 Jira Task
 
-### Task AG-9: Conditional Edges & Iteration
+### Task AG-45: Cover Letter Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-9 |
-| **Title** | Conditional Edges for Iteration |
-| **Assignees** | Dev 1 + Dev 2 (PAIR) |
-| **Story Points** | 8 |
+| **Task ID** | AG-45 |
+| **Title** | Cover Letter Node |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 2 |
 | **Priority** | High |
 
 **Description:**
-Modify the LangGraph workflow to loop back and retry if the score hasn't improved enough. Add a decision node that checks the current score and decides whether to iterate or finish.
+Create LangGraph node that generates personalized cover letter using optimized resume and job description. Dev 3 completes LangGraph training!
 
 **Acceptance Criteria:**
-- [ ] Decision function checks if score >= target
-- [ ] Conditional edge routes to END or back to planning
-- [ ] Max 3 iterations (configurable)
-- [ ] Each iteration logged in decision_log
+- [ ] File created: `backend/agent/nodes/cover_letter.py`
+- [ ] Uses GPT-4o-mini to generate cover letter
+- [ ] Inputs: job_description, modified_resume, job_requirements
+- [ ] Output: 300-400 word professional cover letter
+- [ ] Addresses company and role from JD
+- [ ] PR merged
+
+---
+
+### Task AG-46: Workflow Integration
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-46 |
+| **Title** | Workflow Integration |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Add cover letter node to workflow graph as optional final step after modification node.
+
+**Acceptance Criteria:**
+- [ ] Add cover_letter node to workflow
+- [ ] Edge: modification → cover_letter (optional)
+- [ ] Add `generate_cover_letter` flag to state
+- [ ] Cover letter only runs if flag is True
+- [ ] Updated workflow compiles successfully
+- [ ] PR merged
+
+---
+
+### Task AG-47: Cover Letter API Endpoint
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-47 |
+| **Title** | Cover Letter API Endpoint |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Update agent API to support cover letter generation as optional parameter. Return cover letter in response.
+
+**Acceptance Criteria:**
+- [ ] Add `generate_cover_letter` param to OptimizationRequest
+- [ ] Pass flag to workflow
+- [ ] Include cover_letter in OptimizationResponse
+- [ ] Save cover letter to database (agent_runs table)
+- [ ] API docs updated
+- [ ] PR merged
 
 ---
 
@@ -282,11 +340,14 @@ Run workflow and check:
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-9: Conditional Edges | 8 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-45: Cover Letter Node | Dev 3 | 5 | ✓ Done |
+| AG-46: Workflow Integration | Dev 2 | 2 | ✓ Done |
+| AG-47: Cover Letter API Endpoint | Dev 1 | 3 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 10  
+**Dev 1:** 3 points | **Dev 2:** 2 points | **Dev 3:** 5 points
 
 ---
 

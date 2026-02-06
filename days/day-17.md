@@ -1,30 +1,98 @@
-# Day 17-18: Integration Testing & Bug Fixes
+# Day 17: Testing
 
-> **Date:** Sprint 2, Days 7-8  
-> **Focus:** Comprehensive testing and bug fixes  
-> **Vertical Slice:** Quality assurance
+> **Date:** Sprint 2, Day 17  
+> **Focus:** Comprehensive testing of all features  
+> **Vertical Slice:** Quality assurance and validation
 
 ---
 
-## 🎯 Goal
+## 🎯 Today's Goal
 
-By end of Day 18:
-- ✅ All user flows tested
-- ✅ Edge cases handled
-- ✅ Known bugs fixed
+By end of today:
+- ✅ Backend integration tests complete (Dev 2)
+- ✅ Frontend E2E tests complete (Dev 3)
+- ✅ Test documentation created (Dev 1)
+- ✅ All critical flows validated
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-35: Integration Test Suite
+### Task AG-57: Backend Integration Tests
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-35 |
-| **Title** | Integration Test Suite |
-| **Assignees** | All Developers |
-| **Story Points** | 8 |
+| **Task ID** | AG-57 |
+| **Title** | Backend Integration Tests |
+| **Type** | Task |
+| **Epic** | Testing & QA |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Write integration tests for all backend API endpoints. Test auth, agent runs, and history retrieval.
+
+**Acceptance Criteria:**
+- [ ] Test file created: `backend/tests/test_integration.py`
+- [ ] Tests for auth endpoints (register, login)
+- [ ] Tests for agent endpoint (run optimization)
+- [ ] Tests for history endpoints
+- [ ] All tests passing
+- [ ] PR merged
+
+---
+
+### Task AG-58: Frontend E2E Tests
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-58 |
+| **Title** | Frontend E2E Tests |
+| **Type** | Task |
+| **Epic** | Testing & QA |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Create end-to-end tests for critical user flows using Playwright or similar. Test registration through results viewing.
+
+**Acceptance Criteria:**
+- [ ] E2E test framework set up
+- [ ] Test: Register → Login → Dashboard flow
+- [ ] Test: Submit optimization → View results
+- [ ] Test: View history → View past run
+- [ ] All tests passing
+- [ ] PR merged
+
+---
+
+### Task AG-59: Test Documentation
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-59 |
+| **Title** | Test Documentation |
+| **Type** | Task |
+| **Epic** | Documentation |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Document testing strategy, test coverage, and how to run tests. Create testing guide for future developers.
+
+**Acceptance Criteria:**
+- [ ] File created: `docs/testing.md`
+- [ ] Documents test strategy
+- [ ] How to run backend tests
+- [ ] How to run frontend tests
+- [ ] Test coverage report
+- [ ] PR merged
 
 ---
 
@@ -131,9 +199,14 @@ headers: {
 - Fixed remaining bugs
 - All 22 tests passing
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-35: Integration Tests | 8 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-57: Backend Integration Tests | Dev 2 | 5 | ✓ Done |
+| AG-58: Frontend E2E Tests | Dev 3 | 5 | ✓ Done |
+| AG-59: Test Documentation | Dev 1 | 2 | ✓ Done |
+
+**Total Story Points Completed:** 12  
+**Dev 1:** 2 points | **Dev 2:** 5 points | **Dev 3:** 5 points
 
 ---
 

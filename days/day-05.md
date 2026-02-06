@@ -1,17 +1,19 @@
-# Day 5: Modification Node
+# Day 5: Workflow Assembly
 
 > **Date:** Sprint 1, Day 5  
-> **Focus:** Resume modification and scoring nodes  
-> **Vertical Slice:** Slice 2 continues
+> **Focus:** Connect ALL nodes into complete workflow + testing  
+> **Vertical Slice:** COMPLETE working agent end-to-end!
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Modification node working (applies changes to resume)
-- ✅ Scoring nodes integrated (before/after)
-- ✅ All individual nodes complete
+- ✅ All 6 LangGraph nodes connected in workflow (Dev 1)
+- ✅ State flows correctly through all nodes (Dev 2)
+- ✅ End-to-end agent test works (Dev 3)
+- ✅ Score history tracking implemented (Dev 2)
+- ✅ FIRST COMPLETE AGENT WORKFLOW RUNNING!
 
 ---
 
@@ -19,45 +21,137 @@ By end of today:
 
 ---
 
-### Task AG-8: Modification Node
+### Task AG-18: Workflow Graph Construction
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-8 |
-| **Title** | Resume Modification Node |
-| **Assignee** | Dev 3 (Marva) |
+| **Task ID** | AG-18 |
+| **Title** | Workflow Graph Construction |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Create node that applies the improvement plan to modify the resume. Uses LLM to rewrite sections while maintaining the candidate's voice.
+Connect ALL 6 LangGraph nodes into the complete agent workflow graph. This creates the first end-to-end working agent! Nodes: Extract Requirements → Analyze Resume → Score Initial → Plan Improvements → Modify Resume → Score Modified.
+
+**What You'll Learn:**
+- Building complex multi-node workflows
+- Designing optimal node execution order
+- Complete StateGraph assembly
+- Testing full agent workflows
 
 **Acceptance Criteria:**
-- [ ] File: `backend/agent/nodes/modification.py`
-- [ ] Takes original resume + improvement plan
-- [ ] Returns modified resume text
-- [ ] Maintains professional tone
+- [ ] File created: `backend/agent/workflow.py`
+- [ ] All 6 nodes connected with edges
+- [ ] Entry point set to extract_requirements
+- [ ] Workflow compiles without errors
+- [ ] Can invoke with job description + resume
+- [ ] Test file shows all nodes executing
+- [ ] PR merged to main
+
+**Dependencies:** AG-9, AG-12, AG-13, AG-15, AG-16, AG-17 (all nodes exist)
 
 ---
 
-### Task AG-6: Scoring Nodes Integration
+### Task AG-19: State Flow Testing
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-6 |
-| **Title** | Scoring Nodes Integration |
+| **Task ID** | AG-19 |
+| **Title** | State Flow Testing |
+| **Type** | Task |
+| **Epic** | Testing |
 | **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Create LangGraph nodes that wrap the scoring function for use in the workflow (initial score and post-modification score).
+Create comprehensive tests that validate state flows correctly through all 6 nodes. Verify each node updates the correct state fields and decision log is populated.
+
+**What You'll Learn:**
+- Testing stateful workflows
+- Validating state transformations
+- Debugging multi-node flows
+- Agent testing patterns
 
 **Acceptance Criteria:**
-- [ ] File: `backend/agent/nodes/scoring.py`
-- [ ] score_initial node for before score
-- [ ] score_modified node for after score
-- [ ] Track score history
+- [ ] File created: `backend/agent/test_state_flow.py`
+- [ ] Tests verify all state fields are populated
+- [ ] Tests check decision_log has 6+ entries
+- [ ] Tests validate score improvement
+- [ ] All tests pass
+- [ ] PR merged to main
+
+**Dependencies:** AG-18 (workflow must be assembled)
+
+---
+
+### Task AG-20: End-to-End Agent Test
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-20 |
+| **Title** | End-to-End Agent Test |
+| **Type** | Task |
+| **Epic** | Testing |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create a real-world end-to-end test with actual job description and resume. Run the complete workflow and verify it produces improved results.
+
+**What You'll Learn:**
+- End-to-end testing strategies
+- Validating real agent outputs
+- Quality assurance for AI systems
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/test_e2e.py`
+- [ ] Uses realistic sample job description and resume
+- [ ] Runs complete workflow from start to finish
+- [ ] Validates final score > initial score
+- [ ] Prints before/after comparison
+- [ ] Test passes successfully
+- [ ] PR merged to main
+
+**Dependencies:** AG-18 (workflow must exist)
+
+---
+
+### Task AG-21: Score History Tracking
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-21 |
+| **Title** | Score History Tracking |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | Medium |
+
+**Description:**
+Add functionality to track score changes across iterations. This will be useful later for iterative improvements and showing progress to users.
+
+**What You'll Learn:**
+- State field management
+- Historical data tracking
+- Score progression visualization prep
+
+**Acceptance Criteria:**
+- [ ] score_history field properly maintained
+- [ ] Each scoring node appends to history
+- [ ] Test validates history list grows
+- [ ] PR merged to main
+
+**Dependencies:** AG-18, AG-19
 
 ---
 
@@ -514,12 +608,15 @@ backend/agent/nodes/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-8: Modification Node | Dev 3 | 5 | ✓ Done |
-| AG-6: Scoring Nodes | Dev 2 | 3 | ✓ Done |
+| AG-18: Workflow Graph Construction | Dev 1 | 5 | ✓ Done |
+| AG-19: State Flow Testing | Dev 2 | 3 | ✓ Done |
+| AG-20: End-to-End Agent Test | Dev 3 | 3 | ✓ Done |
+| AG-21: Score History Tracking | Dev 2 | 2 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 13  
+**Dev 1:** 5 points | **Dev 2:** 5 points | **Dev 3:** 3 points
 
-**All individual nodes are now complete! Tomorrow we assemble the workflow.**
+**🎉 MILESTONE: First complete agent workflow working end-to-end!**
 
 ---
 

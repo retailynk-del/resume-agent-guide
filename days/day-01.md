@@ -18,47 +18,139 @@ By end of today:
 
 ## 📋 Morning: Add These Tasks to Jira Backlog
 
-Before starting work, add these 4 tasks to your Jira board:
+Before starting work, add these 8 tasks to your Jira board:
 
 ---
 
-### Task AG-1: LangGraph Team Tutorial
+### Task AG-1: LangGraph Tutorial Part 1 - Basics
 
 | Field | Value |
 |-------|-------|
 | **Task ID** | AG-1 |
-| **Title** | LangGraph Team Tutorial |
+| **Title** | LangGraph Tutorial Part 1: Basics |
 | **Type** | Task |
-| **Epic** | LangGraph Agent Core |
-| **Assignee** | All Developers |
-| **Story Points** | 5 |
+| **Epic** | Learning & Setup |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Complete the official LangGraph tutorial as a team. This is a collaborative learning session where all three developers work together. Build a sample 3-node workflow together to understand the concepts. Draw the Resume Agent workflow on a whiteboard or Miro.
+Complete Part 1 of the LangGraph tutorial focusing on basic concepts. Each developer works through different parts and shares learnings.
 
 **What You'll Learn:**
-- How to define state using TypedDict
-- How to create nodes (functions that process state)
-- How to connect nodes with edges
-- How to compile and run a workflow
+- How to install LangGraph
+- Basic StateGraph concepts
+- Simple node creation
 
 **Acceptance Criteria:**
-- [ ] All three developers complete the tutorial together
-- [ ] Sample workflow runs successfully with no errors
-- [ ] Team can explain these concepts: StateGraph, nodes, edges, state
-- [ ] Agent workflow diagram drawn on whiteboard/Miro
+- [ ] LangGraph installed and working
+- [ ] Can create a simple StateGraph
+- [ ] Can run a basic 1-node workflow
+- [ ] Share key learnings with team
 
 **Tutorial URL:** https://langchain-ai.github.io/langgraph/tutorials/introduction/
 
 ---
 
-### Task AG-11: Supabase Database Setup
+### Task AG-2: LangGraph Tutorial Part 2 - State Management
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-11 |
+| **Task ID** | AG-2 |
+| **Title** | LangGraph Tutorial Part 2: State Management |
+| **Type** | Task |
+| **Epic** | Learning & Setup |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Complete Part 2 of the LangGraph tutorial focusing on state management using TypedDict.
+
+**What You'll Learn:**
+- TypedDict for state definition
+- State updates and merging
+- Accessing state in nodes
+
+**Acceptance Criteria:**
+- [ ] Understand TypedDict state pattern
+- [ ] Can define custom state schemas
+- [ ] Can update state from nodes
+- [ ] Share key learnings with team
+
+**Tutorial URL:** https://langchain-ai.github.io/langgraph/tutorials/introduction/
+
+---
+
+### Task AG-3: LangGraph Tutorial Part 3 - Workflow Building
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-3 |
+| **Title** | LangGraph Tutorial Part 3: Workflow Building |
+| **Type** | Task |
+| **Epic** | Learning & Setup |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Complete Part 3 of the LangGraph tutorial focusing on connecting nodes and building workflows.
+
+**What You'll Learn:**
+- Adding edges between nodes
+- Entry points and END nodes
+- Compiling and invoking workflows
+
+**Acceptance Criteria:**
+- [ ] Can connect multiple nodes with edges
+- [ ] Can set entry points
+- [ ] Can compile and run workflows
+- [ ] Share key learnings with team
+
+**Tutorial URL:** https://langchain-ai.github.io/langgraph/tutorials/introduction/
+
+---
+
+### Task AG-4: Agent State Schema
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-4 |
+| **Title** | Agent State Schema |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Define the ResumeAgentState TypedDict that will flow through the entire agent workflow. This is the foundation for all agent nodes.
+
+**What You'll Learn:**
+- Designing state for complex workflows
+- TypedDict best practices
+- State field planning
+
+**Acceptance Criteria:**
+- [ ] ResumeAgentState TypedDict defined
+- [ ] Includes all required fields (user_id, job_description, scores, etc.)
+- [ ] Helper factory function created
+- [ ] Test file validates state creation
+
+**Related Tasks:** AG-1 (builds on tutorial knowledge)
+
+---
+
+### Task AG-5: Supabase Database Setup
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-5 |
 | **Title** | Supabase Database Setup |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
@@ -84,56 +176,96 @@ Create a new Supabase project and set up the required database tables. This incl
 
 ---
 
-### Task AG-21: Backend CI/CD Pipeline
+### Task AG-6: Backend CI/CD Pipeline
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-21 |
+| **Task ID** | AG-6 |
 | **Title** | Backend CI/CD Pipeline |
 | **Type** | Task |
 | **Epic** | DevOps & Infrastructure |
-| **Assignee** | Dev 3 (Marva) |
-| **Story Points** | 3 |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Set up GitHub Actions workflow to automatically run tests and deploy the backend when code is pushed to the main branch. Also create a basic FastAPI application with a health check endpoint.
+Set up GitHub Actions workflow to automatically run tests for the backend when code is pushed. This ensures code quality and catches issues early.
 
 **What You'll Learn:**
-- How GitHub Actions workflows work
-- How to create YAML workflow files
-- How to set up basic FastAPI project
+- GitHub Actions YAML syntax
+- CI/CD pipeline concepts
+- Python workflow automation
 
 **Acceptance Criteria:**
 - [ ] File `.github/workflows/backend.yml` created
 - [ ] Workflow triggers only on changes to `backend/**` directory
 - [ ] Workflow installs Python dependencies
-- [ ] Basic FastAPI app with `/health` endpoint works locally
+- [ ] Workflow runs linting/basic checks
 - [ ] Workflow runs without errors after PR merge
+
+**Note:** CI/CD tasks split - Dev 1 handles backend, Dev 3 handles frontend
 
 ---
 
-### Task AG-22: Frontend CI/CD Pipeline
+### Task AG-7: Frontend CI/CD Pipeline
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-22 |
+| **Task ID** | AG-7 |
 | **Title** | Frontend CI/CD Pipeline |
 | **Type** | Task |
 | **Epic** | DevOps & Infrastructure |
 | **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 2 |
 | **Sprint** | Sprint 1 |
-| **Priority** | Medium |
+| **Priority** | High |
 
 **Description:**
-Set up GitHub Actions workflow to automatically build and deploy the frontend when code is pushed to the main branch.
+Set up GitHub Actions workflow to automatically build and test the frontend when code is pushed.
+
+**What You'll Learn:**
+- GitHub Actions for Node.js projects
+- Frontend CI/CD best practices
+- Build automation
 
 **Acceptance Criteria:**
 - [ ] File `.github/workflows/frontend.yml` created
 - [ ] Workflow triggers only on changes to `frontend/**` directory
 - [ ] Workflow runs npm install and npm build
+- [ ] Workflow runs without errors
+
+**Note:** CI/CD tasks split - Dev 1 handles backend, Dev 3 handles frontend
+
+---
+
+### Task AG-8: FastAPI Basic Setup
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-8 |
+| **Title** | FastAPI Basic Setup |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create the basic FastAPI application structure with a health check endpoint and CORS configuration.
+
+**What You'll Learn:**
+- FastAPI application setup
+- CORS middleware configuration
+- API documentation with Swagger
+
+**Acceptance Criteria:**
+- [ ] `backend/main.py` created with FastAPI app
+- [ ] `/health` endpoint returns {"status": "ok"}
+- [ ] CORS middleware configured
+- [ ] API runs locally with `uvicorn main:app --reload`
+- [ ] Swagger docs accessible at `/docs`
 
 ---
 
@@ -862,14 +994,19 @@ resume-agent/
 
 ## 📝 Daily Summary
 
-| Task | Assignee | Status |
-|------|----------|--------|
-| AG-1: LangGraph Tutorial | All | ✓ Done |
-| AG-11: Supabase Setup | Dev 2 | ✓ Done |
-| AG-21: Backend CI/CD | Dev 3 | ✓ Done |
-| AG-22: Frontend CI/CD | Dev 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-1: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
+| AG-2: LangGraph Tutorial Part 2 | Dev 2 | 2 | ✓ Done |
+| AG-3: LangGraph Tutorial Part 3 | Dev 3 | 2 | ✓ Done |
+| AG-4: Agent State Schema | Dev 1 | 3 | ✓ Done |
+| AG-5: Supabase Setup | Dev 2 | 3 | ✓ Done |
+| AG-6: Backend CI/CD | Dev 1 | 2 | ✓ Done |
+| AG-7: Frontend CI/CD | Dev 3 | 2 | ✓ Done |
+| AG-8: FastAPI Basic Setup | Dev 2 | 2 | ✓ Done |
 
-**Total Story Points Completed:** 13
+**Total Story Points Completed:** 18  
+**Dev 1:** 7 points | **Dev 2:** 7 points | **Dev 3:** 4 points
 
 ---
 

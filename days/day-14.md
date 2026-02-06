@@ -1,33 +1,98 @@
-# Day 14: Cover Letter Generation
+# Day 14: History Backend
 
-> **Date:** Sprint 2, Day 4  
-> **Focus:** Add cover letter generation node  
-> **Vertical Slice:** Slice 7 - Cover letter feature
+> **Date:** Sprint 2, Day 14  
+> **Focus:** Build run history backend  
+> **Vertical Slice:** Save and retrieve past optimizations
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Cover letter node working
-- ✅ Integrated into workflow
-- ✅ Cover letter returned in API response
+- ✅ History database schema updated (Dev 1)
+- ✅ Save runs to database (Dev 2)
+- ✅ History API endpoints created (Dev 3)
+- ✅ User can retrieve past optimization runs
 
 ---
 
 ## 📋 Jira Task
 
-### Task AG-11: Cover Letter Node
+### Task AG-48: History Database Schema
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-11 |
-| **Title** | Cover Letter Generation Node |
-| **Assignee** | Dev 3 (Marva) |
-| **Story Points** | 5 |
+| **Task ID** | AG-48 |
+| **Title** | History Database Schema |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
 
 **Description:**
-Create a LangGraph node that generates a personalized cover letter based on the job requirements and resume.
+Update agent_runs table to fully support history feature. Add indexes for efficient querying by user and timestamps.
+
+**Acceptance Criteria:**
+- [ ] Add indexes: user_id, created_at
+- [ ] Add status field: pending/running/completed/failed
+- [ ] Add timestamp fields: created_at, completed_at
+- [ ] Migration script created
+- [ ] Database updated successfully
+- [ ] PR merged
+
+---
+
+### Task AG-49: Save Runs to Database
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-49 |
+| **Title** | Save Runs to Database |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Update agent endpoint to save all optimization runs to database with full details (inputs, outputs, scores, timestamps).
+
+**Acceptance Criteria:**
+- [ ] Create AgentRun record on optimization start
+- [ ] Save all inputs (JD, resume)
+- [ ] Save all outputs (scores, modified resume, cover letter)
+- [ ] Update status: pending → running → completed/failed
+- [ ] Set timestamps appropriately
+- [ ] PR merged
+
+---
+
+### Task AG-50: History API Endpoints
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-50 |
+| **Title** | History API Endpoints |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 4 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Create API endpoints to retrieve user's optimization history. List view + detail view for past runs.
+
+**Acceptance Criteria:**
+- [ ] GET /api/agent/history - list user's runs (paginated)
+- [ ] GET /api/agent/run/:id - get full run details
+- [ ] Requires authentication
+- [ ] Returns runs sorted by date (newest first)
+- [ ] Pagination support (limit, offset)
+- [ ] PR merged
 
 ---
 
@@ -203,9 +268,14 @@ git push origin feature/AG-11-cover-letter
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-11: Cover Letter | 5 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-48: History Database Schema | Dev 1 | 3 | ✓ Done |
+| AG-49: Save Runs to Database | Dev 2 | 3 | ✓ Done |
+| AG-50: History API Endpoints | Dev 3 | 4 | ✓ Done |
+
+**Total Story Points Completed:** 10  
+**Dev 1:** 3 points | **Dev 2:** 3 points | **Dev 3:** 4 points
 
 ---
 

@@ -1,18 +1,19 @@
-# Day 7: Auth API
+# Day 7: Auth Frontend
 
 > **Date:** Sprint 1, Day 7  
-> **Focus:** Backend authentication endpoints + frontend connection  
-> **Vertical Slice:** Slice 3 starts - Auth works end-to-end
+> **Focus:** User authentication UI (login + register pages)  
+> **Vertical Slice:** Full auth flow works in UI
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Register endpoint working
-- ✅ Login endpoint returning JWT
-- ✅ Frontend connected to API
-- ✅ User can register and login
+- ✅ Login page component ready (Dev 3)
+- ✅ Register page component ready (Dev 3)
+- ✅ Auth API service module created (Dev 1 - learning frontend!)
+- ✅ Protected routes working (Dev 2 - cross-training!)
+- ✅ Full flow: Register in UI → Login → Get token → Access dashboard
 
 ---
 
@@ -20,47 +21,109 @@ By end of today:
 
 ---
 
-### Task AG-13: Auth Endpoints
+### Task AG-26: Login Page Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-13 |
-| **Title** | Backend Auth Endpoints |
-| **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 5 |
-| **Sprint** | Sprint 1 |
-
-**Description:**
-Create FastAPI endpoints for user registration and login. Login returns JWT token.
-
-**Acceptance Criteria:**
-- [ ] POST /api/auth/register - Create user
-- [ ] POST /api/auth/login - Return JWT
-- [ ] Password hashed with bcrypt
-- [ ] JWT includes user ID and expiry
-- [ ] Error handling for duplicates/invalid credentials
-
----
-
-### Task AG-17: Frontend API Connection
-
-| Field | Value |
-|-------|-------|
-| **Task ID** | AG-17 |
-| **Title** | Connect Frontend to Auth API |
+| **Task ID** | AG-26 |
+| **Title** | Login Page Component |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
 | **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Connect Login and Register pages to backend API. Store JWT token in localStorage.
+Create a polished login page component with email/password form, validation, and error handling.
 
 **Acceptance Criteria:**
-- [ ] API service functions for login/register
-- [ ] Login page calls API
-- [ ] Register page calls API
-- [ ] Token stored on successful login
-- [ ] Redirect to dashboard after login
+- [ ] File created: `frontend/src/pages/Login.jsx`
+- [ ] Email and password input fields
+- [ ] Client-side validation
+- [ ] Error message display
+- [ ] Loading state during submission
+- [ ] Styled with modern UI
+- [ ] PR merged
+
+---
+
+### Task AG-27: Register Page Component
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-27 |
+| **Title** | Register Page Component |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create a registration page component with email, password, and confirm password fields. Includes client-side validation.
+
+**Acceptance Criteria:**
+- [ ] File created: `frontend/src/pages/Register.jsx`
+- [ ] Email, password, and confirm password fields
+- [ ] Password strength validation
+- [ ] Passwords must match
+- [ ] Success message and redirect
+- [ ] Styled consistently with login page
+- [ ] PR merged
+
+---
+
+### Task AG-28: Auth API Service Module
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-28 |
+| **Title** | Auth API Service Module |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create frontend API service module for authentication. Handles API calls to backend auth endpoints. Dev 1 learns frontend code!
+
+**Acceptance Criteria:**
+- [ ] File created: `frontend/src/services/api.js`
+- [ ] Functions: register(), login(), logout()
+- [ ] JWT token storage in localStorage
+- [ ] Error handling for failed requests
+- [ ] Integrates with backend endpoints
+- [ ] PR merged
+
+---
+
+### Task AG-29: Protected Routes Setup
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-29 |
+| **Title** | Protected Routes Setup |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Create React Router protected route wrapper that redirects to login if user is not authenticated. Dev 2 learns frontend routing!
+
+**Acceptance Criteria:**
+- [ ] File created: `frontend/src/components/ProtectedRoute.jsx`  
+- [ ] Checks for valid JWT token
+- [ ] Redirects to /login if not authenticated
+- [ ] Allows access if authenticated
+- [ ] Applied to dashboard route
+- [ ] PR merged
 
 ---
 
@@ -869,10 +932,13 @@ frontend/src/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-13: Auth Endpoints | Dev 2 | 5 | ✓ Done |
-| AG-17: Frontend API Connection | Dev 3 | 3 | ✓ Done |
+| AG-26: Login Page Component | Dev 3 | 3 | ✓ Done |
+| AG-27: Register Page Component | Dev 3 | 3 | ✓ Done |
+| AG-28: Auth API Service Module | Dev 1 | 3 | ✓ Done |
+| AG-29: Protected Routes Setup | Dev 2 | 2 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 11  
+**Dev 1:** 3 points | **Dev 2:** 2 points | **Dev 3:** 6 points
 
 ---
 

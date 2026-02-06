@@ -1,17 +1,18 @@
-# Day 21: Sprint 3 Begins - PDF Upload & Next Steps
+# Day 21: Sprint 2 Demo & PDF Upload
 
-> **Date:** Sprint 3, Day 1  
-> **Focus:** PDF parsing setup, deployment planning  
-> **Vertical Slice:** Slice 8 - PDF support
+> **Date:** Sprint 2, Day 21  
+> **Focus:** Sprint 2 demo presentation and PDF upload feature  
+> **Milestone:** Project complete! 🎉
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ PDF parsing library integrated
-- ✅ File upload endpoint created
-- ✅ Deployment plan documented
+- ✅ Sprint 2 demo presented (Dev 1)
+- ✅ Retrospective documented (Dev 2)
+- ✅ PDF upload feature started (Dev 3)
+- ✅ Project successfully demonstrated to stakeholders
 
 ---
 
@@ -29,28 +30,80 @@ By end of today:
 
 ## 📋 Jira Tasks for Day 21
 
-### Task AG-39: PDF Parsing Setup
+### Task AG-69: Sprint 2 Demo Presentation
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-39 |
-| **Title** | PDF Parsing Integration |
+| **Task ID** | AG-69 |
+| **Title** | Sprint 2 Demo Presentation |
+| **Type** | Task |
+| **Epic** | Project Management |
 | **Assignee** | Dev 1 (Shabas) |
-| **Story Points** | 5 |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
 
 **Description:**
-Add PDF parsing capability using PyPDF2 or pdfplumber.
+Present Sprint 2 demo to stakeholders showcasing all features: iterative agent, history, cover letter, and database persistence.
+
+**Acceptance Criteria:**
+- [ ] Demo script prepared
+- [ ] Test data ready
+- [ ] Full flow demonstrated
+- [ ] Q&A handled
+- [ ] Stakeholder feedback received
+- [ ] Demo successful
 
 ---
 
-### Task AG-40: File Upload Endpoint
+### Task AG-70: Sprint 2 Retrospective
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-40 |
-| **Title** | File Upload API Endpoint |
+| **Task ID** | AG-70 |
+| **Title** | Sprint 2 Retrospective |
+| **Type** | Task |
+| **Epic** | Project Management |
 | **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 3 |
+| **Story Points** | 1 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Facilitate Sprint 2 retrospective. Document learnings, action items, and celebrate achievements.
+
+**Acceptance Criteria:**
+- [ ] Retrospective session held
+- [ ] What went well documented
+- [ ] What to improve identified
+- [ ] Action items created
+- [ ] Document shared with team
+
+---
+
+### Task AG-71: PDF Upload Feature (Bonus)
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-71 |
+| **Title** | PDF Upload Feature |
+| **Type** | Task |
+| **Epic** | Future Features |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 5 |
+| **Sprint** | Sprint 3 (Preview) |
+| **Priority** | Low |
+
+**Description:**
+Start Sprint 3 work: Add PDF upload capability to parse resume files. Extra credit / preview of future work.
+
+**Acceptance Criteria:**
+- [ ] Research PDF parsing libraries
+- [ ] Install pdfplumber or PyPDF2
+- [ ] Create basic PDF parser utility
+- [ ] Test with sample PDF
+- [ ] Document approach
+- [ ] (Optional) PR merged
 
 ---
 
@@ -280,12 +333,14 @@ curl -X POST http://localhost:8000/api/upload/resume \
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-39: PDF Parsing | 5 | ✓ Done |
-| AG-40: Upload Endpoint | 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-69: Sprint 2 Demo Presentation | Dev 1 | 2 | ✓ Done |
+| AG-70: Sprint 2 Retrospective | Dev 2 | 1 | ✓ Done |
+| AG-71: PDF Upload Feature (Bonus) | Dev 3 | 5 | ✓ Done |
 
-**Total:** 8 points
+**Total Story Points Completed:** 8  
+**Dev 1:** 2 points | **Dev 2:** 1 point | **Dev 3:** 5 points
 
 ---
 

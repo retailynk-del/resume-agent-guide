@@ -1,18 +1,18 @@
-# Day 3: First LangGraph Nodes
+# Day 3: Add More Nodes
 
 > **Date:** Sprint 1, Day 3  
-> **Focus:** Build first LangGraph nodes (pair programming)  
-> **Vertical Slice:** Slice 1 ends - First nodes working
+> **Focus:** Build 3 more LangGraph nodes (all devs get hands-on)  
+> **Vertical Slice:** 3-node workflow runs: Extract → Analyze → Score
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Job Requirements Extraction node working
-- ✅ ATS Scoring function working
-- ✅ Login & Register UI forms ready
-- ✅ First real LLM calls in the project
+- ✅ Resume Analysis node working (Dev 2 builds it)
+- ✅ ATS Scoring node working (Dev 3 builds it - LangGraph experience!)
+- ✅ 3-node workflow runs end-to-end (Dev 1 integrates)
+- ✅ All 3 developers have built a LangGraph node
 
 ---
 
@@ -20,48 +20,12 @@ By end of today:
 
 ---
 
-### Task AG-3: Job Requirements Extraction Node
+### Task AG-12: Resume Analysis Node
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-3 |
-| **Title** | Job Requirements Extraction Node |
-| **Type** | Task |
-| **Epic** | LangGraph Agent Core |
-| **Assignees** | Dev 1 (Shabas) + Dev 2 (Sinan) - PAIR |
-| **Story Points** | 5 |
-| **Sprint** | Sprint 1 |
-| **Priority** | High |
-
-**Description:**
-Create the first LangGraph node that extracts requirements from a job description using an LLM. This node parses the JD and extracts: must-have skills, nice-to-have skills, keywords, and experience requirements.
-
-**What You'll Learn:**
-- How to create a LangGraph node
-- How to call OpenAI with LangChain
-- How to structure LLM prompts for structured output
-
-**Acceptance Criteria:**
-- [ ] File created: `backend/agent/nodes/job_requirements.py`
-- [ ] Node function takes state and returns dict update
-- [ ] LLM extracts skills, keywords from job description
-- [ ] Output is valid JSON structure
-- [ ] Manual test shows correct extraction
-- [ ] PR merged to main
-
-**Pair Programming Notes:**
-- Dev 1 and Dev 2 work together
-- Switch drivers every 45 minutes
-- One types (driver), one reviews (navigator)
-
----
-
-### Task AG-5: ATS Scoring Function
-
-| Field | Value |
-|-------|-------|
-| **Task ID** | AG-5 |
-| **Title** | ATS Scoring Function |
+| **Task ID** | AG-12 |
+| **Title** | Resume Analysis Node |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
 | **Assignee** | Dev 2 (Sinan) |
@@ -70,51 +34,96 @@ Create the first LangGraph node that extracts requirements from a job descriptio
 | **Priority** | High |
 
 **Description:**
-Create the ATS (Applicant Tracking System) scoring algorithm. This function calculates a resume's match score against job requirements. Scoring is based on: keyword matches, skills matches, format quality, and section presence.
+Build a LangGraph node that analyzes resumecontent using GPT-4o-mini. This node identifies strengths, weaknesses, missing keywords, and areas for improvement. Dev 2 gets full LangGraph node building experience!
 
 **What You'll Learn:**
-- ATS scoring algorithms
-- Keyword matching techniques
-- Score calculation with multiple factors
+- Creating LangGraph nodes independently
+- Crafting prompts for resume analysis
+- Structuring LLM responses
+- Updating agent state
 
 **Acceptance Criteria:**
-- [ ] File created: `backend/agent/scoring.py`
-- [ ] Score function takes resume text and requirements
-- [ ] Returns score 0-100 with breakdown
-- [ ] Tests for scoring function pass
+- [ ] File created: `backend/agent/nodes/resume_analysis.py`
+- [ ] Node analyzes resume for: strengths, weaknesses, missing_items, suggestions
+- [ ] Returns dict that updates state's `resume_analysis` field
+- [ ] Includes test with sample resume
 - [ ] PR merged to main
+
+**Dependencies:** AG-9 (Job requirements node exists as reference)
+
+**Related Tasks:** Similar pattern to AG-9 but different analysis
 
 ---
 
-### Task AG-16: Login & Register UI
+### Task AG-13: ATS Scoring Function
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-16 |
-| **Title** | Login & Register UI |
+| **Task ID** | AG-13 |
+| **Title** | ATS Scoring Function |
 | **Type** | Task |
-| **Epic** | Frontend & UI |
+| **Epic** | LangGraph Agent Core |
 | **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Create proper Login and Register page components with forms, validation, and styling. Forms should have email and password inputs with client-side validation.
+Build a LangGraph node that calculates ATS (Applicant Tracking System) scores for resumes. This is Dev 3's FIRST LangGraph node - now everyone has hands-on experience! Uses GPT-4o-mini to score resume match quality.
 
 **What You'll Learn:**
-- React form handling with useState
-- Form validation in React
-- Controlled components
+- Creating LangGraph nodes
+- Using LLMs for scoring/evaluation
+- Returning scored data in state updates
+- LangGraph node patterns
 
 **Acceptance Criteria:**
-- [ ] Login page with email/password form
-- [ ] Register page with email/password/confirm form
-- [ ] Client-side validation (email format, password length)
-- [ ] Error message display
-- [ ] Loading state during submission
-- [ ] Navigation between login and register
+- [ ] File created: `backend/agent/nodes/scoring.py`
+- [ ] Node scores resume against job requirements
+- [ ] Returns score 0-100 with breakdown
+- [ ] Updates state's `ats_score_before` field
+- [ ] Includes test file
 - [ ] PR merged to main
+
+**Dependencies:** AG-9 (needs job requirements), AG-12 (needs resume analysis)
+
+**Related Tasks:** Dev 3 now has LangGraph experience!
+
+---
+
+### Task AG-14: 3-Node Workflow Integration
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-14 |
+| **Title** | 3-Node Workflow Integration |
+| **Type** | Task |
+| **Epic** | LangGraph Agent Core |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Connect the 3 LangGraph nodes built (Job Requirements from yesterday, Resume Analysis, and Scoring) into a working workflow. This creates the first multi-node agent pipeline that runs end-to-end!
+
+**What You'll Learn:**
+- Connecting multiple LangGraph nodes
+- Designing node execution order
+- State flow across nodes
+- Testing multi-node workflows
+
+**Acceptance Criteria:**
+- [ ] File created: `backend/agent/three_node_workflow.py`
+- [ ] Workflow runs: extract requirements → analyze resume → score resume
+- [ ] State flows correctly between nodes
+- [ ] Test script shows all 3 nodes executing
+- [ ] Prints final score and analysis
+- [ ] PR merged to main
+
+**Dependencies:** AG-9, AG-12, AG-13 (all 3 nodes must exist)
+
+**Related Tasks:** First real multi-step agent workflow!
 
 ---
 
@@ -1610,13 +1619,14 @@ resume-agent/
 
 ## 📝 Daily Summary
 
-| Task | Assignee | Status |
-|------|----------|--------|
-| AG-3: Job Requirements Node | Dev 1 + Dev 2 | ✓ Done |
-| AG-5: ATS Scoring | Dev 2 | ✓ Done |
-| AG-16: Login & Register UI | Dev 3 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-12: Resume Analysis Node | Dev 2 | 5 | ✓ Done |
+| AG-13: ATS Scoring Node | Dev 3 | 5 | ✓ Done |
+| AG-14: 3-Node Workflow Integration | Dev 1 | 3 | ✓ Done |
 
-**Total Story Points Completed:** 15
+**Total Story Points Completed:** 13  
+**Dev 1:** 3 points | **Dev 2:** 5 points | **Dev 3:** 5 points
 
 ---
 

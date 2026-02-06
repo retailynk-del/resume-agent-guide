@@ -1,17 +1,18 @@
-# Day 8: Agent API + Dashboard
+# Day 8: Agent API Endpoint
 
 > **Date:** Sprint 1, Day 8  
-> **Focus:** Connect agent workflow to API, build dashboard UI  
-> **Vertical Slice:** Slice 4 - Full flow working
+> **Focus:** Connect agent workflow to backend API  
+> **Vertical Slice:** Can trigger agent from API, results persist to database
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Agent endpoint accepts resume + JD
-- ✅ Dashboard UI with upload form
-- ✅ User can submit and get results
+- ✅ Agent run endpoint created (Dev 2)
+- ✅ AgentRun database model created (Dev 1)
+- ✅ Results saved to database (Dev 3 - backend cross-training!)
+- ✅ Can POST to /api/agent/run → agent runs → results in DB
 
 ---
 
@@ -19,45 +20,81 @@ By end of today:
 
 ---
 
-### Task AG-14: Agent Run Endpoint
+### Task AG-30: Agent Run Endpoint
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-14 |
+| **Task ID** | AG-30 |
 | **Title** | Agent Run Endpoint |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
 | **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Create API endpoint that triggers the agent workflow and returns results.
+Create POST /api/agent/run endpoint that triggers the LangGraph workflow and returns optimization results. This connects the agent to the API!
 
 **Acceptance Criteria:**
-- [ ] POST /api/agent/run accepts JD + resume
-- [ ] Returns optimization results
-- [ ] Includes before/after scores
-- [ ] Returns modified resume
+- [ ] Endpoint: POST /api/agent/run
+- [ ] Accepts: job_description, resume
+- [ ] Calls run_optimization() from workflow module
+- [ ] Returns: scores, modified_resume, improvement_plan
+- [ ] Requires authentication (JWT)
+- [ ] Error handling for LLM failures
+- [ ] PR merged
 
 ---
 
-### Task AG-18: Dashboard UI
+### Task AG-31: AgentRun Database Model
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-18 |
-| **Title** | Dashboard Upload UI |
-| **Assignee** | Dev 3 (Marva) |
-| **Story Points** | 5 |
+| **Task ID** | AG-31 |
+| **Title** | AgentRun Database Model |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
 | **Sprint** | Sprint 1 |
+| **Priority** | High |
 
 **Description:**
-Build dashboard with form to upload resume and job description. Shows loading state during processing.
+Create database model to persist agent run results. Stores user_id, inputs, outputs, scores, and timestamps.
 
 **Acceptance Criteria:**
-- [ ] Text areas for JD and resume
-- [ ] Submit button triggers API
-- [ ] Loading state during processing
-- [ ] Redirect to results on success
+- [ ] Supabase migration created for agent_runs table
+- [ ] Fields: id, user_id, run_id, job_description, original_resume, modified_resume, scores, created_at
+- [ ] Foreign key to users table
+- [ ] Migration runs successfully
+- [ ] PR merged
+
+---
+
+### Task AG-32: Save Results to Database
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-32 |
+| **Title** | Save Results to Database |
+| **Type** | Task |
+| **Epic** | Backend API & Database |
+| **Assignee** | Dev 3 (Marva) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 1 |
+| **Priority** | High |
+
+**Description:**
+Add database persistence to agent endpoint. After workflow runs, save all results to agent_runs table. Dev 3 gets backend database experience!
+
+**Acceptance Criteria:**
+- [ ] After agent runs, save to database
+- [ ] Uses AgentRun model from AG-31
+- [ ] Saves all inputs and outputs
+- [ ] Returns database ID in response
+- [ ] Error handling for DB failures
+- [ ] PR merged
 
 ---
 
@@ -698,10 +735,12 @@ curl -X POST http://localhost:8000/api/agent/run-public \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-14: Agent Endpoint | Dev 2 | 5 | ✓ Done |
-| AG-18: Dashboard UI | Dev 3 | 5 | ✓ Done |
+| AG-30: Agent Run Endpoint | Dev 2 | 5 | ✓ Done |
+| AG-31: AgentRun Database Model | Dev 1 | 3 | ✓ Done |
+| AG-32: Save Results to Database | Dev 3 | 3 | ✓ Done |
 
-**Total:** 10 points
+**Total Story Points Completed:** 11  
+**Dev 1:** 3 points | **Dev 2:** 5 points | **Dev 3:** 3 points
 
 ---
 

@@ -1,30 +1,98 @@
 # Day 15: History UI
 
-> **Date:** Sprint 2, Day 5  
-> **Focus:** Frontend history page and navigation  
-> **Vertical Slice:** Slice 5 completes
+> **Date:** Sprint 2, Day 15  
+> **Focus:** Build history page frontend  
+> **Vertical Slice:** User can view past optimizations
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ History page shows past runs
-- ✅ Can click to view past results
-- ✅ Cover letter tab added to results
+- ✅ History page component created (Dev 3)
+- ✅ History list with navigation (Dev 1 - more frontend!)
+- ✅ Detail view for past runs (Dev 2 - more frontend!)
+- ✅ User can browse all past optimizations
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-20: History Page
+### Task AG-51: History Page Component
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-20 |
-| **Title** | Run History Page |
+| **Task ID** | AG-51 |
+| **Title** | History Page Component |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
 | **Assignee** | Dev 3 (Marva) |
 | **Story Points** | 5 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Create history page showing list of user's past optimization runs with basic info (date, scores, improvement).
+
+**Acceptance Criteria:**
+- [ ] File created: `frontend/src/pages/History.jsx`
+- [ ] Calls GET /api/agent/history on load
+- [ ] Displays run cards with: date, scores, delta
+- [ ] Shows loading state
+- [ ] Shows empty state if no runs
+- [ ] PR merged
+
+---
+
+### Task AG-52: History List Navigation
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-52 |
+| **Title** | History List Navigation |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 2 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Add navigation from history page to view full details of any past run. Integrate with existing results page.
+
+**Acceptance Criteria:**
+- [ ] Each history item is clickable
+- [ ] Click → navigate to /results/:id
+- [ ] Results page loads run from API if not in localStorage
+- [ ] Back navigation works correctly
+- [ ] URL routing works
+- [ ] PR merged
+
+---
+
+### Task AG-53: Detail View for Past Runs
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-53 |
+| **Title** | Detail View for Past Runs |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 2 (Sinan) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | Medium |
+
+**Description:**
+Update Results page to load past runs from API by ID. Show full details including cover letter if available.
+
+**Acceptance Criteria:**
+- [ ] Results page accepts :id param
+- [ ] Calls GET /api/agent/run/:id if needed
+- [ ] Displays all saved data from database
+- [ ] Cover letter tab shows if cover_letter exists
+- [ ] Handles loading and error states
+- [ ] PR merged
 
 ---
 
@@ -369,9 +437,14 @@ git push origin feature/AG-20-history-page
 
 ## 📝 Daily Summary
 
-| Task | Points | Status |
-|------|--------|--------|
-| AG-20: History Page | 5 | ✓ Done |
+| Task | Assignee | Points | Status |
+|------|----------|--------|--------|
+| AG-51: History Page Component | Dev 3 | 5 | ✓ Done |
+| AG-52: History List Navigation | Dev 1 | 2 | ✓ Done |
+| AG-53: Detail View for Past Runs | Dev 2 | 3 | ✓ Done |
+
+**Total Story Points Completed:** 10  
+**Dev 1:** 2 points | **Dev 2:** 3 points | **Dev 3:** 5 points
 
 ---
 
