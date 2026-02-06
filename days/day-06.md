@@ -152,10 +152,10 @@ Create FastAPI dependency that validates JWT tokens and protects endpoints. Dev 
 ```bash
 cd resume-agent
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-16-workflow-assembly
+git checkout -b feature/AG-22-workflow-assembly
 ```
 
-**Jira:** Move AG-16 to "In Progress"
+**Jira:** Move AG-22 to "In Progress"
 
 ### Step 2: Create Workflow File
 
@@ -647,7 +647,7 @@ cd ../..  # Back to resume-agent root
 
 git add backend/agent/
 
-git commit -m "AG-16: Assemble complete LangGraph workflow
+git commit -m "AG-22: Assemble complete LangGraph workflow
 
 - Connect all nodes: extract → analyze → score → plan → modify → score
 - Create workflow.py with StateGraph configuration
@@ -657,23 +657,23 @@ git commit -m "AG-16: Assemble complete LangGraph workflow
 
 Team effort: Shabas, Sinan, Marva"
 
-git push origin feature/AG-16-workflow-assembly
+git push origin feature/AG-22-workflow-assembly
 ```
 
-**Jira:** Move AG-16 to "In Review"
+**Jira:** Move AG-22 to "In Review"
 
 ### Step 7: Open PR and Merge
 
-PR Title: `AG-16: Complete LangGraph Workflow Assembly`
+PR Title: `AG-22: Complete LangGraph Workflow Assembly`
 
 After review and merge:
 ```bash
 git checkout dev-shabas
 git pull origin main
-git branch -d feature/AG-16-workflow-assembly
+git branch -d feature/AG-22-workflow-assembly
 ```
 
-**Jira:** Move AG-16 to "Done"
+**Jira:** Move AG-22 to "Done"
 
 ---
 

@@ -96,13 +96,13 @@ Update Results page to load past runs from API by ID. Show full details includin
 
 ---
 
-## 👨‍💻 Dev 3: AG-26 - History Page
+## 👨‍💻 Dev 3: AG-32 - History Page
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-26-history-page
+git checkout -b feature/AG-32-history-page
 ```
 
 ### Step 2: Update API Service
@@ -415,14 +415,14 @@ Update `Results.jsx` to add a cover letter tab:
 
 ```bash
 git add frontend/
-git commit -m "AG-26: Create history page
+git commit -m "AG-32: Create history page
 
 - Show past optimization runs
 - Link to view full results
 - Add cover letter tab to results
 - Add navigation between pages"
 
-git push origin feature/AG-26-history-page
+git push origin feature/AG-32-history-page
 ```
 
 ---

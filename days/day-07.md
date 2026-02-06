@@ -127,17 +127,17 @@ Create React Router protected route wrapper that redirects to login if user is n
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-19 - Auth Endpoints
+## 👨‍💻 Dev 2 (Sinan): AG-25 - Auth Endpoints
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-19-auth-endpoints
+git checkout -b feature/AG-25-auth-endpoints
 ```
 
-**Jira:** Move AG-19 to "In Progress"
+**Jira:** Move AG-25 to "In Progress"
 
 ### Step 2: Create Auth Router
 
@@ -446,7 +446,7 @@ curl http://localhost:8000/api/auth/me \
 
 ```bash
 git add backend/api/ backend/main.py
-git commit -m "AG-19: Create auth endpoints
+git commit -m "AG-25: Create auth endpoints
 
 - POST /api/auth/register - Create new user
 - POST /api/auth/login - Return JWT token
@@ -454,23 +454,23 @@ git commit -m "AG-19: Create auth endpoints
 - Password hashing with bcrypt
 - JWT with 24h expiry"
 
-git push origin feature/AG-19-auth-endpoints
+git push origin feature/AG-25-auth-endpoints
 ```
 
-**Jira:** Move AG-19 to "Done"
+**Jira:** Move AG-25 to "Done"
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-23 - Frontend API Connection
+## 👨‍💻 Dev 3 (Marva): AG-29 - Frontend API Connection
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-23-api-connection
+git checkout -b feature/AG-29-api-connection
 ```
 
-**Jira:** Move AG-23 to "In Progress"
+**Jira:** Move AG-29 to "In Progress"
 
 ### Step 2: Create API Service
 
@@ -850,7 +850,7 @@ cd frontend && npm run dev
 
 ```bash
 git add frontend/
-git commit -m "AG-23: Connect frontend to auth API
+git commit -m "AG-29: Connect frontend to auth API
 
 - Create API service with login/register functions
 - Store JWT token in localStorage
@@ -858,10 +858,10 @@ git commit -m "AG-23: Connect frontend to auth API
 - Update Register page to call API
 - Redirect on success"
 
-git push origin feature/AG-23-api-connection
+git push origin feature/AG-29-api-connection
 ```
 
-**Jira:** Move AG-23 to "Done"
+**Jira:** Move AG-29 to "Done"
 
 ---
 

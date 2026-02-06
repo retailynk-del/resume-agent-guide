@@ -26,7 +26,7 @@ Before starting work, add these 8 tasks to your Jira board:
 
 | Field | Value |
 |-------|-------|
-| **Task ID** | AG-13 |
+| **Task ID** | AG-7 |
 | **Title** | LangGraph Tutorial Part 1: Basics |
 | **Type** | Task |
 | **Epic** | Learning & Setup |
@@ -142,7 +142,7 @@ Define the ResumeAgentState TypedDict that will flow through the entire agent wo
 - [ ] Helper factory function created
 - [ ] Test file validates state creation
 
-**Related Tasks:** AG-13 (builds on tutorial knowledge)
+**Related Tasks:** AG-19 (builds on tutorial knowledge)
 
 ---
 
@@ -416,12 +416,12 @@ On whiteboard or Miro, draw the agent flow:
 
 | When | Action |
 |------|--------|
-| 9:30 AM | Move AG-13 to "In Progress" |
-| 12:30 PM | Move AG-13 to "Done" |
+| 9:30 AM | Move AG-19 to "In Progress" |
+| 12:30 PM | Move AG-19 to "Done" |
 
 ---
 
-## 🕑 2:00 PM - Dev 2 (Sinan): AG-137 - Supabase Setup
+## 🕑 2:00 PM - Dev 2 (Sinan): AG-143 - Supabase Setup
 
 ### What to Learn First (15 minutes)
 
@@ -565,12 +565,12 @@ This is cloud setup only - no code to commit yet.
 
 | When | Action |
 |------|--------|
-| 2:00 PM | Move AG-137 to "In Progress" |
-| 2:45 PM | Move AG-137 to "Done" |
+| 2:00 PM | Move AG-143 to "In Progress" |
+| 2:45 PM | Move AG-143 to "Done" |
 
 ---
 
-## 🕑 2:00 PM - Dev 3 (Marva): AG-87, AG-88 - CI/CD Setup
+## 🕑 2:00 PM - Dev 3 (Marva): AG-93, AG-94 - CI/CD Setup
 
 ### What to Learn First (20 minutes)
 
@@ -606,12 +606,12 @@ git branch
 git checkout dev-marva
 ```
 
-**Jira Update:** Move AG-87 and AG-88 to "In Progress"
+**Jira Update:** Move AG-93 and AG-94 to "In Progress"
 
 #### Step 4: Create Feature Branch
 
 ```bash
-git checkout -b feature/AG-87-cicd-setup
+git checkout -b feature/AG-93-cicd-setup
 ```
 
 #### Step 5: Create Folder Structure
@@ -826,7 +826,7 @@ Untracked files:
 
 ```bash
 git add .
-git commit -m "AG-87: Setup CI/CD pipelines and basic FastAPI backend
+git commit -m "AG-93: Setup CI/CD pipelines and basic FastAPI backend
 
 - Add GitHub Actions workflow for backend (test on push)
 - Add GitHub Actions workflow for frontend (build on push)
@@ -837,21 +837,21 @@ git commit -m "AG-87: Setup CI/CD pipelines and basic FastAPI backend
 #### Step 13: Push to Feature Branch
 
 ```bash
-git push origin feature/AG-87-cicd-setup
+git push origin feature/AG-93-cicd-setup
 ```
 
-**Jira Update:** Move AG-87 and AG-88 to "In Review"
+**Jira Update:** Move AG-93 and AG-94 to "In Review"
 
 #### Step 14: Open Pull Request
 
 1. Go to your GitHub repository in browser
-2. You should see a yellow banner: "feature/AG-87-cicd-setup had recent pushes"
+2. You should see a yellow banner: "feature/AG-93-cicd-setup had recent pushes"
 3. Click "Compare & pull request"
 4. Fill in PR details:
 
 **Title:**
 ```
-AG-87: Setup CI/CD pipelines and basic FastAPI backend
+AG-93: Setup CI/CD pipelines and basic FastAPI backend
 ```
 
 **Description:**
@@ -860,8 +860,8 @@ AG-87: Setup CI/CD pipelines and basic FastAPI backend
 Setup the CI/CD infrastructure and basic backend application.
 
 ## Jira Tasks
-- AG-87: Backend CI/CD Pipeline
-- AG-88: Frontend CI/CD Pipeline
+- AG-93: Backend CI/CD Pipeline
+- AG-94: Frontend CI/CD Pipeline
 
 ## Changes Made
 - Created `.github/workflows/backend.yml` - triggers on backend changes
@@ -904,7 +904,7 @@ git checkout dev-marva
 git pull origin main
 
 # Delete the feature branch (no longer needed)
-git branch -d feature/AG-87-cicd-setup
+git branch -d feature/AG-93-cicd-setup
 ```
 
 ---
@@ -913,9 +913,9 @@ git branch -d feature/AG-87-cicd-setup
 
 | When | Action |
 |------|--------|
-| 2:00 PM | Move AG-87, AG-88 to "In Progress" |
-| ~3:00 PM | Move AG-87, AG-88 to "In Review" (after push) |
-| After merge | Move AG-87, AG-88 to "Done" |
+| 2:00 PM | Move AG-93, AG-94 to "In Progress" |
+| ~3:00 PM | Move AG-93, AG-94 to "In Review" (after push) |
+| After merge | Move AG-93, AG-94 to "Done" |
 
 ---
 
@@ -996,7 +996,7 @@ resume-agent/
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-13: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
+| AG-7: LangGraph Tutorial Part 1 | Dev 1 | 2 | ✓ Done |
 | AG-8: LangGraph Tutorial Part 2 | Dev 2 | 2 | ✓ Done |
 | AG-9: LangGraph Tutorial Part 3 | Dev 3 | 2 | ✓ Done |
 | AG-10: Agent State Schema | Dev 1 | 3 | ✓ Done |

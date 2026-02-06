@@ -52,7 +52,7 @@ Connect ALL 6 LangGraph nodes into the complete agent workflow graph. This creat
 - [ ] Test file shows all nodes executing
 - [ ] PR merged to main
 
-**Dependencies:** AG-15, AG-18, AG-19, AG-21, AG-22, AG-23 (all nodes exist)
+**Dependencies:** AG-21, AG-24, AG-25, AG-27, AG-28, AG-29 (all nodes exist)
 
 ---
 
@@ -86,7 +86,7 @@ Create comprehensive tests that validate state flows correctly through all 6 nod
 - [ ] All tests pass
 - [ ] PR merged to main
 
-**Dependencies:** AG-24 (workflow must be assembled)
+**Dependencies:** AG-30 (workflow must be assembled)
 
 ---
 
@@ -120,7 +120,7 @@ Create a real-world end-to-end test with actual job description and resume. Run 
 - [ ] Test passes successfully
 - [ ] PR merged to main
 
-**Dependencies:** AG-24 (workflow must exist)
+**Dependencies:** AG-30 (workflow must exist)
 
 ---
 
@@ -151,21 +151,21 @@ Add functionality to track score changes across iterations. This will be useful 
 - [ ] Test validates history list grows
 - [ ] PR merged to main
 
-**Dependencies:** AG-24, AG-25
+**Dependencies:** AG-30, AG-31
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-14 - Modification Node
+## 👨‍💻 Dev 3 (Marva): AG-20 - Modification Node
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-14-modification-node
+git checkout -b feature/AG-20-modification-node
 ```
 
-**Jira:** Move AG-14 to "In Progress"
+**Jira:** Move AG-20 to "In Progress"
 
 ### Step 2: Create Modification Node
 
@@ -348,29 +348,29 @@ python test_modification.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-14: Create resume modification node
+git commit -m "AG-20: Create resume modification node
 
 - Apply improvement plan to resume
 - Maintain authentic voice
 - Track iteration count and changes applied"
 
-git push origin feature/AG-14-modification-node
+git push origin feature/AG-20-modification-node
 ```
 
-**Jira:** Move AG-14 to "Done"
+**Jira:** Move AG-20 to "Done"
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-12 - Scoring Nodes
+## 👨‍💻 Dev 2 (Sinan): AG-18 - Scoring Nodes
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-12-scoring-nodes
+git checkout -b feature/AG-18-scoring-nodes
 ```
 
-**Jira:** Move AG-12 to "In Progress"
+**Jira:** Move AG-18 to "In Progress"
 
 ### Step 2: Create Scoring Nodes
 
@@ -550,16 +550,16 @@ python test_scoring_nodes.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-12: Create scoring nodes for workflow
+git commit -m "AG-18: Create scoring nodes for workflow
 
 - score_initial for baseline score
 - score_modified for post-change score
 - Track improvement delta and history"
 
-git push origin feature/AG-12-scoring-nodes
+git push origin feature/AG-18-scoring-nodes
 ```
 
-**Jira:** Move AG-12 to "Done"
+**Jira:** Move AG-18 to "Done"
 
 ---
 

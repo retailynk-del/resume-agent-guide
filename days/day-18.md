@@ -120,7 +120,7 @@ Assign bugs to developers based on expertise:
 git checkout feature/bugfix-description
 # Fix the issue
 # Test the fix
-git commit -m "AG-41b: Fix [description]"
+git commit -m "AG-47b: Fix [description]"
 git push origin feature/bugfix-description
 # Open PR, get review, merge
 ```

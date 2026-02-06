@@ -96,13 +96,13 @@ Update agent API to support cover letter generation as optional parameter. Retur
 
 ---
 
-## 👥 Dev 1 + Dev 2 (PAIR): AG-15
+## 👥 Dev 1 + Dev 2 (PAIR): AG-21
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-15-conditional-edges
+git checkout -b feature/AG-21-conditional-edges
 ```
 
 ### Step 2: Create Decision Function
@@ -315,7 +315,7 @@ python test_workflow.py
 
 ```bash
 git add backend/agent/
-git commit -m "AG-15: Add conditional edges for iteration
+git commit -m "AG-21: Add conditional edges for iteration
 
 - Create decision node to check score vs target
 - Add conditional edge to loop back or finish
@@ -324,7 +324,7 @@ git commit -m "AG-15: Add conditional edges for iteration
 
 Co-authored-by: Sinan <sinan@example.com>"
 
-git push origin feature/AG-15-conditional-edges
+git push origin feature/AG-21-conditional-edges
 ```
 
 ---

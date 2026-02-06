@@ -99,16 +99,16 @@ Connect dashboard form to backend agent API. Handle API calls, loading states, e
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-25 - Results Page
+## 👨‍💻 Dev 3 (Marva): AG-31 - Results Page
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-25-results-page
+git checkout -b feature/AG-31-results-page
 ```
 
-**Jira:** Move AG-25 to "In Progress"
+**Jira:** Move AG-31 to "In Progress"
 
 ### Step 2: Create Results Page
 
@@ -687,7 +687,7 @@ import Results from './pages/Results';
 
 ```bash
 git add frontend/src/pages/
-git commit -m "AG-25: Create results display page
+git commit -m "AG-31: Create results display page
 
 - Score comparison cards (before/after/improvement)
 - Visual progress bar
@@ -695,14 +695,14 @@ git commit -m "AG-25: Create results display page
 - Copy to clipboard functionality
 - Responsive design"
 
-git push origin feature/AG-25-results-page
+git push origin feature/AG-31-results-page
 ```
 
-**Jira:** Move AG-25 to "Done"
+**Jira:** Move AG-31 to "Done"
 
 ---
 
-## 👥 All Developers: AG-31 - Integration Testing
+## 👥 All Developers: AG-37 - Integration Testing
 
 ### Test Checklist
 

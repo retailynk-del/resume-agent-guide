@@ -49,9 +49,9 @@ Build a LangGraph node that analyzes resumecontent using GPT-4o-mini. This node 
 - [ ] Includes test with sample resume
 - [ ] PR merged to main
 
-**Dependencies:** AG-15 (Job requirements node exists as reference)
+**Dependencies:** AG-21 (Job requirements node exists as reference)
 
-**Related Tasks:** Similar pattern to AG-15 but different analysis
+**Related Tasks:** Similar pattern to AG-21 but different analysis
 
 ---
 
@@ -85,7 +85,7 @@ Build a LangGraph node that calculates ATS (Applicant Tracking System) scores fo
 - [ ] Includes test file
 - [ ] PR merged to main
 
-**Dependencies:** AG-15 (needs job requirements), AG-18 (needs resume analysis)
+**Dependencies:** AG-21 (needs job requirements), AG-24 (needs resume analysis)
 
 **Related Tasks:** Dev 3 now has LangGraph experience!
 
@@ -121,7 +121,7 @@ Connect the 3 LangGraph nodes built (Job Requirements from yesterday, Resume Ana
 - [ ] Prints final score and analysis
 - [ ] PR merged to main
 
-**Dependencies:** AG-15, AG-18, AG-19 (all 3 nodes must exist)
+**Dependencies:** AG-21, AG-24, AG-25 (all 3 nodes must exist)
 
 **Related Tasks:** First real multi-step agent workflow!
 
@@ -130,13 +130,13 @@ Connect the 3 LangGraph nodes built (Job Requirements from yesterday, Resume Ana
 ## 🕘 9:00 AM - Daily Standup
 
 **Expected Updates:**
-- **Dev 1:** Yesterday: Agent state schema. Today: AG-9 Job Requirements node (pair with Dev 2).
-- **Dev 2:** Yesterday: FastAPI structure. Today: AG-9 (pair) then AG-11 Scoring.
-- **Dev 3:** Yesterday: React setup. Today: AG-22 Login/Register UI.
+- **Dev 1:** Yesterday: Agent state schema. Today: AG-15 Job Requirements node (pair with Dev 2).
+- **Dev 2:** Yesterday: FastAPI structure. Today: AG-15 (pair) then AG-17 Scoring.
+- **Dev 3:** Yesterday: React setup. Today: AG-28 Login/Register UI.
 
 ---
 
-## 👥 Dev 1 + Dev 2 (PAIR): AG-9 - Job Requirements Node
+## 👥 Dev 1 + Dev 2 (PAIR): AG-15 - Job Requirements Node
 
 ### About Pair Programming
 
@@ -190,10 +190,10 @@ print(result.content)
 cd resume-agent
 git checkout dev-shabas
 git pull origin main
-git checkout -b feature/AG-9-job-requirements-node
+git checkout -b feature/AG-15-job-requirements-node
 ```
 
-**Jira Update:** Move AG-9 to "In Progress"
+**Jira Update:** Move AG-15 to "In Progress"
 
 #### Step 2: Create the Node File
 
@@ -472,7 +472,7 @@ cd ../../..  # Back to resume-agent root
 
 git add backend/agent/nodes/
 
-git commit -m "AG-9: Create job requirements extraction node
+git commit -m "AG-15: Create job requirements extraction node
 
 - Add LLM-powered extraction using gpt-4o-mini
 - Extract must-have skills, nice-to-have skills, keywords
@@ -482,27 +482,27 @@ git commit -m "AG-9: Create job requirements extraction node
 
 Co-authored-by: Sinan <sinan@example.com>"
 
-git push origin feature/AG-9-job-requirements-node
+git push origin feature/AG-15-job-requirements-node
 ```
 
-**Jira Update:** Move AG-9 to "In Review"
+**Jira Update:** Move AG-15 to "In Review"
 
 #### Step 6: Open PR, Get Review, Merge
 
-PR Title: `AG-9: Create job requirements extraction node`
+PR Title: `AG-15: Create job requirements extraction node`
 
 After merge:
 ```bash
 git checkout dev-shabas
 git pull origin main
-git branch -d feature/AG-9-job-requirements-node
+git branch -d feature/AG-15-job-requirements-node
 ```
 
-**Jira Update:** Move AG-9 to "Done"
+**Jira Update:** Move AG-15 to "Done"
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-11 - ATS Scoring Function
+## 👨‍💻 Dev 2 (Sinan): AG-17 - ATS Scoring Function
 
 *Start this after pair programming session ends (around 2 PM)*
 
@@ -528,10 +528,10 @@ git branch -d feature/AG-9-job-requirements-node
 ```bash
 git checkout sinan-Dev
 git pull origin main
-git checkout -b feature/AG-11-ats-scoring
+git checkout -b feature/AG-17-ats-scoring
 ```
 
-**Jira Update:** Move AG-11 to "In Progress"
+**Jira Update:** Move AG-17 to "In Progress"
 
 #### Step 2: Create Scoring Module
 
@@ -873,7 +873,7 @@ cd ../..  # Back to resume-agent root
 
 git add backend/agent/
 
-git commit -m "AG-11: Create ATS scoring function
+git commit -m "AG-17: Create ATS scoring function
 
 - Implement keyword matching (40 pts)
 - Implement skills matching (30 pts)
@@ -882,16 +882,16 @@ git commit -m "AG-11: Create ATS scoring function
 - Add feedback generation
 - Add comprehensive tests"
 
-git push origin feature/AG-11-ats-scoring
+git push origin feature/AG-17-ats-scoring
 ```
 
 Open PR, merge, cleanup.
 
-**Jira Update:** Move AG-11 to "Done"
+**Jira Update:** Move AG-17 to "Done"
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-22 - Login & Register UI
+## 👨‍💻 Dev 3 (Marva): AG-28 - Login & Register UI
 
 ### What to Learn First (20 minutes)
 
@@ -920,10 +920,10 @@ const [email, setEmail] = useState('');
 cd resume-agent
 git checkout dev-marva
 git pull origin main
-git checkout -b feature/AG-22-auth-ui
+git checkout -b feature/AG-28-auth-ui
 ```
 
-**Jira Update:** Move AG-22 to "In Progress"
+**Jira Update:** Move AG-28 to "In Progress"
 
 #### Step 2: Create Pages Directory
 
@@ -1524,7 +1524,7 @@ cd ..  # Back to resume-agent root
 
 git add frontend/
 
-git commit -m "AG-22: Create Login and Register UI components
+git commit -m "AG-28: Create Login and Register UI components
 
 - Add Login page with email/password form
 - Add Register page with password confirmation
@@ -1534,12 +1534,12 @@ git commit -m "AG-22: Create Login and Register UI components
 - Create Auth.css with modern styling
 - Update App.jsx to use new components"
 
-git push origin feature/AG-22-auth-ui
+git push origin feature/AG-28-auth-ui
 ```
 
 Open PR, merge, cleanup.
 
-**Jira Update:** Move AG-22 to "Done"
+**Jira Update:** Move AG-28 to "Done"
 
 ---
 

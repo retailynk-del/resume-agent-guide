@@ -106,16 +106,16 @@ Initialize Sprint 2 planning - create task list, estimate story points, and set 
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-34 - User Database Model
+## 👨‍💻 Dev 2 (Sinan): AG-40 - User Database Model
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-34-user-model
+git checkout -b feature/AG-40-user-model
 ```
 
-**Jira:** Move AG-34 to "In Progress"
+**Jira:** Move AG-40 to "In Progress"
 
 ### Step 2: Create Models Directory
 
@@ -436,30 +436,30 @@ curl -X POST http://localhost:8000/api/auth/login \
 
 ```bash
 git add backend/database/ backend/api/auth.py
-git commit -m "AG-34: Migrate auth to Supabase
+git commit -m "AG-40: Migrate auth to Supabase
 
 - Create User SQLAlchemy model
 - Update auth endpoints to use database
 - Add database init script
 - All existing auth tests pass"
 
-git push origin feature/AG-34-user-model
+git push origin feature/AG-40-user-model
 ```
 
-**Jira:** Move AG-34 to "Done"
+**Jira:** Move AG-40 to "Done"
 
 ---
 
-## 👨‍💻 Dev 1 (Shabas): AG-35 - Run History Model
+## 👨‍💻 Dev 1 (Shabas): AG-41 - Run History Model
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-35-run-model
+git checkout -b feature/AG-41-run-model
 ```
 
-**Jira:** Move AG-35 to "In Progress"
+**Jira:** Move AG-41 to "In Progress"
 
 ### Step 2: Create Run Model
 
@@ -596,17 +596,17 @@ python init_db.py
 
 ```bash
 git add backend/database/
-git commit -m "AG-35: Create AgentRun model
+git commit -m "AG-41: Create AgentRun model
 
 - Store optimization runs in database
 - Include all scores and content
 - Add status tracking
 - Link to user (optional for anonymous)"
 
-git push origin feature/AG-35-run-model
+git push origin feature/AG-41-run-model
 ```
 
-**Jira:** Move AG-35 to "Done"
+**Jira:** Move AG-41 to "Done"
 
 ---
 

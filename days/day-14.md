@@ -96,13 +96,13 @@ Create API endpoints to retrieve user's optimization history. List view + detail
 
 ---
 
-## 👨‍💻 Dev 3: AG-17 - Cover Letter Node
+## 👨‍💻 Dev 3: AG-23 - Cover Letter Node
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-17-cover-letter
+git checkout -b feature/AG-23-cover-letter
 ```
 
 ### Step 2: Create Cover Letter Node
@@ -247,13 +247,13 @@ python test_workflow.py
 
 ```bash
 git add backend/agent/
-git commit -m "AG-17: Add cover letter generation node
+git commit -m "AG-23: Add cover letter generation node
 
 - Create LLM-based cover letter generation
 - Integrate into workflow after final score
 - Highlight matching skills"
 
-git push origin feature/AG-17-cover-letter
+git push origin feature/AG-23-cover-letter
 ```
 
 ---

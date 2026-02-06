@@ -50,7 +50,7 @@ Build a LangGraph node that compares job requirements with resume analysis to cr
 - [ ] Test file validates planning logic
 - [ ] PR merged to main
 
-**Dependencies:** AG-15 (job requirements), AG-18 (resume analysis), AG-19 (scoring)
+**Dependencies:** AG-21 (job requirements), AG-24 (resume analysis), AG-25 (scoring)
 
 ---
 
@@ -85,7 +85,7 @@ Build a LangGraph node that takes the improvement plan and actually modifies the
 - [ ] Test file shows clear improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-21 (improvement plan must exist)
+**Dependencies:** AG-27 (improvement plan must exist)
 
 **Related Tasks:** Dev 3's 2nd LangGraph node!
 
@@ -115,30 +115,30 @@ Build a LangGraph node that scores the MODIFIED resume against job requirements 
 
 **Acceptance Criteria:**
 - [ ] File created: `backend/agent/nodes/rescore.py`
-- [ ] Scores modified resume (reuses AG-19 scoring logic)
+- [ ] Scores modified resume (reuses AG-25 scoring logic)
 - [ ] Updates state's `ats_score_after` field
 - [ ] Calculates `improvement_delta` (after - before)
 - [ ] Adds to `score_history` list
 - [ ] Test shows score improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-22 (modified resume must exist), AG-19 (scoring logic)
+**Dependencies:** AG-28 (modified resume must exist), AG-25 (scoring logic)
 
 **Related Tasks:** Shows the agent actually improved the resume!
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-10 - Resume Analysis Node
+## 👨‍💻 Dev 2 (Sinan): AG-16 - Resume Analysis Node
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-10-resume-analysis
+git checkout -b feature/AG-16-resume-analysis
 ```
 
-**Jira:** Move AG-10 to "In Progress"
+**Jira:** Move AG-16 to "In Progress"
 
 ### Step 2: Create Resume Analysis Node
 
@@ -311,32 +311,32 @@ python test_resume_analysis.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-10: Create resume analysis node
+git commit -m "AG-16: Create resume analysis node
 
 - Extract skills, experience, achievements from resume
 - Return structured JSON analysis
 - Add decision logging"
 
-git push origin feature/AG-10-resume-analysis
+git push origin feature/AG-16-resume-analysis
 ```
 
 Open PR → Merge
 
-**Jira:** Move AG-10 to "Done"
+**Jira:** Move AG-16 to "Done"
 
 ---
 
-## 👥 Dev 1 + Dev 3 (PAIR): AG-13 - Planning Node
+## 👥 Dev 1 + Dev 3 (PAIR): AG-19 - Planning Node
 
 ### Step 1: Setup (Dev 1 drives first)
 
 ```bash
 cd resume-agent
 git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-13-planning-node
+git checkout -b feature/AG-19-planning-node
 ```
 
-**Jira:** Move AG-13 to "In Progress"
+**Jira:** Move AG-19 to "In Progress"
 
 ### Step 2: Create Planning Node
 
@@ -492,7 +492,7 @@ python test_planning.py
 
 cd ../../..
 git add backend/agent/nodes/
-git commit -m "AG-13: Create improvement planning node
+git commit -m "AG-19: Create improvement planning node
 
 - Compare requirements vs resume analysis
 - Generate prioritized improvement plan
@@ -500,12 +500,12 @@ git commit -m "AG-13: Create improvement planning node
 
 Co-authored-by: Marva <marva@example.com>"
 
-git push origin feature/AG-13-planning-node
+git push origin feature/AG-19-planning-node
 ```
 
 Open PR → Merge
 
-**Jira:** Move AG-13 to "Done"
+**Jira:** Move AG-19 to "Done"
 
 ---
 

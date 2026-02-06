@@ -97,7 +97,7 @@ Test the iterative workflow with various scenarios: early stopping, max iteratio
 
 ---
 
-## 👨‍💻 Dev 2: AG-36 - Save Runs
+## 👨‍💻 Dev 2: AG-42 - Save Runs
 
 ### Update Agent Router
 
@@ -202,7 +202,7 @@ def run_agent(
 
 ---
 
-## 👨‍💻 Dev 1: AG-37 - History Endpoint
+## 👨‍💻 Dev 1: AG-43 - History Endpoint
 
 ### Add to Agent Router
 

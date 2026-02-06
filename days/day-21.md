@@ -107,7 +107,7 @@ Start Sprint 3 work: Add PDF upload capability to parse resume files. Extra cred
 
 ---
 
-## 👨‍💻 Dev 1: AG-45 - PDF Parsing
+## 👨‍💻 Dev 1: AG-51 - PDF Parsing
 
 ### Step 1: Install Dependencies
 
@@ -209,7 +209,7 @@ if __name__ == "__main__":
 
 ---
 
-## 👨‍💻 Dev 2: AG-46 - File Upload Endpoint
+## 👨‍💻 Dev 2: AG-52 - File Upload Endpoint
 
 ### Create Upload Router
 
