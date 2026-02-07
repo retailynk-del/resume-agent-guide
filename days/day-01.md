@@ -201,10 +201,12 @@ Set up GitHub Actions workflow to automatically run tests for the backend when c
 - [ ] File `.github/workflows/backend.yml` created
 - [ ] Workflow triggers only on changes to `backend/**` directory
 - [ ] Workflow installs Python dependencies
-- [ ] Workflow runs linting/basic checks
+- [ ] Workflow runs linting/basic checks (can be simple for now)
 - [ ] Workflow runs without errors after PR merge
 
-**Note:** CI/CD tasks split - Dev 1 handles backend, Dev 3 handles frontend
+**Note:** This CI/CD pipeline can initially just check Python syntax. Full testing will be added as backend code is developed. Should be merged AFTER AG-14 (FastAPI setup) so there's code to test.
+
+**Dependencies:** AG-14 should be completed first (or at least have a basic health endpoint)
 
 ---
 

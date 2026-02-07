@@ -49,7 +49,7 @@ Build the FIRST LangGraph node for the resume agent. This node uses GPT-4o-mini 
 - [ ] Includes example test with sample job description
 - [ ] PR merged to main
 
-**Dependencies:** AG-16 (State schema must be defined first)
+**Dependencies:** AG-10 (State schema must be defined first - should be in review by now)
 
 **Related Tasks:** All developers learning LangGraph together
 
@@ -85,7 +85,7 @@ Create a simple LangGraph workflow that runs just the Job Requirements node (AG-
 - [ ] Prints extracted requirements in readable format
 - [ ] Successfully runs end-to-end
 
-**Dependencies:** AG-21 (Job requirements node must exist first)
+**Dependencies:** AG-15 (Job requirements node must exist first)
 
 **Related Tasks:** Testing what Dev 1 built
 
@@ -122,7 +122,7 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 - [ ] `.env.example` file created for API URL
 - [ ] PR merged to main
 
-**Dependencies:** AG-19 (Frontend CI/CD must be set up first)
+**Dependencies:** AG-13 (Frontend CI/CD should be set up first so this can be tested)
 
 ---
 
@@ -134,9 +134,9 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 3. Any blockers?
 
 **Expected Answers:**
-- **Dev 1:** Yesterday: LangGraph tutorial. Today: AG-14 Agent State. No blockers.
-- **Dev 2:** Yesterday: Supabase setup. Today: AG-24 FastAPI structure. No blockers.
-- **Dev 3:** Yesterday: CI/CD pipelines. Today: AG-87 React setup. No blockers.
+- **Dev 1:** Yesterday: LangGraph tutorial + Agent State (AG-10). Today: AG-15 Job Requirements Node. No blockers.
+- **Dev 2:** Yesterday: Supabase setup (AG-11) + FastAPI (AG-14). Today: AG-16 Test Workflow. No blockers.
+- **Dev 3:** Yesterday: CI/CD pipelines (AG-12, AG-13). Today: AG-17 React setup. No blockers.
 
 **After Standup:**
 - Add today's tasks to Jira
@@ -144,9 +144,9 @@ Initialize React project using Vite. Set up React Router with routes for all pag
 
 ---
 
-## 👨‍💻 Dev 1 (Shabas): AG-14 - Agent State Schema
+## 👨‍💻 Dev 1 (Shabas): AG-15 - Job Requirements Node (PAIR with Dev 2)
 
-### What to Learn First (10 minutes)
+### About Pair Programming
 
 **Read:** https://docs.python.org/3/library/typing.html#typing.TypedDict
 

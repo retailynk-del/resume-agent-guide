@@ -128,17 +128,17 @@ Build a LangGraph node that scores the MODIFIED resume against job requirements 
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-16 - Resume Analysis Node
+## 👨‍💻 Dev 2 (Sinan): AG-18 - Resume Analysis Node
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-16-resume-analysis
+git checkout -b feature/AG-18-resume-analysis
 ```
 
-**Jira:** Move AG-16 to "In Progress"
+**Jira:** Move AG-18 to "In Progress"
 
 ### Step 2: Create Resume Analysis Node
 

@@ -150,104 +150,1102 @@ Create FastAPI dependency that validates JWT tokens and protects endpoints. Dev 
 
 ## 🕤 9:30 AM - Start Coding (All Together)
 
-### Step 1: Setup (Dev 1 creates branch)
+---
+
+## 👨‍💻 Dev 2 (Sinan): AG-28 - User Database Model & Connection
+
+### Step 1: Create Branch
 
 ```bash
-cd resume-agent
-git checkout dev-shabas && git pull origin main
-git checkout -b feature/AG-22-workflow-assembly
+git checkout sinan-Dev && git pull origin main
+git checkout -b feature/AG-28-user-database-model
 ```
 
-**Jira:** Move AG-22 to "In Progress"
+**Jira:** Move AG-28 to "In Progress"
 
-### Step 2: Create Workflow File
+### Step 2: Install Database Dependencies
 
-Create file: `backend/agent/workflow.py`
+```bash
+cd backend
+pip install sqlalchemy psycopg2-binary python-dotenv
+pip freeze > requirements.txt
+```
+
+### Step 3: Create Database Connection
+
+Create file: `backend/database/connection.py`
 
 ```python
 """
-Resume Optimization Agent Workflow
+Database Connection
 
-This is the main LangGraph workflow that orchestrates all nodes.
-
-Flow:
-1. extract_requirements - Parse job description
-2. analyze_resume - Analyze current resume
-3. score_initial - Get baseline ATS score
-4. plan_improvements - Create modification plan
-5. modify_resume - Apply improvements
-6. score_modified - Measure improvement
-7. END
-
-Sprint 1: Linear flow (no decision gates)
-Sprint 2: Add conditional edges for iteration
+Connects to Supabase PostgreSQL using SQLAlchemy.
 """
-from langgraph.graph import StateGraph, END
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
 
-from .state import ResumeAgentState
-from .nodes.job_requirements import extract_job_requirements
-from .nodes.resume_analysis import analyze_resume
-from .nodes.scoring import score_initial, score_modified
-from .nodes.planning import plan_improvements
-from .nodes.modification import modify_resume
+load_dotenv()
+
+# Get Supabase database URL from environment
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL environment variable not set")
+
+# Create SQLAlchemy engine
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,  # Verify connections before using
+    pool_size=5,         # Connection pool size
+    max_overflow=10
+)
+
+# Session factory
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Base class for models
+Base = declarative_base()
 
 
-def create_agent_workflow() -> StateGraph:
+def get_db():
     """
-    Build and return the compiled LangGraph workflow.
+    Dependency function for FastAPI endpoints.
     
+    Yields a database session and ensures cleanup.
+    """
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+### Step 4: Create User Model
+
+Create file: `backend/database/models/__init__.py`
+
+```python
+"""Database models."""
+from .user import User
+
+__all__ = ["User"]
+```
+
+Create file: `backend/database/models/user.py`
+
+```python
+"""
+User Model
+
+SQLAlchemy model for user accounts.
+"""
+from datetime import datetime
+from sqlalchemy import Column, String, DateTime
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
+
+from ..connection import Base
+
+
+class User(Base):
+    """User account model."""
+    
+    __tablename__ = "users"
+    
+    # Primary key
+    id = Column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4,
+        nullable=False
+    )
+    
+    # Authentication fields
+    email = Column(
+        String(255),
+        unique=True,
+        nullable=False,
+        index=True  # Speed up email lookups
+    )
+    
+    password_hash = Column(
+        String(255),
+        nullable=False
+    )
+    
+    # Metadata
+    created_at = Column(
+        DateTime(timezone=True),
+        default=datetime.utcnow,
+        nullable=False
+    )
+    
+    def __repr__(self):
+        return f"<User(id={self.id}, email={self.email})>"
+    
+    def to_dict(self):
+        """Convert to dictionary (safe for API responses)."""
+        return {
+            "id": str(self.id),
+            "email": self.email,
+            "created_at": self.created_at.isoformat()
+        }
+```
+
+### Step 5: Create Database Initialization Script
+
+Create file: `backend/database/init_db.py`
+
+```python
+"""
+Initialize Database
+
+Creates all tables if they don't exist.
+Run this once to set up the schema.
+"""
+from connection import engine, Base
+from models import User
+
+def init_db():
+    """Create all database tables."""
+    print("Creating database tables...")
+    Base.metadata.create_all(bind=engine)
+    print("✓ Database initialized successfully!")
+
+if __name__ == "__main__":
+    init_db()
+```
+
+### Step 6: Add DATABASE_URL to .env
+
+Update `backend/.env`:
+
+```bash
+# OpenAI
+OPENAI_API_KEY=sk-your-key-here
+
+# Supabase Database
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-ID].supabase.co:5432/postgres
+
+# JWT Secret (generate with: python -c "import secrets; print(secrets.token_hex(32))")
+JWT_SECRET=your-secret-key-here
+JWT_ALGORITHM=HS256
+JWT_EXPIRY_HOURS=24
+```
+
+**NOTE:** Get the DATABASE_URL from Supabase:
+1. Go to Project Settings → Database
+2. Copy "Connection string" → "URI"
+3. Replace `[YOUR-PASSWORD]` with your database password
+
+### Step 7: Initialize Database
+
+```bash
+cd backend/database
+python init_db.py
+```
+
+Expected output:
+```
+Creating database tables...
+✓ Database initialized successfully!
+```
+
+### Step 8: Test Connection
+
+Create file: `backend/database/test_connection.py`
+
+```python
+"""Test database connection."""
+from connection import engine, SessionLocal
+from models import User
+
+def test_connection():
+    """Test database connectivity."""
+    # Test engine connection
+    with engine.connect() as conn:
+        print("✓ Database connection successful!")
+    
+    # Test session
+    db = SessionLocal()
+    user_count = db.query(User).count()
+    db.close()
+    
+    print(f"✓ Users table accessible (count: {user_count})")
+    print("✓ All tests passed!")
+
+if __name__ == "__main__":
+    test_connection()
+```
+
+```bash
+python test_connection.py
+```
+
+### Step 9: Commit and Push
+
+```bash
+cd ../..
+git add backend/database/ backend/requirements.txt backend/.env.example
+git commit -m "AG-28: Add User database model and connection
+
+- SQLAlchemy connection to Supabase PostgreSQL
+- User model with email, password_hash, timestamps
+- Database initialization script
+- Connection tested successfully"
+
+git push origin feature/AG-28-user-database-model
+```
+
+**Jira:** Move AG-28 to "Done"
+
+---
+
+## 👨‍💻 Dev 1 (Shabas): AG-29 - Registration Endpoint
+
+### Step 1: Create Branch
+
+```bash
+git checkout shabas-Dev && git pull origin main
+git checkout -b feature/AG-29-registration-endpoint
+```
+
+**Jira:** Move AG-29 to "In Progress"
+
+### Step 2: Install FastAPI and Auth Dependencies
+
+```bash
+cd backend
+pip install fastapi uvicorn[standard] pydantic bcrypt pyjwt python-multipart
+pip freeze > requirements.txt
+```
+
+### Step 3: Create Auth Utilities
+
+Create file: `backend/auth/password.py`
+
+```python
+"""
+Password Hashing Utilities
+
+Uses bcrypt for secure password hashing.
+"""
+import bcrypt
+
+
+def hash_password(password: str) -> str:
+    """
+    Hash a password using bcrypt.
+    
+    Args:
+        password: Plain text password
+        
     Returns:
-        Compiled workflow that can process resume optimization requests
+        Hashed password string
     """
-    # Initialize workflow with our state type
-    workflow = StateGraph(ResumeAgentState)
+    # Generate salt and hash
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
     
-    # === Add all nodes ===
-    workflow.add_node("extract_requirements", extract_job_requirements)
-    workflow.add_node("analyze_resume", analyze_resume)
-    workflow.add_node("score_initial", score_initial)
-    workflow.add_node("plan_improvements", plan_improvements)
-    workflow.add_node("modify_resume", modify_resume)
-    workflow.add_node("score_modified", score_modified)
-    
-    # === Define the flow (linear for Sprint 1) ===
-    
-    # Start: Extract requirements from job description
-    workflow.set_entry_point("extract_requirements")
-    
-    # Then: Analyze the resume
-    workflow.add_edge("extract_requirements", "analyze_resume")
-    
-    # Then: Score the original resume
-    workflow.add_edge("analyze_resume", "score_initial")
-    
-    # Then: Create improvement plan
-    workflow.add_edge("score_initial", "plan_improvements")
-    
-    # Then: Apply modifications
-    workflow.add_edge("plan_improvements", "modify_resume")
-    
-    # Then: Score the modified version
-    workflow.add_edge("modify_resume", "score_modified")
-    
-    # Finally: End
-    workflow.add_edge("score_modified", END)
-    
-    # Compile and return
-    return workflow.compile()
+    return hashed.decode('utf-8')
 
 
-# Create the compiled app for import
-agent_app = create_agent_workflow()
-
-
-def run_optimization(
-    job_description: str,
-    resume: str,
-    user_id: str = "anonymous",
-    run_id: str = None
-) -> dict:
+def verify_password(password: str, password_hash: str) -> bool:
     """
+    Verify a password against its hash.
+    
+    Args:
+        password: Plain text password to verify
+        password_hash: Stored hash to check against
+        
+    Returns:
+        True if password matches, False otherwise
+    """
+    return bcrypt.checkpw(
+        password.encode('utf-8'),
+        password_hash.encode('utf-8')
+    )
+```
+
+### Step 4: Create Pydantic Schemas
+
+Create file: `backend/auth/schemas.py`
+
+```python
+"""
+Auth Request/Response Schemas
+
+Pydantic models for API validation.
+"""
+from pydantic import BaseModel, EmailStr, Field
+
+
+class RegisterRequest(BaseModel):
+    """Registration request body."""
+    email: EmailStr
+    password: str = Field(..., min_length=8, max_length=100)
+
+
+class RegisterResponse(BaseModel):
+    """Registration success response."""
+    user_id: str
+    email: str
+    message: str
+
+
+class LoginRequest(BaseModel):
+    """Login request body."""
+    email: EmailStr
+    password: str
+
+
+class LoginResponse(BaseModel):
+    """Login success response."""
+    access_token: str
+    token_type: str = "bearer"
+    user: dict
+
+
+class ErrorResponse(BaseModel):
+    """Error response."""
+    error: str
+    detail: str = None
+```
+
+### Step 5: Create Registration Endpoint
+
+Create file: `backend/api/routes/auth.py`
+
+```python
+"""
+Auth Routes
+
+User registration and login endpoints.
+"""
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
+
+from database.connection import get_db
+from database.models import User
+from auth.schemas import (
+    RegisterRequest,
+    RegisterResponse,
+    ErrorResponse
+)
+from auth.password import hash_password
+
+router = APIRouter(prefix="/api/auth", tags=["auth"])
+
+
+@router.post(
+    "/register",
+    response_model=RegisterResponse,
+    status_code=status.HTTP_201_CREATED,
+    responses={
+        400: {"model": ErrorResponse, "description": "Email already registered"},
+        422: {"model": ErrorResponse, "description": "Validation error"}
+    }
+)
+def register(
+    request: RegisterRequest,
+    db: Session = Depends(get_db)
+):
+    """
+    Register a new user account.
+    
+    Creates a new user with hashed password.
+    Email must be unique.
+    """
+    # Check if email already exists
+    existing_user = db.query(User).filter(User.email == request.email).first()
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered"
+        )
+    
+    # Hash password
+    password_hash = hash_password(request.password)
+    
+    # Create user
+    new_user = User(
+        email=request.email,
+        password_hash=password_hash
+    )
+    
+    try:
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered"
+        )
+    
+    return RegisterResponse(
+        user_id=str(new_user.id),
+        email=new_user.email,
+        message="User registered successfully"
+    )
+```
+
+### Step 6: Create FastAPI App
+
+Create file: `backend/main.py`
+
+```python
+"""
+Resume Agent FastAPI Application
+
+Main entry point for the backend API.
+"""
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from api.routes.auth import router as auth_router
+
+# Create FastAPI app
+app = FastAPI(
+    title="Resume Agent API",
+    description="AI-powered resume optimization API",
+    version="1.0.0"
+)
+
+# CORS middleware (allow frontend to call API)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Vite dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register routes
+app.include_router(auth_router)
+
+
+@app.get("/")
+def root():
+    """Health check endpoint."""
+    return {
+        "status": "ok",
+        "service": "Resume Agent API",
+        "version": "1.0.0"
+    }
+
+
+@app.get("/health")
+def health():
+    """Detailed health check."""
+    return {
+        "status": "healthy",
+        "database": "connected",  # TODO: Add actual DB check
+        "api": "operational"
+    }
+```
+
+### Step 7: Test Registration
+
+Start the server:
+
+```bash
+cd backend
+uvicorn main:app --reload --port 8000
+```
+
+Test with curl:
+
+```bash
+# Register a new user
+curl -X POST http://localhost:8000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}'
+```
+
+Expected response:
+```json
+{
+  "user_id": "uuid-here",
+  "email": "test@example.com",
+  "message": "User registered successfully"
+}
+```
+
+Test duplicate email (should fail):
+```bash
+curl -X POST http://localhost:8000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "different123"}'
+```
+
+Expected response:
+```json
+{
+  "detail": "Email already registered"
+}
+```
+
+### Step 8: Commit and Push
+
+```bash
+git add backend/
+git commit -m "AG-29: Add user registration endpoint
+
+- FastAPI app setup with CORS
+- Registration endpoint with validation
+- Password hashing with bcrypt
+- Pydantic schemas for request/response
+- Duplicate email handling"
+
+git push origin feature/AG-29-registration-endpoint
+```
+
+**Jira:** Move AG-29 to "Done"
+
+---
+
+## 👨‍💻 Dev 2 (Sinan): AG-30 - Login & JWT Endpoint
+
+### Step 1: Create Branch
+
+```bash
+git checkout sinan-Dev && git pull origin main
+git checkout -b feature/AG-30-login-jwt-endpoint
+```
+
+**Jira:** Move AG-30 to "In Progress"
+
+### Step 2: Create JWT Utilities
+
+Create file: `backend/auth/jwt.py`
+
+```python
+"""
+JWT Token Utilities
+
+Create and verify JWT access tokens.
+"""
+import os
+from datetime import datetime, timedelta
+from typing import Dict, Optional
+import jwt
+from dotenv import load_dotenv
+
+load_dotenv()
+
+JWT_SECRET = os.getenv("JWT_SECRET")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+JWT_EXPIRY_HOURS = int(os.getenv("JWT_EXPIRY_HOURS", "24"))
+
+if not JWT_SECRET:
+    raise ValueError("JWT_SECRET environment variable not set")
+
+
+def create_access_token(user_id: str, email: str) -> str:
+    """
+    Create a JWT access token.
+    
+    Args:
+        user_id: User's UUID as string
+        email: User's email
+        
+    Returns:
+        Encoded JWT token string
+    """
+    # Set expiration time
+    expires_at = datetime.utcnow() + timedelta(hours=JWT_EXPIRY_HOURS)
+    
+    # Create payload
+    payload = {
+        "sub": user_id,      # Subject (user ID)
+        "email": email,
+        "exp": expires_at,   # Expiration time
+        "iat": datetime.utcnow()  # Issued at
+    }
+    
+    # Encode token
+    token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+    
+    return token
+
+
+def decode_access_token(token: str) -> Optional[Dict]:
+    """
+    Decode and verify a JWT token.
+    
+    Args:
+        token: JWT token string
+        
+    Returns:
+        Decoded payload if valid, None if invalid/expired
+    """
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return None  # Token expired
+    except jwt.InvalidTokenError:
+        return None  # Invalid token
+```
+
+### Step 3: Add Login Endpoint
+
+Update file: `backend/api/routes/auth.py` (add to existing file):
+
+```python
+from auth.jwt import create_access_token
+from auth.password import verify_password
+
+# ... existing register endpoint ...
+
+@router.post(
+    "/login",
+    response_model=LoginResponse,
+    responses={
+        401: {"model": ErrorResponse, "description": "Invalid credentials"}
+    }
+)
+def login(
+    request: LoginRequest,
+    db: Session = Depends(get_db)
+):
+    """
+    Login and receive JWT access token.
+    
+    Verifies credentials and returns JWT for authenticated requests.
+    """
+    # Find user by email
+    user = db.query(User).filter(User.email == request.email).first()
+    
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+    
+    # Verify password
+    if not verify_password(request.password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password"
+        )
+    
+    # Create JWT token
+    access_token = create_access_token(
+        user_id=str(user.id),
+        email=user.email
+    )
+    
+    return LoginResponse(
+        access_token=access_token,
+        token_type="bearer",
+        user=user.to_dict()
+    )
+```
+
+### Step 4: Test Login
+
+Restart the server:
+
+```bash
+cd backend
+uvicorn main:app --reload --port 8000
+```
+
+Test login:
+
+```bash
+# Login with correct credentials
+curl -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}'
+```
+
+Expected response:
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer",
+  "user": {
+    "id": "uuid-here",
+    "email": "test@example.com",
+    "created_at": "2024-01-15T10:30:00"
+  }
+}
+```
+
+Test wrong password (should fail):
+```bash
+curl -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "wrongpassword"}'
+```
+
+Expected response:
+```json
+{
+  "detail": "Invalid email or password"
+}
+```
+
+### Step 5: Commit and Push
+
+```bash
+git add backend/auth/jwt.py backend/api/routes/auth.py
+git commit -m "AG-30: Add login endpoint with JWT tokens
+
+- JWT creation and verification utilities
+- Login endpoint with credential validation
+- Returns access token + user info
+- Invalid credentials handling"
+
+git push origin feature/AG-30-login-jwt-endpoint
+```
+
+**Jira:** Move AG-30 to "Done"
+
+---
+
+## 👩‍💻 Dev 3 (Marva): AG-31 - Auth Middleware
+
+### Step 1: Create Branch
+
+```bash
+git checkout marva-Dev && git pull origin main
+git checkout -b feature/AG-31-auth-middleware
+```
+
+**Jira:** Move AG-31 to "In Progress"
+
+### Step 2: Create Auth Dependency
+
+Create file: `backend/auth/dependencies.py`
+
+```python
+"""
+Auth Dependencies
+
+FastAPI dependencies for protecting routes.
+"""
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from sqlalchemy.orm import Session
+
+from database.connection import get_db
+from database.models import User
+from .jwt import decode_access_token
+
+# Bearer token scheme
+security = HTTPBearer()
+
+
+def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: Session = Depends(get_db)
+) -> User:
+    """
+    Verify JWT token and return current user.
+    
+    Use this as a dependency to protect routes:
+    ```
+    @app.get("/protected")
+    def protected_route(user: User = Depends(get_current_user)):
+        return {"user_id": user.id}
+    ```
+    
+    Raises:
+        HTTPException: If token is invalid or user not found
+    """
+    token = credentials.credentials
+    
+    # Decode token
+    payload = decode_access_token(token)
+    
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    # Get user from database
+    user_id = payload.get("sub")
+    user = db.query(User).filter(User.id == user_id).first()
+    
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User not found",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    return user
+```
+
+### Step 3: Create Protected Test Endpoint
+
+Create file: `backend/api/routes/user.py`
+
+```python
+"""
+User Routes
+
+Protected endpoints requiring authentication.
+"""
+from fastapi import APIRouter, Depends
+
+from database.models import User
+from auth.dependencies import get_current_user
+
+router = APIRouter(prefix="/api/user", tags=["user"])
+
+
+@router.get("/me")
+def get_current_user_info(current_user: User = Depends(get_current_user)):
+    """
+    Get current user's information.
+    
+    Protected endpoint - requires valid JWT token.
+    """
+    return {
+        "user": current_user.to_dict(),
+        "message": "Authentication successful"
+    }
+
+
+@router.get("/profile")
+def get_profile(current_user: User = Depends(get_current_user)):
+    """
+    Get user profile (placeholder for Sprint 2).
+    
+    Protected endpoint demonstrating auth middleware.
+    """
+    return {
+        "user_id": str(current_user.id),
+        "email": current_user.email,
+        "member_since": current_user.created_at.isoformat(),
+        "resume_count": 0,  # TODO: Count user's optimization runs
+        "status": "active"
+    }
+```
+
+### Step 4: Register User Routes
+
+Update `backend/main.py`:
+
+```python
+from api.routes.auth import router as auth_router
+from api.routes.user import router as user_router  # Add this
+
+# ... existing code ...
+
+# Register routes
+app.include_router(auth_router)
+app.include_router(user_router)  # Add this
+```
+
+### Step 5: Test Auth Middleware
+
+Restart server:
+
+```bash
+cd backend
+uvicorn main:app --reload --port 8000
+```
+
+Test without token (should fail):
+
+```bash
+curl http://localhost:8000/api/user/me
+```
+
+Expected response:
+```json
+{
+  "detail": "Not authenticated"
+}
+```
+
+Test with token (should succeed):
+
+```bash
+# First, login to get token
+TOKEN=$(curl -s -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "test@example.com", "password": "password123"}' \
+  | jq -r '.access_token')
+
+# Use token to access protected endpoint
+curl http://localhost:8000/api/user/me \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Expected response:
+```json
+{
+  "user": {
+    "id": "uuid-here",
+    "email": "test@example.com",
+    "created_at": "2024-01-15T10:30:00"
+  },
+  "message": "Authentication successful"
+}
+```
+
+Test profile endpoint:
+
+```bash
+curl http://localhost:8000/api/user/profile \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Expected response:
+```json
+{
+  "user_id": "uuid-here",
+  "email": "test@example.com",
+  "member_since": "2024-01-15T10:30:00",
+  "resume_count": 0,
+  "status": "active"
+}
+```
+
+### Step 6: Commit and Push
+
+```bash
+git add backend/auth/dependencies.py backend/api/routes/user.py backend/main.py
+git commit -m "AG-31: Add auth middleware and protected routes
+
+- get_current_user dependency for route protection
+- JWT validation and user lookup
+- Protected /api/user/me and /api/user/profile endpoints
+- Comprehensive auth flow testing"
+
+git push origin feature/AG-31-auth-middleware
+```
+
+**Jira:** Move AG-31 to "Done"
+
+---
+
+## ✅ Day 6: Manual Verification (CRITICAL!)
+
+### Terminal Tests
+
+```bash
+# 1. Test Registration
+curl -X POST http://localhost:8000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "verify@test.com", "password": "testpass123"}'
+
+# 2. Test Login
+TOKEN=$(curl -s -X POST http://localhost:8000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "verify@test.com", "password": "testpass123"}' \
+  | jq -r '.access_token')
+
+echo "Token: $TOKEN"
+
+# 3. Test Protected Endpoint
+curl http://localhost:8000/api/user/me \
+  -H "Authorization: Bearer $TOKEN"
+
+# 4. Test Invalid Token
+curl http://localhost:8000/api/user/me \
+  -H "Authorization: Bearer invalid-token-here"
+```
+
+### What Must Work
+
+| Check | Expected |
+|-------|----------|
+| Register new user | ✓ Returns user_id |
+| Duplicate email fails | ✓ Returns 400 error |
+| Login with correct password | ✓ Returns JWT token |
+| Login with wrong password | ✓ Returns 401 error |
+| Access protected route with token | ✓ Returns user data |
+| Access protected route without token | ✓ Returns 401 error |
+| Database connection | ✓ No connection errors |
+
+### If Something Fails
+
+Common issues:
+1. **Database connection error** → Check DATABASE_URL in .env
+2. **JWT secret error** → Check JWT_SECRET in .env
+3. **Import errors** → Check all `__init__.py` files
+4. **CORS errors in browser** → Check CORS middleware config
+5. **bcrypt install error** → Use `pip install bcrypt` or `bcrypt-cffi`
+
+---
+
+## 📁 Folder Structure After Day 6
+
+```
+backend/
+├── main.py                  ✓ FastAPI app
+├── requirements.txt         ✓ Updated dependencies
+├── .env                     ✓ DATABASE_URL, JWT_SECRET added
+│
+├── database/
+│   ├── connection.py        ✓ NEW - SQLAlchemy setup
+│   ├── init_db.py          ✓ NEW - Table creation
+│   ├── test_connection.py  ✓ NEW - Connection test
+│   └── models/
+│       ├── __init__.py     ✓ NEW
+│       └── user.py         ✓ NEW - User model
+│
+├── auth/
+│   ├── password.py         ✓ NEW - bcrypt hashing
+│   ├── jwt.py              ✓ NEW - JWT creation/verification
+│   ├── schemas.py          ✓ NEW - Pydantic models
+│   └── dependencies.py     ✓ NEW - Auth middleware
+│
+└── api/
+    └── routes/
+        ├── auth.py         ✓ NEW - Register/login endpoints
+        └── user.py         ✓ NEW - Protected endpoints
+```
+
+---
+
+## 🔄 Evening Standup
+
+**What did we accomplish today?**
+
+| Dev | Task | Status |
+|-----|------|--------|
+| Sinan | AG-28: User Database Model | ✅ Complete |
+| Shabas | AG-29: Registration Endpoint | ✅ Complete |
+| Sinan | AG-30: Login & JWT | ✅ Complete |
+| Marva | AG-31: Auth Middleware | ✅ Complete |
+
+**Key achievements:**
+- ✅ Database connected to Supabase PostgreSQL
+- ✅ User registration with password hashing
+- ✅ Login with JWT token generation
+- ✅ Auth middleware protecting routes
+- ✅ End-to-end auth flow tested!
+
+**Blockers:** None
+
+**Tomorrow (Day 7):**
+- AG-32: POST /optimize endpoint
+- AG-33: GET /runs/{id} endpoint
+- AG-34: GET /runs endpoint
+- AG-35: Create agent run in database
+
+**Notes:**
+- Auth system is secure and working
+- Ready to connect agent workflow to API
+- Cross-training went well (Shabas on backend, Marva on auth)
+
+---
+
     Convenience function to run the full optimization.
     
     Args:
@@ -648,122 +1646,20 @@ __all__ = [
 ```bash
 cd ../..  # Back to resume-agent root
 
-git add backend/agent/
+## 📊 Sprint 1 Progress
 
-git commit -m "AG-22: Assemble complete LangGraph workflow
+| Day | Focus | Tasks | Status |
+|-----|-------|-------|--------|
+| 1 | Setup | AG-7 to AG-13 | ✅ Complete |
+| 2 | First Node | AG-14 to AG-17 | ✅ Complete |
+| 3 | Three Nodes | AG-18 to AG-20 | ✅ Complete |
+| 4 | Two Nodes | AG-21 to AG-23 | ✅ Complete |
+| 5 | Workflow | AG-24 to AG-26 | ✅ Complete |
+| **6** | **Auth Backend** | **AG-28 to AG-31** | **✅ Complete** |
+| 7 | Agent Endpoints | AG-32 to AG-35 | 📅 Tomorrow |
 
-- Connect all nodes: extract → analyze → score → plan → modify → score
-- Create workflow.py with StateGraph configuration
-- Add run_optimization convenience function
-- Create comprehensive end-to-end tests
-- Verify score improvement works!
-
-Team effort: Shabas, Sinan, Marva"
-
-git push origin feature/AG-22-workflow-assembly
-```
-
-**Jira:** Move AG-22 to "In Review"
-
-### Step 7: Open PR and Merge
-
-PR Title: `AG-22: Complete LangGraph Workflow Assembly`
-
-After review and merge:
-```bash
-git checkout dev-shabas
-git pull origin main
-git branch -d feature/AG-22-workflow-assembly
-```
-
-**Jira:** Move AG-22 to "Done"
+**Sprint 1 Progress:** 30/45 tasks (67%) ✅
 
 ---
 
-## ✅ Day 6: Manual Verification (CRITICAL!)
-
-### Terminal Tests
-
-```bash
-cd backend/agent
-
-# Run full workflow test
-python test_workflow.py
-
-# Verify all 6 nodes executed
-# Verify score improved
-# Verify decision log has entries
-```
-
-### What Must Work
-
-| Check | Expected |
-|-------|----------|
-| Workflow runs without errors | ✓ |
-| Job requirements extracted | ✓ |
-| Resume analyzed | ✓ |
-| Initial score calculated | ✓ |
-| Improvement plan created | ✓ |
-| Resume modified | ✓ |
-| Final score calculated | ✓ |
-| Score improved (delta > 0) | ✓ |
-
-### If Something Fails
-
-Common issues:
-1. **API Key not set** → Check `.env` file
-2. **Import errors** → Check all `__init__.py` files
-3. **JSON parse errors** → Check LLM prompts return valid JSON
-4. **Score not improving** → Review scoring function weights
-
----
-
-## 📁 Folder Structure After Day 6
-
-```
-backend/agent/
-├── __init__.py
-├── state.py              ✓
-├── scoring.py            ✓
-├── workflow.py           ✓ NEW - Main workflow!
-├── test_workflow.py      ✓ NEW - End-to-end tests
-└── nodes/
-    ├── __init__.py       ✓ Updated
-    ├── job_requirements.py
-    ├── resume_analysis.py
-    ├── scoring.py
-    ├── planning.py
-    └── modification.py
-```
-
----
-
-## 📝 Daily Summary
-
-| Task | Assignee | Points | Status |
-|------|----------|--------|--------|
-| AG-28: User Database Model | Dev 2 | 3 | ✓ Done |
-| AG-29: Registration Endpoint | Dev 1 | 3 | ✓ Done |
-| AG-30: Login & JWT Endpoint | Dev 2 | 3 | ✓ Done |
-| AG-31: Auth Middleware | Dev 3 | 3 | ✓ Done |
-
-**Total Story Points Completed:** 12  
-**Dev 1:** 3 points | **Dev 2:** 6 points | **Dev 3:** 3 points
-
----
-
-## 🎉 MILESTONE: Core Agent Complete!
-
-The core agent workflow is now functional. You can:
-- Input a job description + resume
-- Get an optimized resume back
-- See the score improvement
-
-**Next steps:**
-- Day 7-8: Connect to API
-- Day 9: Show in UI
-- Day 10: Sprint 1 Demo!
-
----
-
-**← [Day 5](./day-05.md)** | **[Day 7: Auth API →](./day-07.md)**
+**← [Day 5](./day-05.md)** | **[Day 7: Agent API Endpoints →](./day-07.md)**

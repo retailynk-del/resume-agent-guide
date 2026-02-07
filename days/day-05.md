@@ -155,242 +155,631 @@ Add functionality to track score changes across iterations. This will be useful 
 
 ---
 
-## 👨‍💻 Dev 3 (Marva): AG-20 - Modification Node
+## 👨‍💻 Dev 1 (Shabas): AG-24 - Workflow Assembly
 
 ### Step 1: Create Branch
 
 ```bash
 cd resume-agent
-git checkout dev-marva && git pull origin main
-git checkout -b feature/AG-20-modification-node
+git checkout dev-shabas && git pull origin main
+git checkout -b feature/AG-24-workflow-assembly
 ```
 
-**Jira:** Move AG-20 to "In Progress"
+**Jira:** Move AG-24 to "In Progress"
 
-### Step 2: Create Modification Node
+### Step 2: Create Workflow File
 
-Create file: `backend/agent/nodes/modification.py`
+Create file: `backend/agent/workflow.py`
 
 ```python
 """
-Resume Modification Node
+Resume Optimization Agent Workflow
 
-Takes the improvement plan and applies changes to the resume.
-Uses LLM to rewrite while maintaining the candidate's authentic voice.
+This is the main LangGraph workflow that orchestrates all nodes.
+
+Flow (Sprint 1 - Linear):
+1. extract_requirements - Parse job description
+2. analyze_resume - Analyze current resume
+3. score_initial - Get baseline ATS score
+4. plan_improvements - Create modification plan
+5. modify_resume - Apply improvements
+6. score_modified - Measure improvement
+7. END
+
+Sprint 2 will add conditional edges for iteration.
 """
-import os
-from typing import Dict
+from langgraph.graph import StateGraph, END
+import uuid
 
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
-
-from ..state import ResumeAgentState
-
-
-MODIFICATION_PROMPT = """Improve this resume based on the plan provided.
-
-Original Resume:
----
-{original_resume}
----
-
-Improvement Plan:
-{improvement_plan}
-
-Job Requirements (for context):
-{job_requirements}
-
-Instructions:
-1. Apply the priority changes from the plan
-2. Add the recommended skills naturally
-3. Incorporate keywords without keyword stuffing
-4. Keep the candidate's authentic voice
-5. Maintain truthfulness - don't add fake experience
-6. Use strong action verbs
-7. Quantify achievements where possible
-
-Return the COMPLETE modified resume text. Make it natural and professional."""
+from .state import ResumeAgentState, create_initial_state
+from .nodes.job_requirements import extract_job_requirements
+from .nodes.resume_analysis import analyze_resume
+from .nodes.scoring import score_initial, score_modified
+from .nodes.planning import plan_improvements
+from .nodes.modification import modify_resume
 
 
-def modify_resume(state: ResumeAgentState) -> Dict:
+def create_agent_workflow() -> StateGraph:
     """
-    LangGraph Node: Modify resume according to plan
+    Build and return the compiled LangGraph workflow.
+    
+    Returns:
+        Compiled workflow that can process resume optimization requests
+    """
+    # Initialize workflow with our state type
+    workflow = StateGraph(ResumeAgentState)
+    
+    # === Add all nodes ===
+    workflow.add_node("extract_requirements", extract_job_requirements)
+    workflow.add_node("analyze_resume", analyze_resume)
+    workflow.add_node("score_initial", score_initial)
+    workflow.add_node("plan_improvements", plan_improvements)
+    workflow.add_node("modify_resume", modify_resume)
+    workflow.add_node("score_modified", score_modified)
+    
+    # === Define the flow (linear for Sprint 1) ===
+    
+    # Start: Extract requirements from job description
+    workflow.set_entry_point("extract_requirements")
+    
+    # Then: Analyze the resume
+    workflow.add_edge("extract_requirements", "analyze_resume")
+    
+    # Then: Score the original resume
+    workflow.add_edge("analyze_resume", "score_initial")
+    
+    # Then: Create improvement plan
+    workflow.add_edge("score_initial", "plan_improvements")
+    
+    # Then: Apply modifications
+    workflow.add_edge("plan_improvements", "modify_resume")
+    
+    # Then: Score the modified version
+    workflow.add_edge("modify_resume", "score_modified")
+    
+    # Finally: End
+    workflow.add_edge("score_modified", END)
+    
+    # Compile and return
+    return workflow.compile()
+
+
+# Create the compiled app for import
+agent_app = create_agent_workflow()
+
+
+def run_optimization(
+    job_description: str,
+    resume: str,
+    user_id: str = "anonymous",
+    run_id: str = None
+) -> dict:
+    """
+    Convenience function to run the full optimization.
     
     Args:
-        state: Current state with resume and improvement plan
+        job_description: The job posting text
+        resume: The user's resume text
+        user_id: Optional user identifier
+        run_id: Optional run identifier
         
     Returns:
-        Dict with modified_resume to merge into state
+        Dict with optimization results
     """
-    llm = ChatOpenAI(
-        model="gpt-4o-mini",
-        temperature=0.4,  # Balance between creativity and consistency
-        api_key=os.getenv("OPENAI_API_KEY")
+    if run_id is None:
+        run_id = str(uuid.uuid4())
+    
+    # Create initial state
+    initial_state = create_initial_state(
+        run_id=run_id,
+        user_id=user_id,
+        job_description=job_description,
+        original_resume=resume
     )
     
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", """You are an expert resume writer. You improve resumes while 
-        keeping them authentic and truthful. Never add fake experience or skills 
-        the candidate doesn't have - only enhance presentation of existing content."""),
-        ("user", MODIFICATION_PROMPT)
-    ])
+    # Run workflow
+    result = agent_app.invoke(initial_state)
     
-    chain = prompt | llm
+    # Update final status
+    result["final_status"] = "completed"
     
-    import json
-    result = chain.invoke({
-        "original_resume": state["original_resume"],
-        "improvement_plan": json.dumps(state.get("improvement_plan", {})),
-        "job_requirements": json.dumps(state.get("job_requirements", {}))
-    })
-    
-    modified_resume = result.content
-    
-    # Track what was done
-    plan = state.get("improvement_plan", {})
-    changes_applied = plan.get("priority_changes", [])
-    
-    decision = {
-        "node": "modify_resume",
-        "action": "applied_improvements",
-        "changes_count": len(changes_applied),
-        "original_length": len(state["original_resume"]),
-        "modified_length": len(modified_resume)
-    }
-    
-    return {
-        "modified_resume": modified_resume,
-        "applied_changes": changes_applied,
-        "iteration_count": state.get("iteration_count", 0) + 1,
-        "decision_log": state.get("decision_log", []) + [decision]
-    }
+    return result
 ```
 
-### Step 3: Create Test
+### Step 3: Test the Workflow
 
-Create file: `backend/agent/nodes/test_modification.py`
+Create file: `backend/agent/test_workflow_simple.py`
 
 ```python
-"""Tests for modification node."""
+"""
+Simple Workflow Test
+
+Tests that the workflow assembles and runs.
+"""
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from modification import modify_resume
+from workflow import run_optimization
 
+# Sample data
+JOB_DESC = """
+Backend Engineer - Python
+Required: Python, Django, PostgreSQL
+3+ years experience
+"""
 
-def test_modify_resume():
-    """Test resume modification."""
-    state = {
-        "run_id": "test",
-        "user_id": "test",
-        "job_description": "Python backend developer",
-        "original_resume": """
-        John Doe
-        Software Developer
-        
-        Experience:
-        Developer at Company (2020-Present)
-        - Built web applications
-        - Worked with databases
-        
-        Skills:
-        Python, JavaScript
-        """,
-        "job_requirements": {
-            "must_have_skills": ["Python", "Django", "PostgreSQL"],
-            "keywords": ["backend", "API", "scalable"]
-        },
-        "resume_analysis": {
-            "current_skills": ["Python", "JavaScript"],
-            "gaps": ["Django", "PostgreSQL"]
-        },
-        "improvement_plan": {
-            "priority_changes": [
-                "Add more detail to work experience",
-                "Include backend/API keywords",
-                "Quantify achievements"
-            ],
-            "keyword_insertions": ["backend", "API", "scalable"],
-            "expected_score_gain": 15
-        },
-        "iteration_count": 0,
-        "decision_log": []
-    }
-    
-    result = modify_resume(state)
-    
-    assert "modified_resume" in result
-    modified = result["modified_resume"]
-    
-    print("=== ORIGINAL ===")
-    print(state["original_resume"][:200])
-    print("\n=== MODIFIED ===")
-    print(modified[:400])
-    
-    # Check modifications were made
-    assert len(modified) > len(state["original_resume"]) * 0.8  # Not dramatically shorter
-    assert result["iteration_count"] == 1
-    
-    print("\n✓ Modification test passed!")
+RESUME = """
+John Doe
+Software Engineer
 
+Experience:
+Developer at Company (2020-2024)
+- Built web applications
+- Worked with databases
+
+Skills: Python, JavaScript
+"""
+
+def test_workflow():
+    """Test the complete workflow."""
+    print("Running workflow...")
+    
+    result = run_optimization(
+        job_description=JOB_DESC,
+        resume=RESUME,
+        user_id="test-user",
+        run_id="test-001"
+    )
+    
+    # Verify results
+    assert result["final_status"] == "completed"
+    assert result["ats_score_before"] is not None
+    assert result["ats_score_after"] is not None
+    assert result["modified_resume"] is not None
+    
+    print(f"\n✓ Workflow test passed!")
+    print(f"Score: {result['ats_score_before']:.1f} → {result['ats_score_after']:.1f}")
+    print(f"Improvement: +{result['improvement_delta']:.1f}")
 
 if __name__ == "__main__":
-    test_modify_resume()
-    print("\n🎉 All tests passed!")
+    test_workflow()
 ```
 
 ### Step 4: Test, Commit, PR
 
 ```bash
-cd backend/agent/nodes
-python test_modification.py
+cd backend/agent
+python test_workflow_simple.py
 
-cd ../../..
-git add backend/agent/nodes/
-git commit -m "AG-20: Create resume modification node
+cd ../..
+git add backend/agent/workflow.py backend/agent/test_workflow_simple.py
+git commit -m "AG-24: Assemble complete LangGraph workflow
 
-- Apply improvement plan to resume
-- Maintain authentic voice
-- Track iteration count and changes applied"
+- Connect all 6 nodes
+- Linear flow for Sprint 1
+- Add run_optimization helper"
 
-git push origin feature/AG-20-modification-node
+git push origin feature/AG-24-workflow-assembly
 ```
 
-**Jira:** Move AG-20 to "Done"
+**Jira:** Move AG-24 to "Done"
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-18 - Scoring Nodes
+## 👨‍💻 Dev 2 (Sinan): AG-25 - State Flow Testing
 
 ### Step 1: Create Branch
 
 ```bash
 git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-18-scoring-nodes
+git checkout -b feature/AG-25-state-flow-test
 ```
 
-**Jira:** Move AG-18 to "In Progress"
+**Jira:** Move AG-25 to "In Progress"
 
-### Step 2: Create Scoring Nodes
+### Step 2: Create Comprehensive State Flow Test
 
-Create file: `backend/agent/nodes/scoring.py`
+Create file: `backend/agent/test_state_flow.py`
 
 ```python
 """
-Scoring Nodes
+State Flow Testing
 
-LangGraph nodes that wrap the ATS scoring function.
-- score_initial: Score the original resume
-- score_modified: Score the modified resume
+Tests that data flows correctly through all workflow nodes.
+Validates each node receives and produces expected state keys.
 """
-from typing import Dict
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-from ..scoring import calculate_ats_score
-from ..state import ResumeAgentState
+from workflow import agent_graph
+from state import ResumeAgentState
+
+# Test data
+JOB_DESC = """
+Senior Backend Engineer - Python
+Requirements:
+- 5+ years Python experience
+- Django/FastAPI expertise  
+- PostgreSQL database design
+- RESTful API development
+- AWS cloud experience
+"""
+
+RESUME = """
+Jane Smith
+Backend Developer
+
+Experience:
+Software Engineer at TechCorp (2019-2024)
+- Developed web applications using Python
+- Worked with databases and APIs
+- Collaborated with frontend team
+
+Skills:
+Python, JavaScript, HTML, MySQL
+"""
+
+def test_state_flow():
+    """Test complete state flow through all 6 nodes."""
+    print("Testing State Flow Through Workflow\n" + "="*50)
+    
+    # Initial state
+    initial_state = {
+        "run_id": "flow-test-001",
+        "user_id": "test-user",
+        "job_description": JOB_DESC,
+        "original_resume": RESUME,
+        "iteration_count": 0,
+        "decision_log": []
+    }
+    
+    # Run workflow
+    result = agent_graph.invoke(initial_state)
+    
+    # Verify Node 1: Extract Requirements
+    print("\n✓ Node 1: Extract Requirements")
+    assert "job_requirements" in result
+    reqs = result["job_requirements"]
+    assert "must_have_skills" in reqs
+    assert "nice_to_have_skills" in reqs
+    assert len(reqs["must_have_skills"]) > 0
+    print(f"  - Extracted {len(reqs['must_have_skills'])} must-have skills")
+    print(f"  - Extracted {len(reqs.get('nice_to_have_skills', []))} nice-to-have skills")
+    
+    # Verify Node 2: Analyze Resume
+    print("\n✓ Node 2: Analyze Resume")
+    assert "resume_analysis" in result
+    analysis = result["resume_analysis"]
+    assert "current_skills" in analysis
+    assert "gaps" in analysis
+    print(f"  - Found {len(analysis['current_skills'])} current skills")
+    print(f"  - Identified {len(analysis['gaps'])} skill gaps")
+    
+    # Verify Node 3: Score Initial
+    print("\n✓ Node 3: Score Initial Resume")
+    assert "ats_score_before" in result
+    assert isinstance(result["ats_score_before"], (int, float))
+    assert 0 <= result["ats_score_before"] <= 100
+    print(f"  - Initial ATS score: {result['ats_score_before']:.1f}")
+    
+    # Verify Node 4: Plan Improvements  
+    print("\n✓ Node 4: Plan Improvements")
+    assert "improvement_plan" in result
+    plan = result["improvement_plan"]
+    assert "priority_changes" in plan
+    assert "keyword_insertions" in plan
+    assert len(plan["priority_changes"]) > 0
+    print(f"  - Created {len(plan['priority_changes'])} priority changes")
+    print(f"  - Planned {len(plan.get('keyword_insertions', []))} keyword insertions")
+    
+    # Verify Node 5: Modify Resume
+    print("\n✓ Node 5: Modify Resume")
+    assert "modified_resume" in result
+    assert len(result["modified_resume"]) > 0
+    assert result["modified_resume"] != result["original_resume"]
+    print(f"  - Modified resume length: {len(result['modified_resume'])} chars")
+    print(f"  - Original resume length: {len(result['original_resume'])} chars")
+    
+    # Verify Node 6: Score Modified
+    print("\n✓ Node 6: Score Modified Resume")
+    assert "ats_score_after" in result
+    assert isinstance(result["ats_score_after"], (int, float))
+    assert 0 <= result["ats_score_after"] <= 100
+    print(f"  - Final ATS score: {result['ats_score_after']:.1f}")
+    
+    # Verify Workflow Completion
+    print("\n✓ Workflow Completion")
+    assert "final_status" in result
+    assert result["final_status"] in ["completed", "max_iterations"]
+    assert result["iteration_count"] == 1
+    print(f"  - Status: {result['final_status']}")
+    print(f"  - Iterations: {result['iteration_count']}")
+    
+    # Verify Score Improvement
+    delta = result["ats_score_after"] - result["ats_score_before"]
+    print(f"\n✓ Score Improvement: {delta:+.1f} points")
+    
+    print("\n" + "="*50)
+    print("🎉 All state flow tests passed!")
+    
+    return result
+
+if __name__ == "__main__":
+    test_state_flow()
+```
+
+### Step 3: Test, Commit, PR
+
+```bash
+cd backend/agent
+python test_state_flow.py
+
+cd ../..
+git add backend/agent/test_state_flow.py
+git commit -m "AG-25: Add comprehensive state flow testing
+
+- Verify all 6 nodes process state correctly
+- Check data flows through workflow
+- Validate score improvement"
+
+git push origin feature/AG-25-state-flow-test
+```
+
+**Jira:** Move AG-25 to "Done"
+
+---
+
+## 👩‍💻 Dev 3 (Marva): AG-26 - End-to-End Agent Test
+
+### Step 1: Create Branch
+
+```bash
+git checkout marva-Dev && git pull origin main
+git checkout -b feature/AG-26-e2e-agent-test
+```
+
+**Jira:** Move AG-26 to "In Progress"
+
+### Step 2: Create End-to-End Test
+
+Create file: `backend/agent/test_e2e.py`
+
+```python
+"""
+End-to-End Agent Test
+
+Tests the complete agent from job description + resume to optimized result.
+Includes realistic data and validates business outcomes.
+"""
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+from workflow import run_optimization
+
+# Realistic job description
+JOB_DESCRIPTION = """
+Senior Backend Engineer
+Company: TechStartup Inc.
+
+About the Role:
+We're seeking an experienced Backend Engineer to join our platform team.
+You'll design and build scalable APIs, optimize database performance, and
+mentor junior developers.
+
+Required Skills:
+- 5+ years Python development
+- Django or FastAPI framework experience
+- PostgreSQL database design and optimization
+- RESTful API design patterns
+- Git version control
+- Agile/Scrum methodology
+
+Nice to Have:
+- AWS cloud services (EC2, S3, RDS)
+- Docker containerization
+- Redis caching
+- Microservices architecture
+- CI/CD pipeline experience
+
+Responsibilities:
+- Design and implement backend services
+- Optimize database queries and schemas
+- Write comprehensive tests
+- Code review and mentoring
+- Collaborate with frontend and DevOps teams
+"""
+
+# Realistic resume (before optimization)
+ORIGINAL_RESUME = """
+Sarah Johnson
+Backend Developer
+Email: sarah.johnson@email.com | Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/sarahjohnson
+
+SUMMARY
+Experienced software developer with focus on web applications and databases.
+Quick learner with strong problem-solving skills.
+
+EXPERIENCE
+
+Software Engineer | WebSystems LLC | May 2019 - Present
+- Develop web applications for clients
+- Work with databases and APIs
+- Participate in team meetings
+- Fix bugs and add features
+- Use version control
+
+Junior Developer | Digital Solutions | June 2017 - April 2019
+- Assisted with website development
+- Learned programming best practices
+- Worked on small features
+
+EDUCATION
+B.S. Computer Science | State University | 2017
+
+SKILLS
+Python, JavaScript, HTML, CSS, MySQL, Git
+"""
+
+def test_end_to_end():
+    """Test complete agent optimization workflow."""
+    print("Running End-to-End Agent Test")
+    print("="*60)
+    
+    print("\n📋 Job Description:")
+    print(JOB_DESCRIPTION[:200] + "...")
+    
+    print("\n📄 Original Resume:")
+    print(ORIGINAL_RESUME[:300] + "...")
+    
+    print("\n🤖 Running agent optimization...\n")
+    
+    # Run optimization
+    result = run_optimization(
+        job_description=JOB_DESCRIPTION,
+        resume=ORIGINAL_RESUME,
+        user_id="e2e-test-user",
+        run_id="e2e-test-001"
+    )
+    
+    # Verify completion
+    print("✓ Agent completed successfully")
+    assert result["final_status"] == "completed"
+    
+    # Verify scores
+    print(f"\n📊 ATS Scores:")
+    print(f"  Before: {result['ats_score_before']:.1f}")
+    print(f"  After:  {result['ats_score_after']:.1f}")
+    print(f"  Delta:  {result['improvement_delta']:+.1f}")
+    
+    assert result["ats_score_before"] >= 0
+    assert result["ats_score_after"] >= 0
+    assert result["ats_score_after"] > result["ats_score_before"]
+    
+    # Verify modified resume
+    print(f"\n📝 Modified Resume:")
+    modified = result["modified_resume"]
+    print(modified[:400] + "...")
+    
+    assert len(modified) > 0
+    assert modified != ORIGINAL_RESUME
+    
+    # Check for keyword improvements
+    job_keywords = ["Python", "Django", "FastAPI", "PostgreSQL", "API", "scalable"]
+    found_keywords = [kw for kw in job_keywords if kw.lower() in modified.lower()]
+    
+    print(f"\n🔑 Keywords Added:")
+    print(f"  - Found {len(found_keywords)}/{len(job_keywords)} target keywords")
+    print(f"  - Added keywords: {', '.join(found_keywords[:5])}")
+    
+    assert len(found_keywords) >= len(job_keywords) * 0.5  # At least 50% coverage
+    
+    # Verify requirements extraction
+    print(f"\n✅ Requirements Extraction:")
+    reqs = result["job_requirements"]
+    print(f"  - Must-have skills: {len(reqs['must_have_skills'])}")
+    print(f"  - Nice-to-have skills: {len(reqs.get('nice_to_have_skills', []))}")
+    
+    assert len(reqs["must_have_skills"]) >= 3
+    
+    # Verify analysis
+    print(f"\n🔍 Resume Analysis:")
+    analysis = result["resume_analysis"]
+    print(f"  - Current skills: {len(analysis['current_skills'])}")
+    print(f"  - Skill gaps: {len(analysis['gaps'])}")
+    
+    assert len(analysis["current_skills"]) > 0
+    assert len(analysis["gaps"]) >= 0
+    
+    # Verify improvement plan
+    print(f"\n📋 Improvement Plan:")
+    plan = result["improvement_plan"]
+    print(f"  - Priority changes: {len(plan['priority_changes'])}")
+    print(f"  - Keyword insertions: {len(plan.get('keyword_insertions', []))}")
+    
+    assert len(plan["priority_changes"]) > 0
+    
+    print("\n" + "="*60)
+    print("🎉 End-to-End test passed!")
+    print(f"\nFinal Score: {result['ats_score_after']:.1f} ({result['improvement_delta']:+.1f})")
+    
+    return result
+
+if __name__ == "__main__":
+    test_end_to_end()
+```
+
+### Step 3: Test, Commit, PR
+
+```bash
+cd backend/agent
+python test_e2e.py
+
+cd ../..
+git add backend/agent/test_e2e.py
+git commit -m "AG-26: Add comprehensive E2E agent test
+
+- Test realistic job description and resume
+- Verify all workflow stages
+- Validate business outcomes"
+
+git push origin feature/AG-26-e2e-agent-test
+```
+
+**Jira:** Move AG-26 to "Done"
+
+---
+
+## 🔄 Evening Standup
+
+**What did we accomplish today?**
+
+| Dev | Task | Status |
+|-----|------|--------|
+| Shabas | AG-24: Workflow Assembly | ✅ Complete |
+| Sinan | AG-25: State Flow Testing | ✅ Complete |
+| Marva | AG-26: E2E Agent Test | ✅ Complete |
+
+**Key achievements:**
+- ✅ Connected all 6 LangGraph nodes
+- ✅ Comprehensive state flow validation
+- ✅ End-to-end agent testing with realistic data
+- ✅ Sprint 1 core workflow is complete and tested!
+
+**Blockers:** None
+
+**Tomorrow (Day 6):**
+- AG-28: User database model and connection
+- AG-29: User registration endpoint
+- AG-30: Login with JWT
+- AG-31: Auth middleware
+
+**Notes:**
+- Workflow successfully assembles and runs
+- State flows correctly through all nodes
+- E2E test shows meaningful score improvements
+- Ready to add authentication layer tomorrow
+
+---
+
+## 📊 Sprint 1 Progress
+
+| Day | Focus | Tasks | Status |
+|-----|-------|-------|--------|
+| 1 | Setup | AG-7 to AG-13 | ✅ Complete |
+| 2 | First Node | AG-14 to AG-17 | ✅ Complete |
+| 3 | Three Nodes | AG-18 to AG-20 | ✅ Complete |
+| 4 | Two Nodes | AG-21 to AG-23 | ✅ Complete |
+| **5** | **Workflow** | **AG-24 to AG-26** | **✅ Complete** |
+| 6 | Auth Backend | AG-28 to AG-31 | 📅 Tomorrow |
+| 7 | Agent Endpoints | AG-32 to AG-35 | 🔜 Upcoming |
+
+**Sprint 1 Progress:** 26/45 tasks (58%) ✅
 
 
-def score_initial(state: ResumeAgentState) -> Dict:
     """
     LangGraph Node: Score the original resume
     

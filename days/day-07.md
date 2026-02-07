@@ -127,28 +127,1466 @@ Create React Router protected route wrapper that redirects to login if user is n
 
 ---
 
-## 👨‍💻 Dev 2 (Sinan): AG-25 - Auth Endpoints
+## � 9:30 AM - Start Coding
+
+---
+
+## 👩‍💻 Dev 3 (Marva): AG-32 - Login Page Component
 
 ### Step 1: Create Branch
 
 ```bash
-cd resume-agent
-git checkout sinan-Dev && git pull origin main
-git checkout -b feature/AG-25-auth-endpoints
+git checkout marva-Dev && git pull origin main
+git checkout -b feature/AG-32-login-page
 ```
 
-**Jira:** Move AG-25 to "In Progress"
+**Jira:** Move AG-32 to "In Progress"
 
-### Step 2: Create Auth Router
+### Step 2: Install Dependencies
 
-Create file: `backend/api/auth.py`
+```bash
+cd frontend
+npm install react-router-dom
+```
 
-```python
-"""
-Authentication API Endpoints
+### Step 3: Create Login Page
 
-Handles user registration, login, and JWT token management.
-"""
+Create file: `frontend/src/pages/Login.jsx`
+
+```jsx
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Auth.css';
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    // Client-side validation
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // API call will be added in AG-34
+      console.log('Login:', { email, password });
+      
+      // Temporary success simulation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Will navigate to dashboard once auth is connected
+      alert('Login successful! (API integration coming in AG-34)');
+      
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to optimize your resume</p>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={loading}
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              disabled={loading}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="auth-button" 
+            disabled={loading}
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Don't have an account? <Link to="/register">Sign up</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+```
+
+### Step 4: Create Auth Styles
+
+Create file: `frontend/src/pages/Auth.css`
+
+```css
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.auth-header p {
+  font-size: 16px;
+  color: #718096;
+  margin: 0;
+}
+
+.error-message {
+  background: #fed7d7;
+  border: 1px solid #fc8181;
+  color: #c53030;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.success-message {
+  background: #c6f6d5;
+  border: 1px solid #68d391;
+  color: #2f855a;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-group input:disabled {
+  background: #f7fafc;
+  cursor: not-allowed;
+}
+
+.form-hint {
+  font-size: 13px;
+  color: #718096;
+  margin-top: 4px;
+}
+
+.auth-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 8px;
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #718096;
+}
+
+.auth-footer a {
+  color: #667eea;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+```
+
+### Step 5: Update App Routes
+
+Update `frontend/src/App.jsx`:
+
+```jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import './App.css';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+### Step 6: Test Login Page
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173/login
+
+**Test scenarios:**
+- Try submitting empty form → Should show validation error
+- Try invalid email format → Should show validation error
+- Fill in both fields → Should show success alert
+
+### Step 7: Commit and Push
+
+```bash
+git add frontend/src/pages/Login.jsx frontend/src/pages/Auth.css frontend/src/App.jsx
+git commit -m "AG-32: Create login page component
+
+- Email and password input fields
+- Client-side validation
+- Error message display
+- Loading state
+- Modern gradient UI design"
+
+git push origin feature/AG-32-login-page
+```
+
+**Jira:** Move AG-32 to "Done"
+
+---
+
+## 👩‍💻 Dev 3 (Marva): AG-33 - Register Page Component
+
+### Step 1: Create Branch
+
+```bash
+git checkout marva-Dev && git pull origin main
+git checkout -b feature/AG-33-register-page
+```
+
+**Jira:** Move AG-33 to "In Progress"
+
+### Step 2: Create Register Page
+
+Create file: `frontend/src/pages/Register.jsx`
+
+```jsx
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Auth.css';
+
+function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const validatePassword = (pwd) => {
+    if (pwd.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      return 'Password must contain at least one uppercase letter';
+    }
+    if (!/[a-z]/.test(pwd)) {
+      return 'Password must contain at least one lowercase letter';
+    }
+    if (!/[0-9]/.test(pwd)) {
+      return 'Password must contain at least one number';
+    }
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    // Client-side validation
+    if (!email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // API call will be added in AG-34
+      console.log('Register:', { email, password });
+      
+      // Temporary success simulation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSuccess('Account created successfully! Redirecting to login...');
+      
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+      
+    } catch (err) {
+      setError(err.message || 'Registration failed');
+      setLoading(false);
+    }
+  };
+
+  const getPasswordStrength = () => {
+    if (!password) return '';
+    if (password.length < 6) return 'weak';
+    if (password.length < 10 && /[A-Za-z0-9]/.test(password)) return 'medium';
+    if (password.length >= 10 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)) {
+      return 'strong';
+    }
+    return 'medium';
+  };
+
+  const passwordStrength = getPasswordStrength();
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Create Account</h1>
+          <p>Start optimizing your resume today</p>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="success-message">
+            {success}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={loading}
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create a strong password"
+              disabled={loading}
+              autoComplete="new-password"
+            />
+            {password && (
+              <div className={`password-strength ${passwordStrength}`}>
+                Strength: <strong>{passwordStrength}</strong>
+              </div>
+            )}
+            <small className="form-hint">
+             must be at least 8 characters with uppercase, lowercase, and number
+            </small>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              disabled={loading}
+              autoComplete="new-password"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="auth-button" 
+            disabled={loading}
+          >
+            {loading ? 'Creating account...' : 'Create Account'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Register;
+```
+
+### Step 3: Add Password Strength Styles
+
+Update `frontend/src/pages/Auth.css` (add at the end):
+
+```css
+.password-strength {
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.password-strength.weak {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.password-strength.medium {
+  background: #feebc8;
+  color: #c05621;
+}
+
+.password-strength.strong {
+  background: #c6f6d5;
+  color: #2f855a;
+}
+```
+
+### Step 4: Update Routes
+
+Update `frontend/src/App.jsx` to include the register route (should already be there from AG-32).
+
+### Step 5: Test Register Page
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173/register
+
+**Test scenarios:**
+- Try submitting empty form → Validation error
+- Enter weak password → See "weak" strength indicator
+- Enter passwords that don't match → Error message
+- Enter invalid email → Error message
+- Fill all fields correctly → Success message and redirect
+
+### Step 6: Commit and Push
+
+```bash
+git add frontend/src/pages/Register.jsx frontend/src/pages/Auth.css
+git commit -m "AG-33: Create register page component
+
+- Email, password, and confirm password fields
+- Password strength validation and indicator
+- Passwords must match validation
+- Success message and auto-redirect
+- Consistent styling with login page"
+
+git push origin feature/AG-33-register-page
+```
+
+**Jira:** Move AG-33 to "Done"
+
+---
+
+## 👨‍💻 Dev 1 (Shabas): AG-34 - Auth API Service Module
+
+### Step 1: Create Branch
+
+```bash
+git checkout shabas-Dev && git pull origin main
+git checkout -b feature/AG-34-auth-api-service
+```
+
+**Jira:** Move AG-34 to "In Progress"
+
+### Step 2: Create API Service
+
+Create file: `frontend/src/services/api.js`
+
+```javascript
+/**
+ * API Service Module
+ * 
+ * Handles all HTTP requests to the backend API.
+ * Manages JWT token storage and authenticated requests.
+ */
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+// ========== Token Management ==========
+
+/**
+ * Store JWT token in localStorage
+ */
+export function setToken(token) {
+  localStorage.setItem('token', token);
+}
+
+/**
+ * Get JWT token from localStorage
+ */
+export function getToken() {
+  return localStorage.getItem('token');
+}
+
+/**
+ * Remove JWT token from localStorage
+ */
+export function removeToken() {
+  localStorage.removeItem('token');
+}
+
+/**
+ * Check if user is authenticated
+ */
+export function isAuthenticated() {
+  return !!getToken();
+}
+
+// ========== API Helper ==========
+
+/**
+ * Make authenticated API request
+ */
+async function apiRequest(endpoint, options = {}) {
+  const url = `${API_URL}${endpoint}`;
+  
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
+  // Add Authorization header if token exists
+  const token = getToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const config = {
+    ...options,
+    headers,
+  };
+
+  const response = await fetch(url, config);
+  const data = await response.json();
+
+  if (!response.ok) {
+    // Handle error responses
+    throw new Error(data.detail || data.error || 'Request failed');
+  }
+
+  return data;
+}
+
+// ========== Auth API Methods ==========
+
+/**
+ * Register a new user
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @returns {Promise<{user_id: string, email: string, message: string}>}
+ */
+export async function register(email, password) {
+  const data = await apiRequest('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+  });
+
+  return data;
+}
+
+/**
+ * Login user and store token
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @returns {Promise<{access_token: string, user: object}>}
+ */
+export async function login(email, password) {
+  const data = await apiRequest('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+  });
+
+  // Store token
+  if (data.access_token) {
+    setToken(data.access_token);
+  }
+
+  return data;
+}
+
+/**
+ * Logout user (clear token)
+ */
+export function logout() {
+  removeToken();
+}
+
+/**
+ * Get current user information
+ * @returns {Promise<{id: string, email: string}>}
+ */
+export async function getCurrentUser() {
+  return apiRequest('/api/user/me');
+}
+
+/**
+ * Get user profile
+ * @returns {Promise<object>}
+ */
+export async function getUserProfile() {
+  return apiRequest('/api/user/profile');
+}
+
+// ========== Agent API Methods (Placeholders for Day 8) ==========
+
+/**
+ * Start resume optimization
+ * @param {string} jobDescription - Job description text
+ * @param {string} resume - Resume text
+ * @returns {Promise<{run_id: string}>}
+ */
+export async function startOptimization(jobDescription, resume) {
+  return apiRequest('/api/optimize', {
+    method: 'POST',
+    body: JSON.stringify({ job_description: jobDescription, resume }),
+  });
+}
+
+/**
+ * Get optimization result
+ * @param {string} runId - Optimization run ID
+ * @returns {Promise<object>}
+ */
+export async function getOptimizationResult(runId) {
+  return apiRequest(`/api/runs/${runId}`);
+}
+
+/**
+ * Get user's optimization history
+ * @returns {Promise<Array>}
+ */
+export async function getOptimizationHistory() {
+  return apiRequest('/api/runs');
+}
+```
+
+### Step 3: Create Environment Variables
+
+Create file: `frontend/.env`
+
+```bash
+VITE_API_URL=http://localhost:8000
+```
+
+Add to `frontend/.env.example`:
+
+```bash
+VITE_API_URL=http://localhost:8000
+```
+
+### Step 4: Update Login Page to Use API
+
+Update `frontend/src/pages/Login.jsx`:
+
+```jsx
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../services/api';
+import './Auth.css';
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    // Client-side validation
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Call API
+      const data = await login(email, password);
+      
+      console.log('Login successful:', data);
+      
+      // Redirect to dashboard
+      navigate('/dashboard');
+      
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to optimize your resume</p>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={loading}
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              disabled={loading}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="auth-button" 
+            disabled={loading}
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Don't have an account? <Link to="/register">Sign up</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+```
+
+### Step 5: Update Register Page to Use API
+
+Update `frontend/src/pages/Register.jsx`:
+
+```jsx
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../services/api';
+import './Auth.css';
+
+function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const validatePassword = (pwd) => {
+    if (pwd.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      return 'Password must contain at least one uppercase letter';
+    }
+    if (!/[a-z]/.test(pwd)) {
+      return 'Password must contain at least one lowercase letter';
+    }
+    if (!/[0-9]/.test(pwd)) {
+      return 'Password must contain at least one number';
+    }
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    // Client-side validation
+    if (!email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Call API
+      await register(email, password);
+      
+      setSuccess('Account created successfully! Redirecting to login...');
+      
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+      
+    } catch (err) {
+      setError(err.message || 'Registration failed');
+      setLoading(false);
+    }
+  };
+
+  const getPasswordStrength = () => {
+    if (!password) return '';
+    if (password.length < 6) return 'weak';
+    if (password.length < 10 && /[A-Za-z0-9]/.test(password)) return 'medium';
+    if (password.length >= 10 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)) {
+      return 'strong';
+    }
+    return 'medium';
+  };
+
+  const passwordStrength = getPasswordStrength();
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Create Account</h1>
+          <p>Start optimizing your resume today</p>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="success-message">
+            {success}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={loading}
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create a strong password"
+              disabled={loading}
+              autoComplete="new-password"
+            />
+            {password && (
+              <div className={`password-strength ${passwordStrength}`}>
+                Strength: <strong>{passwordStrength}</strong>
+              </div>
+            )}
+            <small className="form-hint">
+              Must be at least 8 characters with uppercase, lowercase, and number
+            </small>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              disabled={loading}
+              autoComplete="new-password"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="auth-button" 
+            disabled={loading}
+          >
+            {loading ? 'Creating account...' : 'Create Account'}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default Register;
+```
+
+### Step 6: Test Full Auth Flow
+
+```bash
+# Terminal 1: Start backend
+cd backend
+uvicorn main:app --reload
+
+# Terminal 2: Start frontend
+cd frontend
+npm run dev
+```
+
+**Test in browser:**
+1. Go to http://localhost:5173/register
+2. Register a new account
+3. Should see success message and redirect to login
+4. Login with same credentials
+5. Should redirect to dashboard
+6. Open DevTools → Application → LocalStorage → See token stored
+
+### Step 7: Commit and Push
+
+```bash
+git add frontend/src/services/api.js frontend/src/pages/ frontend/.env frontend/.env.example
+git commit -m "AG-34: Create auth API service module
+
+- API service with register/login/logout functions
+- JWT token storage in localStorage
+- Error handling for failed requests
+- Update Login page to call API
+- Update Register page to call API
+- Environment variables for API URL"
+
+git push origin feature/AG-34-auth-api-service
+```
+
+**Jira:** Move AG-34 to "Done"
+
+---
+
+## 👨‍💻 Dev 2 (Sinan): AG-35 - Protected Routes Setup
+
+### Step 1: Create Branch
+
+```bash
+git checkout sinan-Dev && git pull origin main
+git checkout -b feature/AG-35-protected-routes
+```
+
+**Jira:** Move AG-35 to "In Progress"
+
+### Step 2: Create ProtectedRoute Component
+
+Create file: `frontend/src/components/ProtectedRoute.jsx`
+
+```jsx
+import { Navigate } from 'react-router-dom';
+import { isAuthenticated } from '../services/api';
+
+/**
+ * Protected Route Wrapper
+ * 
+ * Redirects to login if user is not authenticated.
+ * Use this to wrap any routes that require authentication.
+ * 
+ * Usage:
+ *   <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+ */
+function ProtectedRoute({ children }) {
+  if (!isAuthenticated()) {
+    // Redirect to login if not authenticated
+    return <Navigate to="/login" replace />;
+  }
+
+  // Render the protected component if authenticated
+  return children;
+}
+
+export default ProtectedRoute;
+```
+
+### Step 3: Create Placeholder Dashboard
+
+Create file: `frontend/src/pages/Dashboard.jsx`
+
+```jsx
+import { useNavigate } from 'react-router-dom';
+import { logout, getCurrentUser } from '../services/api';
+import { useState, useEffect } from 'react';
+import './Dashboard.css';
+
+function Dashboard() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch current user info
+    getCurrentUser()
+      .then(data => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch user:', err);
+        // Token might be invalid, logout
+        logout();
+        navigate('/login');
+      });
+  }, [navigate]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  if (loading) {
+    return (
+      <div className="dashboard-container">
+        <div className="loading">Loading...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>Resume Agent Dashboard</h1>
+        <div className="header-actions">
+          <span className="user-email">{user?.email}</span>
+          <button onClick={handleLogout} className="logout-button">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <main className="dashboard-main">
+        <div className="welcome-card">
+          <h2>Welcome to Resume Agent! 👋</h2>
+          <p>You're successfully authenticated.</p>
+          <p className="note">
+            <strong>Coming in Day 8:</strong> Resume optimization form will be added here.
+          </p>
+        </div>
+
+        <div className="feature-preview">
+          <h3>What's Next:</h3>
+          <ul>
+            <li>✅ Authentication complete</li>
+            <li>⏳ Upload resume and job description (Day 8)</li>
+            <li>⏳ View optimization results (Day 9)</li>
+            <li>⏳ Access optimization history (Sprint 2)</li>
+          </ul>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default Dashboard;
+```
+
+### Step 4: Create Dashboard Styles
+
+Create file: `frontend/src/pages/Dashboard.css`
+
+```css
+.dashboard-container {
+  min-height: 100vh;
+  background: #f7fafc;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #1a202c;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-email {
+  color: #718096;
+  font-size: 14px;
+}
+
+.logout-button {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-button:hover {
+  background: #c53030;
+}
+
+.dashboard-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.welcome-card {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.welcome-card h2 {
+  font-size: 32px;
+  color: #1a202c;
+  margin: 0 0 16px 0;
+}
+
+.welcome-card p {
+  font-size: 18px;
+  color: #718096;
+  margin: 8px 0;
+}
+
+.welcome-card .note {
+  background: #edf2f7;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 24px;
+  font-size: 16px;
+}
+
+.feature-preview {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-preview h3 {
+  font-size: 20px;
+  color: #1a202c;
+  margin: 0 0 16px 0;
+}
+
+.feature-preview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-preview li {
+  padding: 12px 0;
+  font-size: 16px;
+  color: #4a5568;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.feature-preview li:last-child {
+  border-bottom: none;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #718096;
+}
+```
+
+### Step 5: Update App Routes with Protection
+
+Update `frontend/src/App.jsx`:
+
+```jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import './App.css';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+### Step 6: Test Protected Routes
+
+```bash
+# Make sure backend and frontend are running
+cd frontend && npm run dev
+```
+
+**Test scenarios:**
+1. **Without login:**
+   - Navigate to http://localhost:5173/dashboard
+   - Should redirect to /login
+
+2. **After login:**
+   - Login via /login page
+   - Should redirect to /dashboard
+   - Should see welcome message with your email
+   - Dashboard should load successfully
+
+3. **After logout:**
+   - Click logout button
+   - Should redirect to /login
+   - Try accessing /dashboard again
+   - Should redirect back to /login
+
+4. **Manual token removal:**
+   - Login and reach dashboard
+   - Open DevTools → Application → LocalStorage
+   - Delete the token key
+   - Refresh the page
+   - Should redirect to /login
+
+### Step 7: Commit and Push
+
+```bash
+git add frontend/src/components/ProtectedRoute.jsx frontend/src/pages/Dashboard.jsx frontend/src/pages/Dashboard.css frontend/src/App.jsx
+git commit -m "AG-35: Add protected routes setup
+
+- ProtectedRoute wrapper component
+- Checks for valid JWT token
+- Redirects to login if not authenticated
+- Dashboard page with user info and logout
+- Applied protection to dashboard route"
+
+git push origin feature/AG-35-protected-routes
+```
+
+**Jira:** Move AG-35 to "Done"
+
+---
+
+
 import os
 from datetime import datetime, timedelta
 from typing import Optional
@@ -867,79 +2305,149 @@ git push origin feature/AG-29-api-connection
 
 ## ✅ Day 7: Manual Verification
 
-### Terminal Tests (API)
+### Backend Check (from Day 6)
 
 ```bash
-# Register new user
-curl -X POST http://localhost:8000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email": "demo@example.com", "password": "Demo1234"}'
-
-# Login
-curl -X POST http://localhost:8000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "demo@example.com", "password": "Demo1234"}'
+# Verify backend is running
+curl http://localhost:8000/health
 ```
 
-### Browser Tests (Full User Flow)
+### Frontend Tests
 
-1. **Open http://localhost:5173/register**
-2. Fill in email, password, confirm password
-3. Click "Create Account"
-4. Should see success message
-5. Should redirect to login
+**Start both servers:**
+```bash
+# Terminal 1: Backend
+cd backend && uvicorn main:app --reload
 
-6. **On Login page:**
-7. Enter same credentials
-8. Click "Sign In"
-9. Should redirect to Dashboard
+# Terminal 2: Frontend  
+cd frontend && npm run dev
+```
 
-10. **Open DevTools → Application → Local Storage**
-11. Should see `token` key with JWT value
+**Test Complete Auth Flow:**
+
+1. **Register:**
+   - Go to http://localhost:5173/register
+   - Fill in: email@test.com, Password123, Password123
+   - Click "Create Account"
+   - ✓ Should see success message
+   - ✓ Should redirect to /login after 2 seconds
+
+2. **Login:**
+   - Enter same credentials
+   - Click "Sign In"
+   - ✓ Should redirect to /dashboard
+   - ✓ Should see welcome message with email
+
+3. **Protected Route:**
+   - Open DevTools → Application → LocalStorage
+   - ✓ Should see `token` key with JWT value
+   - Try to access /dashboard directly
+   - ✓ Should work without redirecting
+
+4. **Logout:**
+   - Click logout button on dashboard
+   - ✓ Should redirect to /login
+   - ✓ Token should be removed from localStorage
+
+5. **Protection Works:**
+   - After logout, try to access http://localhost:5173/dashboard
+   - ✓ Should redirect to /login immediately
 
 ### What Must Work
 
 | Test | Expected |
 |------|----------|
-| Register new user | Returns user_id |
-| Register duplicate | Returns error |
-| Login valid credentials | Returns token |
-| Login invalid credentials | Returns error |
-| Frontend register flow | Success message, redirect |
-| Frontend login flow | Redirect to dashboard |
-| Token stored | In localStorage |
+| Register new user | Success message, redirect to login |
+| Register duplicate email | Error message from API |
+| Login with valid credentials | Redirect to dashboard, token stored |
+| Login with invalid credentials | Error message |
+| Access dashboard with token | Dashboard loads with user info |
+| Access dashboard without token | Redirect to login |
+| Logout | Token removed, redirect to login |
+| Password strength indicator | Shows weak/medium/strong |
+
+### If Something Fails
+
+Common issues:
+1. **CORS errors** → Check backend CORS middleware allows http://localhost:5173
+2. **Can't connect to API** → Verify backend running on :8000, frontend .env has correct URL
+3. **Token not stored** → Check browser console for errors, verify api.js setToken() called
+4. **Can't access dashboard** → Check ProtectedRoute is wrapping Dashboard in App.jsx
+5. **401 Unauthorized** → Token might be expired, try logging in again
 
 ---
 
 ## 📁 Folder Structure After Day 7
 
 ```
-backend/api/
-├── __init__.py
-└── auth.py           ✓ NEW
-
 frontend/src/
+├── components/
+│   └── ProtectedRoute.jsx  ✓ NEW - Auth guard
+│
+├── pages/
+│   ├── Login.jsx           ✓ NEW - Login page
+│   ├── Register.jsx        ✓ NEW - Register page
+│   ├── Dashboard.jsx       ✓ NEW - Protected dashboard
+│   ├── Auth.css            ✓ NEW - Auth styles
+│   └── Dashboard.css       ✓ NEW - Dashboard styles
+│
 ├── services/
-│   └── api.js        ✓ NEW
-└── pages/
-    ├── Login.jsx     ✓ Updated
-    └── Register.jsx  ✓ Updated
+│   └── api.js              ✓ NEW - API client
+│
+├── App.jsx                 ✓ Updated - Routes
+└── .env                    ✓ NEW - API URL config
 ```
 
 ---
 
-## 📝 Daily Summary
+## 🔄 Evening Standup
 
-| Task | Assignee | Points | Status |
-|------|----------|--------|--------|
-| AG-32: Login Page Component | Dev 3 | 3 | ✓ Done |
-| AG-33: Register Page Component | Dev 3 | 3 | ✓ Done |
-| AG-34: Auth API Service Module | Dev 1 | 3 | ✓ Done |
-| AG-35: Protected Routes Setup | Dev 2 | 2 | ✓ Done |
+**What did we accomplish today?**
 
-**Total Story Points Completed:** 11  
-**Dev 1:** 3 points | **Dev 2:** 2 points | **Dev 3:** 6 points
+| Dev | Task | Status |
+|-----|------|--------|
+| Marva | AG-32: Login Page Component | ✅ Complete |
+| Marva | AG-33: Register Page Component | ✅ Complete |
+| Shabas | AG-34: Auth API Service Module | ✅ Complete |
+| Sinan | AG-35: Protected Routes Setup | ✅ Complete |
+
+**Key achievements:**
+- ✅ Complete auth UI (login + register pages)
+- ✅ API service module with token management
+- ✅ Protected routes working
+- ✅ Full auth flow: register → login → dashboard → logout
+- ✅ Cross-training: Shabas learned frontend, Sinan learned React Router!
+
+**Blockers:** None
+
+**Tomorrow (Day 8):**
+- AG-36: POST /optimize endpoint (connect agent to API)
+- AG-37: GET /runs/{id} endpoint
+- AG-38: GET /runs history endpoint
+- Start building the optimization form in frontend
+
+**Notes:**
+- Auth flow is complete and secure
+- Ready to connect the agent to the API
+- Team is comfortable with full-stack development
 
 ---
 
-**← [Day 6](./day-06.md)** | **[Day 8: Agent API + Dashboard →](./day-08.md)**
+## 📊 Sprint 1 Progress
+
+| Day | Focus | Tasks | Status |
+|-----|-------|-------|--------|
+| 1 | Setup | AG-7 to AG-14 | ✅ Complete |
+| 2 | First Node | AG-15 to AG-17 | ✅ Complete |
+| 3 | Three Nodes | AG-18 to AG-20 | ✅ Complete |
+| 4 | Two Nodes | AG-21 to AG-23 | ✅ Complete |
+| 5 | Workflow | AG-24 to AG-27 | ✅ Complete |
+| 6 | Auth Backend | AG-28 to AG-31 | ✅ Complete |
+| **7** | **Auth Frontend** | **AG-32 to AG-35** | **✅ Complete** |
+| 8 | Agent API | AG-36 to AG-38 | 📅 Tomorrow |
+
+**Sprint 1 Progress:** 35/45 tasks (78%) ✅
+
+---
+
+**← [Day 6](./day-06.md)** | **[Day 8: Agent API Endpoints →](./day-08.md)**

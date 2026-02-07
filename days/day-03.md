@@ -130,9 +130,9 @@ Connect the 3 LangGraph nodes built (Job Requirements from yesterday, Resume Ana
 ## 🕘 9:00 AM - Daily Standup
 
 **Expected Updates:**
-- **Dev 1:** Yesterday: Agent state schema. Today: AG-15 Job Requirements node (pair with Dev 2).
-- **Dev 2:** Yesterday: FastAPI structure. Today: AG-15 (pair) then AG-17 Scoring.
-- **Dev 3:** Yesterday: React setup. Today: AG-28 Login/Register UI.
+- **Dev 1:** Yesterday: Agent State (AG-10). Today: AG-15 Job Requirements node (pair with Dev 2).
+- **Dev 2:** Yesterday: FastAPI structure (AG-14). Today: AG-15 (pair) then AG-18 Resume Analysis.
+- **Dev 3:** Yesterday: React setup (AG-17). Today: AG-19 ATS Scoring node.
 
 ---
 
