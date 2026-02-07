@@ -52,7 +52,7 @@ Connect ALL 6 LangGraph nodes into the complete agent workflow graph. This creat
 - [ ] Test file shows all nodes executing
 - [ ] PR merged to main
 
-**Dependencies:** AG-21, AG-24, AG-25, AG-27, AG-28, AG-29 (all nodes exist)
+**Dependencies:** AG-15, AG-18, AG-19, AG-21, AG-22, AG-23 (all nodes exist)
 
 ---
 
@@ -86,7 +86,7 @@ Create comprehensive tests that validate state flows correctly through all 6 nod
 - [ ] All tests pass
 - [ ] PR merged to main
 
-**Dependencies:** AG-30 (workflow must be assembled)
+**Dependencies:** AG-24 (workflow must be assembled)
 
 ---
 
@@ -120,7 +120,7 @@ Create a real-world end-to-end test with actual job description and resume. Run 
 - [ ] Test passes successfully
 - [ ] PR merged to main
 
-**Dependencies:** AG-30 (workflow must exist)
+**Dependencies:** AG-24 (workflow must exist)
 
 ---
 
@@ -151,7 +151,7 @@ Add functionality to track score changes across iterations. This will be useful 
 - [ ] Test validates history list grows
 - [ ] PR merged to main
 
-**Dependencies:** AG-30, AG-31
+**Dependencies:** AG-24, AG-25
 
 ---
 

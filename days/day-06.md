@@ -21,28 +21,31 @@ By end of today:
 
 ---
 
-### Task AG-28: User Database Model
+### Task AG-28: User Database Model & Connection
 
 | Field | Value |
 |-------|-------|
 | **Task ID** | AG-28 |
-| **Title** | User Database Model |
+| **Title** | User Database Model & Connection |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
 | **Assignee** | Dev 2 (Sinan) |
-| **Story Points** | 3 |
+| **Story Points** | 5 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Create Supabase database schema for users table with email, hashed password, and timestamps. This is the foundation for auth.
+Create Supabase database connection and User model using SQLAlchemy. This connects the backend to the Supabase database created on Day 1 and creates the foundation for auth.
 
 **Acceptance Criteria:**
-- [ ] Supabase migration created for users table
-- [ ] Fields: id, email, hashed_password, created_at
+- [ ] SQLAlchemy connection setup in `backend/database/connection.py`
+- [ ] User model created in `backend/database/models/user.py`
+- [ ] Fields: id, email, password_hash, created_at
 - [ ] Email is unique and indexed
-- [ ] Migration runs successfully
+- [ ] Connection tested successfully
 - [ ] PR merged
+
+**Note:** This uses the Supabase database created on Day 1, now connecting it to Python backend.
 
 ---
 

@@ -49,9 +49,9 @@ Build a LangGraph node that analyzes resumecontent using GPT-4o-mini. This node 
 - [ ] Includes test with sample resume
 - [ ] PR merged to main
 
-**Dependencies:** AG-21 (Job requirements node exists as reference)
+**Dependencies:** AG-15 (Job requirements node exists as reference)
 
-**Related Tasks:** Similar pattern to AG-21 but different analysis
+**Related Tasks:** Similar pattern to AG-15 but different analysis
 
 ---
 
@@ -85,7 +85,7 @@ Build a LangGraph node that calculates ATS (Applicant Tracking System) scores fo
 - [ ] Includes test file
 - [ ] PR merged to main
 
-**Dependencies:** AG-21 (needs job requirements), AG-24 (needs resume analysis)
+**Dependencies:** AG-15 (needs job requirements), AG-18 (needs resume analysis)
 
 **Related Tasks:** Dev 3 now has LangGraph experience!
 
@@ -121,7 +121,7 @@ Connect the 3 LangGraph nodes built (Job Requirements from yesterday, Resume Ana
 - [ ] Prints final score and analysis
 - [ ] PR merged to main
 
-**Dependencies:** AG-21, AG-24, AG-25 (all 3 nodes must exist)
+**Dependencies:** AG-15, AG-18, AG-19 (all 3 nodes must exist)
 
 **Related Tasks:** First real multi-step agent workflow!
 

@@ -1,36 +1,65 @@
-# Day 11: Sprint 1 Demo
+# Day 11: Sprint 2 Kickoff & Planning
 
-> **Date:** Sprint 1, Day 11  
-> **Focus:** Present working MVP to stakeholders  
-> **Vertical Slice:** Demo + retrospective + planning
+> **Date:** Sprint 2, Day 11  
+> **Focus:** Sprint 2 planning and database persistence improvements  
+> **Vertical Slice:** Team aligned on Sprint 2 goals, database enhancements started
 
 ---
 
 ## 🎯 Today's Goal
 
 By end of today:
-- ✅ Demo preparation complete (Dev 1)
-- ✅ Retrospective notes documented (Dev 2)
-- ✅ Sprint 2 planning initialized (Dev 3)
-- ✅ MVP successfully demonstrated to stakeholders
-- ✅ Team alignment on Sprint 2 priorities
+- ✅ Sprint 2 goals defined and prioritized
+- ✅ Retrospective action items from Sprint 1 documented
+- ✅ Database schema enhancements planned (history tracking)
+- ✅ Team aligned on Sprint 2 priorities
+- ✅ First Sprint 2 tasks assigned
 
 ---
 
 ## 📋 Morning: Sprint 2 Kickoff
 
-### Sprint 2 Goals
-1. Database persistence
-2. Iterative agent (conditional edges)
+### Sprint 2 Goals Summary
+1. ✅ Database persistence (already partially done in Sprint 1!)
+2. Iterative agent (conditional edges for looping)
 3. Cover letter generation
-4. Run history
+4. Run history UI
 5. Polish and improvements
 
 ---
 
 ## 📋 Jira Tasks
 
-### Task AG-45: Demo Preparation
+**Note:** AG-45 through AG-47 were moved to Day 10 for Sprint 1 closure. Day 11 focuses on Sprint 2 kickoff and first iteration tasks (AG-48 onwards from Day 12).
+
+### Sprint 2 Kickoff Activities
+
+**Morning Session (All Team):**
+1. Review Sprint 1 demo feedback
+2. Discuss retrospective findings
+3. Prioritize Sprint 2 features
+4. Review database models created in Sprint 1 (Days 6 & 8)
+5. Assign Day 12 tasks
+
+**Afternoon:** Begin Day 12 work (Iterative Agent)
+
+---
+
+## 👨‍💻 Team Discussion: Database Architecture Review
+
+Since database models were created in Sprint 1 (Days 6 & 8), let's review what exists:
+
+### Existing Database Models (from Sprint 1)
+
+**User Model** (created Day 6 - AG-28):
+- In `backend/database/models/user.py`
+- Fields: id, email, password_hash, created_at
+- Connection established to Supabase
+
+**AgentRun Model** (created Day 8 - AG-37):
+- In `backend/database/models/run.py`
+- Fields: id, user_id, run_id, job_description, original_resume, modified_resume, scores, timestamps
+- Stores all optimization results
 
 | Field | Value |
 |-------|-------|

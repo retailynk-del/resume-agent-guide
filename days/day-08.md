@@ -56,18 +56,19 @@ Create POST /api/agent/run endpoint that triggers the LangGraph workflow and ret
 | **Type** | Task |
 | **Epic** | Backend API & Database |
 | **Assignee** | Dev 1 (Shabas) |
-| **Story Points** | 3 |
+| **Story Points** | 4 |
 | **Sprint** | Sprint 1 |
 | **Priority** | High |
 
 **Description:**
-Create database model to persist agent run results. Stores user_id, inputs, outputs, scores, and timestamps.
+Create database model to persist agent run results. Stores user_id, inputs, outputs, scores, and timestamps. Add table via Supabase SQL Editor or migration script.
 
 **Acceptance Criteria:**
-- [ ] Supabase migration created for agent_runs table
-- [ ] Fields: id, user_id, run_id, job_description, original_resume, modified_resume, scores, created_at
-- [ ] Foreign key to users table
-- [ ] Migration runs successfully
+- [ ] AgentRun model created in `backend/database/models/run.py`
+- [ ] Fields: id, user_id, run_id, job_description, original_resume, modified_resume, scores, timestamps
+- [ ] Foreign key to users table  
+- [ ] Table created in Supabase database
+- [ ] Model tested with sample data
 - [ ] PR merged
 
 ---

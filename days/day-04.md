@@ -50,7 +50,7 @@ Build a LangGraph node that compares job requirements with resume analysis to cr
 - [ ] Test file validates planning logic
 - [ ] PR merged to main
 
-**Dependencies:** AG-21 (job requirements), AG-24 (resume analysis), AG-25 (scoring)
+**Dependencies:** AG-15 (job requirements), AG-18 (resume analysis), AG-19 (scoring)
 
 ---
 
@@ -85,7 +85,7 @@ Build a LangGraph node that takes the improvement plan and actually modifies the
 - [ ] Test file shows clear improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-27 (improvement plan must exist)
+**Dependencies:** AG-21 (improvement plan must exist)
 
 **Related Tasks:** Dev 3's 2nd LangGraph node!
 
@@ -122,7 +122,7 @@ Build a LangGraph node that scores the MODIFIED resume against job requirements 
 - [ ] Test shows score improvement
 - [ ] PR merged to main
 
-**Dependencies:** AG-28 (modified resume must exist), AG-25 (scoring logic)
+**Dependencies:** AG-22 (modified resume must exist), AG-19 (scoring logic)
 
 **Related Tasks:** Shows the agent actually improved the resume!
 

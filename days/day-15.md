@@ -1,8 +1,8 @@
-# Day 15: History UI
+# Day 15: History UI & Cover Letter
 
 > **Date:** Sprint 2, Day 15  
-> **Focus:** Build history page frontend  
-> **Vertical Slice:** User can view past optimizations
+> **Focus:** Build history page frontend + cover letter UI  
+> **Vertical Slice:** User can view past optimizations and generate cover letters
 
 ---
 
@@ -11,8 +11,9 @@
 By end of today:
 - ✅ History page component created (Dev 3)
 - ✅ History list with navigation (Dev 1 - more frontend!)
+- ✅ Cover Letter UI integration complete (Dev 1)
 - ✅ Detail view for past runs (Dev 2 - more frontend!)
-- ✅ User can browse all past optimizations
+- ✅ User can browse all past optimizations and generate cover letters
 
 ---
 
@@ -67,6 +68,35 @@ Add navigation from history page to view full details of any past run. Integrate
 - [ ] Back navigation works correctly
 - [ ] URL routing works
 - [ ] PR merged
+
+---
+
+### Task AG-59A: Cover Letter UI Integration
+
+| Field | Value |
+|-------|-------|
+| **Task ID** | AG-59A |
+| **Title** | Cover Letter UI Integration |
+| **Type** | Task |
+| **Epic** | Frontend & UI |
+| **Assignee** | Dev 1 (Shabas) |
+| **Story Points** | 3 |
+| **Sprint** | Sprint 2 |
+| **Priority** | High |
+
+**Description:**
+Add Cover Letter UI to Dashboard and Results pages. Allow users to enable cover letter generation and display it on results page.
+
+**Acceptance Criteria:**
+- [ ] Dashboard: Add checkbox "Generate Cover Letter" (optional)
+- [ ] Dashboard: Pass `generate_cover_letter` flag to API
+- [ ] Results page: Add "Cover Letter" tab (4th tab)
+- [ ] Results page: Show cover letter with copy button
+- [ ] Results page: Hide tab if no cover letter generated
+- [ ] Cover letter displayed with proper formatting
+- [ ] PR merged
+
+**Note:** This completes the Cover Letter feature from Day 13 backend work!
 
 ---
 

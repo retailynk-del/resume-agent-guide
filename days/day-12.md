@@ -79,21 +79,28 @@ Update workflow.py to use conditional edges that route based on decision node ou
 | **Type** | Task |
 | **Epic** | Testing & QA |
 | **Assignee** | Dev 3 (Marva) |
-| **Story Points** | 3 |
+| **Story Points** | 5 |
 | **Sprint** | Sprint 2 |
 | **Priority** | High |
 
 **Description:**
-Test the iterative workflow with various scenarios: early stopping, max iterations, and score improvement patterns.
+Comprehensive testing of iterative workflow with various scenarios: early stopping, max iterations, score improvement patterns, and edge cases. Includes manual testing and automated test suite.
 
 **Acceptance Criteria:**
+- [ ] Test file created: `backend/agent/test_iteration.py`
 - [ ] Test: Agent stops when score >= 70
 - [ ] Test: Agent stops at max 3 iterations
 - [ ] Test: Score improves each iteration
+- [ ] Test: Edge case - score decreases (should stop)
+- [ ] Test: Edge case - score plateaus (should stop)
 - [ ] Test: iteration_count increments correctly
-- [ ] Test: Decision log tracks all iterations
+- [ ] Test: Decision log tracks all iterations with reasons
+- [ ] Test: State properly maintained across loops
+- [ ] Manual testing: 5+ different job/resume combinations
 - [ ] All tests pass
 - [ ] PR merged
+
+**Note:** This is a complex feature - thorough testing is critical!
 
 ---
 
