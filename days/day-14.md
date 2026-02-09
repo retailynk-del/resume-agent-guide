@@ -26,7 +26,7 @@ By end of today:
 | **Title** | History Database Schema Enhancement |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
-| **Assignee** | Dev 1 (Shahid) |
+| **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 2 |
 | **Priority** | High |
@@ -52,7 +52,7 @@ Enhance agent_runs table with proper indexes and constraints to support efficien
 | **Title** | Persist Full Run Data |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
-| **Assignee** | Dev 2 (Farhan) |
+| **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 2 |
 | **Priority** | High |
@@ -103,20 +103,20 @@ Create API endpoints to retrieve user's optimization history. Support listing re
 
 ## 🕘 9:00 AM - Daily Standup
 
-**Shahid:** "I'll add database indexes for fast history queries today."
+**Shabas:** "I'll add database indexes for fast history queries today."
 
-**Farhan:** "I'll verify the agent endpoint is saving all the data we need for the history page."
+**Sinan:** "I'll verify the agent endpoint is saving all the data we need for the history page."
 
 **Marva:** "I'll create the history API endpoints with pagination support."
 
 ---
 
-## 👨‍💻 Dev 1 (Shahid): AG-54 - History Database Schema Enhancement
+## 👨‍💻 Dev 1 (Shabas): AG-54 - History Database Schema Enhancement
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout shahid-Dev && git pull origin main
+git checkout shabas-Dev && git pull origin main
 git checkout -b feature/AG-54-history-schema
 ```
 
@@ -339,12 +339,12 @@ git push origin feature/AG-54-history-schema
 
 ---
 
-## 👨‍💻 Dev 2 (Farhan): AG-55 - Persist Full Run Data
+## 👨‍💻 Dev 2 (Sinan): AG-55 - Persist Full Run Data
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout farhan-Dev && git pull origin main
+git checkout sinan-Dev && git pull origin main
 git checkout -b feature/AG-55-persist-runs
 ```
 
@@ -964,11 +964,11 @@ git push origin feature/AG-56-history-api
 
 ## 📞 2:00 PM - Review Calls
 
-### Shahid → Farhan: Review AG-54
+### Shabas → Sinan: Review AG-54
 
-**Shahid:** "Farhan, I've added database indexes for history queries. Can you review?"
+**Shabas:** "Sinan, I've added database indexes for history queries. Can you review?"
 
-**Farhan:** *Reviews migration SQL and performance tests*
+**Sinan:** *Reviews migration SQL and performance tests*
 
 "Perfect! The composite index on (user_id, created_at DESC) will make history page queries very fast. Performance test confirms < 100ms. Approved! ✅"
 
@@ -976,9 +976,9 @@ git push origin feature/AG-56-history-api
 
 ---
 
-### Farhan → Marva: Review AG-55
+### Sinan → Marva: Review AG-55
 
-**Farhan:** "Marva, I've enhanced the persistence logic with better error handling. Please review!"
+**Sinan:** "Marva, I've enhanced the persistence logic with better error handling. Please review!"
 
 **Marva:** *Reviews agent.py changes and persistence tests*
 
@@ -988,11 +988,11 @@ git push origin feature/AG-56-history-api
 
 ---
 
-### Marva → Shahid: Review AG-56
+### Marva → Shabas: Review AG-56
 
-**Marva:** "Shahid, I've created the history API endpoints with pagination. Can you review?"
+**Marva:** "Shabas, I've created the history API endpoints with pagination. Can you review?"
 
-**Shahid:** *Reviews new endpoints and API tests*
+**Shabas:** *Reviews new endpoints and API tests*
 
 "Great implementation! The pagination works smoothly, job description truncation is smart for list view, and the tests cover all cases. Approved! ✅"
 
@@ -1087,12 +1087,12 @@ curl -X GET "http://localhost:8000/api/agent/runs/$RUN_ID" \
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-54: History Database Schema | Dev 1 (Shahid) | 3 | ✅ Done |
-| AG-55: Persist Full Run Data | Dev 2 (Farhan) | 3 | ✅ Done |
+| AG-54: History Database Schema | Dev 1 (Shabas) | 3 | ✅ Done |
+| AG-55: Persist Full Run Data | Dev 2 (Sinan) | 3 | ✅ Done |
 | AG-56: History API Endpoints | Dev 3 (Marva) | 4 | ✅ Done |
 
 **Total Story Points Completed:** 10  
-**Dev 1 (Shahid):** 3 points | **Dev 2 (Farhan):** 3 points | **Dev 3 (Marva):** 4 points
+**Dev 1 (Shabas):** 3 points | **Dev 2 (Sinan):** 3 points | **Dev 3 (Marva):** 4 points
 
 ---
 

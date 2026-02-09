@@ -161,7 +161,7 @@ Add functionality to track score changes across iterations. This will be useful 
 
 ```bash
 cd resume-agent
-git checkout dev-shabas && git pull origin main
+git checkout shabas-Dev && git pull origin main
 git checkout -b feature/AG-24-workflow-assembly
 ```
 

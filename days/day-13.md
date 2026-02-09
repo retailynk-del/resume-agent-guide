@@ -55,7 +55,7 @@ Create LangGraph node that generates personalized cover letter using optimized r
 | **Title** | Cover Letter Workflow Integration |
 | **Type** | Task |
 | **Epic** | LangGraph Agent Core |
-| **Assignee** | Dev 2 (Farhan) |
+| **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 2 |
 | **Sprint** | Sprint 2 |
 | **Priority** | High |
@@ -83,7 +83,7 @@ Add cover letter node to workflow graph as optional final step after score_modif
 | **Title** | Cover Letter API Endpoint |
 | **Type** | Task |
 | **Epic** | Backend API & Database |
-| **Assignee** | Dev 1 (Shahid) |
+| **Assignee** | Dev 1 (Shabas) |
 | **Story Points** | 3 |
 | **Sprint** | Sprint 2 |
 | **Priority** | Medium |
@@ -106,9 +106,9 @@ Update agent API to support cover letter generation as optional parameter. Store
 
 ## 🕘 9:00 AM - Daily Standup
 
-**Shahid:** "I'll update the API to accept the cover letter flag today."
+**Shabas:** "I'll update the API to accept the cover letter flag today."
 
-**Farhan:** "I'll integrate Marva's cover letter node into the workflow with conditional routing."
+**Sinan:** "I'll integrate Marva's cover letter node into the workflow with conditional routing."
 
 **Marva:** "I'm excited to build the cover letter node! It's my third LangGraph node - completing my training!"
 
@@ -400,12 +400,12 @@ git push origin feature/AG-51-cover-letter-node
 
 ---
 
-## 👨‍💻 Dev 2 (Farhan): AG-52 - Cover Letter Workflow Integration
+## 👨‍💻 Dev 2 (Sinan): AG-52 - Cover Letter Workflow Integration
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout farhan-Dev && git pull origin main
+git checkout sinan-Dev && git pull origin main
 git checkout -b feature/AG-52-cover-letter-workflow
 ```
 
@@ -618,12 +618,12 @@ git push origin feature/AG-52-cover-letter-workflow
 
 ---
 
-## 👨‍💻 Dev 1 (Shahid): AG-53 - Cover Letter API Endpoint
+## 👨‍💻 Dev 1 (Shabas): AG-53 - Cover Letter API Endpoint
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout shahid-Dev && git pull origin main
+git checkout shabas-Dev && git pull origin main
 git checkout -b feature/AG-53-cover-letter-api
 ```
 
@@ -902,11 +902,11 @@ git push origin feature/AG-53-cover-letter-api
 
 ## 📞 2:00 PM - Review Calls
 
-### Marva → Shahid: Review AG-51
+### Marva → Shabas: Review AG-51
 
-**Marva:** "Shahid, I've created the cover letter generation node. Can you review?"
+**Marva:** "Shabas, I've created the cover letter generation node. Can you review?"
 
-**Shahid:** *Reviews generate_cover_letter.py and tests*
+**Shabas:** *Reviews generate_cover_letter.py and tests*
 
 "Excellent work! The prompt is detailed and the output quality is great. The 300-400 word target is perfect. Approved! ✅  
 Also, congrats on completing all 3 node types - you're now a LangGraph expert! 🎓"
@@ -915,9 +915,9 @@ Also, congrats on completing all 3 node types - you're now a LangGraph expert! �
 
 ---
 
-### Farhan → Marva: Review AG-52
+### Sinan → Marva: Review AG-52
 
-**Farhan:** "Marva, I've integrated your cover letter node with conditional routing. Please review!"
+**Sinan:** "Marva, I've integrated your cover letter node with conditional routing. Please review!"
 
 **Marva:** *Reviews workflow.py changes and integration tests*
 
@@ -927,11 +927,11 @@ Also, congrats on completing all 3 node types - you're now a LangGraph expert! �
 
 ---
 
-### Shahid → Farhan: Review AG-53
+### Shabas → Sinan: Review AG-53
 
-**Shahid:** "Farhan, I've updated the API to support cover letters. Can you review?"
+**Shabas:** "Sinan, I've updated the API to support cover letters. Can you review?"
 
-**Farhan:** *Reviews agent.py router, database migration, and model changes*
+**Sinan:** *Reviews agent.py router, database migration, and model changes*
 
 "Great work! The optional parameter is elegant, database migration is clean, and the API response properly includes the cover letter. Tested with curl and it works perfectly. Approved! ✅"
 
@@ -1046,11 +1046,11 @@ Resume-Agent/
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
 | AG-51: Cover Letter Generation Node | Dev 3 (Marva) | 5 | ✅ Done |
-| AG-52: Workflow Integration | Dev 2 (Farhan) | 2 | ✅ Done |
-| AG-53: API Endpoint | Dev 1 (Shahid) | 3 | ✅ Done |
+| AG-52: Workflow Integration | Dev 2 (Sinan) | 2 | ✅ Done |
+| AG-53: API Endpoint | Dev 1 (Shabas) | 3 | ✅ Done |
 
 **Total Story Points Completed:** 10  
-**Dev 1 (Shahid):** 3 points | **Dev 2 (Farhan):** 2 points | **Dev 3 (Marva):** 5 points
+**Dev 1 (Shabas):** 3 points | **Dev 2 (Sinan):** 2 points | **Dev 3 (Marva):** 5 points
 
 ---
 

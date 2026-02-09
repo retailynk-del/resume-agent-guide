@@ -1096,12 +1096,12 @@ git push origin feature/AG-42-enhanced-results
 
 ---
 
-## 👨‍💻 Dev 1 (Shahid): AG-40 - Form Validation Enhancement
+## 👨‍💻 Dev 1 (Shabas): AG-40 - Form Validation Enhancement
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout shahid-Dev && git pull origin main
+git checkout shabas-Dev && git pull origin main
 git checkout -b feature/AG-40-form-validation
 ```
 
@@ -1247,12 +1247,12 @@ git push origin feature/AG-40-form-validation
 
 ---
 
-## 👨‍💻 Dev 2 (Farhan): AG-41 - Agent API Integration Enhancement
+## 👨‍💻 Dev 2 (Sinan): AG-41 - Agent API Integration Enhancement
 
 ### Step 1: Create Branch
 
 ```bash
-git checkout farhan-Dev && git pull origin main
+git checkout sinan-Dev && git pull origin main
 git checkout -b feature/AG-41-api-integration
 ```
 
@@ -2645,39 +2645,39 @@ git push origin feature/AG-31-results-page
 
 ## 📞 2:00 PM - Review Calls
 
-### Shahid → Farhan: Review AG-40
+### Shabas → Sinan: Review AG-40
 
-**Shahid:** "Hey Farhan! I've created validation utilities with character counting and validation feedback. Can you review the code?"
+**Shabas:** "Hey Sinan! I've created validation utilities with character counting and validation feedback. Can you review the code?"
 
-**Farhan:** *Reviews validation.js and validation.test.js*
+**Sinan:** *Reviews validation.js and validation.test.js*
 
 "Great work! The validation logic is clean and the test coverage is thorough. Approved! ✅"
 
-**Jira:** Shahid moves AG-40 to "Code Review" → Farhan moves to "Done"
+**Jira:** Shabas moves AG-40 to "Code Review" → Sinan moves to "Done"
 
 ---
 
-### Farhan → Marva: Review AG-41
+### Sinan → Marva: Review AG-41
 
-**Farhan:** "Marva, I've enhanced the API service with agent endpoints and error handling. Please review!"
+**Sinan:** "Marva, I've enhanced the API service with agent endpoints and error handling. Please review!"
 
 **Marva:** *Reviews api.js additions and api.test.js*
 
 "Perfect! The error handling with automatic logout on 401 is exactly what we need. The test coverage is comprehensive. Approved! ✅"
 
-**Jira:** Farhan moves AG-41 to "Code Review" → Marva moves to "Done"
+**Jira:** Sinan moves AG-41 to "Code Review" → Marva moves to "Done"
 
 ---
 
-### Marva → Shahid: Review AG-42 and AG-39
+### Marva → Shabas: Review AG-42 and AG-39
 
-**Marva:** "Shahid, I've created the enhanced Results page with tabs and also integrated everything into the Dashboard. Can you review both?"
+**Marva:** "Shabas, I've created the enhanced Results page with tabs and also integrated everything into the Dashboard. Can you review both?"
 
-**Shahid:** *Reviews Results.jsx, Results.css, Dashboard.jsx updates*
+**Shabas:** *Reviews Results.jsx, Results.css, Dashboard.jsx updates*
 
 "Excellent work! The tabbed interface is really professional looking, and the Dashboard integration with validation utilities works perfectly. The character counts and validation messages are displayed beautifully. Approved! ✅"
 
-**Jira:** Marva moves AG-42 and AG-39 to "Code Review" → Shahid moves both to "Done"
+**Jira:** Marva moves AG-42 and AG-39 to "Code Review" → Shabas moves both to "Done"
 
 ---
 
@@ -2967,12 +2967,12 @@ Resume-Agent/
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
 | AG-39: Dashboard Form Component | Dev 3 (Marva) | 5 | ✅ Done |
-| AG-40: Form Validation | Dev 1 (Shahid) | 2 | ✅ Done |
-| AG-41: Agent API Integration | Dev 2 (Farhan) | 3 | ✅ Done |
+| AG-40: Form Validation | Dev 1 (Shabas) | 2 | ✅ Done |
+| AG-41: Agent API Integration | Dev 2 (Sinan) | 3 | ✅ Done |
 | AG-42: Results Page Component | Dev 3 (Marva) | 5 | ✅ Done |
 
 **Total Story Points Completed:** 15  
-**Dev 1 (Shahid):** 2 points | **Dev 2 (Farhan):** 3 points | **Dev 3 (Marva):** 10 points
+**Dev 1 (Shabas):** 2 points | **Dev 2 (Sinan):** 3 points | **Dev 3 (Marva):** 10 points
 
 ---
 

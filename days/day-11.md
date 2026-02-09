@@ -40,7 +40,7 @@ By end of today:
 | **Title** | Sprint 1 Retrospective |
 | **Type** | Task |
 | **Epic** | Project Management |
-| **Assignee** | Dev 2 (Farhan) |
+| **Assignee** | Dev 2 (Sinan) |
 | **Story Points** | 1 |
 | **Sprint** | Sprint 2 |
 | **Priority** | High |
@@ -110,7 +110,7 @@ Review existing database models (User, AgentRun) created in Sprint 1. Verify sch
 
 ## 🕘 9:00 AM - Sprint 1 Retrospective
 
-### Dev 2 (Farhan) Facilitates
+### Dev 2 (Sinan) Facilitates
 
 **Jira:** Move AG-46 to "In Progress"
 
@@ -118,10 +118,10 @@ Review existing database models (User, AgentRun) created in Sprint 1. Verify sch
 
 #### ✅ What Went Well (Continue)
 
-**Shahid:**
+**Shabas:**
 > "The daily standup format with task dependencies is working great. We rarely have blockers."
 
-**Farhan:**
+**Sinan:**
 > "Code reviews are fast and helpful. The peer review system (Dev 1 → Dev 2 → Dev 3 → Dev 1) works well."
 
 **Marva:**
@@ -134,10 +134,10 @@ Review existing database models (User, AgentRun) created in Sprint 1. Verify sch
 
 #### 🔴 What Didn't Go Well (Stop)
 
-**Shahid:**
+**Shabas:**
 > "We spent too much time debugging CORS issues on Day 7. Should have enabled it from Day 3."
 
-**Farhan:**
+**Sinan:**
 > "Initial Supabase setup took longer than expected. Documentation was unclear."
 
 **Marva:**
@@ -150,10 +150,10 @@ Review existing database models (User, AgentRun) created in Sprint 1. Verify sch
 
 #### 💡 What to Try (Start)
 
-**Shahid:**
+**Shabas:**
 > "Let's add automated tests to CI/CD pipeline. We're writing tests but not running them automatically."
 
-**Farhan:**
+**Sinan:**
 > "We should add loading skeletons / placeholders for better UX during the 30-60 second optimization wait."
 
 **Marva:**
@@ -168,9 +168,9 @@ Review existing database models (User, AgentRun) created in Sprint 1. Verify sch
 
 | # | Action | Owner | Priority |
 |---|--------|-------|----------|
-| 1 | Add GitHub Actions CI workflow | Shahid | High |
+| 1 | Add GitHub Actions CI workflow | Shabas | High |
 | 2 | Create shared UI component library | Marva | Medium |
-| 3 | Add environment variable validation | Farhan | Medium |
+| 3 | Add environment variable validation | Sinan | Medium |
 | 4 | Increase UI story point estimates by 20% | All | Low |
 | 5 | Add loading skeletons to Dashboard/Results | Marva | Medium |
 
@@ -182,7 +182,7 @@ Create `docs/sprint-1-retrospective.md`:
 # Sprint 1 Retrospective
 
 **Date:** Day 11  
-**Participants:** Shahid, Farhan, Marva
+**Participants:** Shabas, Sinan, Marva
 
 ## Summary
 
@@ -204,9 +204,9 @@ Sprint 1 successfully delivered MVP with core resume optimization functionality.
 - Shared component library
 
 ## Action Items
-1. Add GitHub Actions CI workflow (Shahid) - Sprint 2
+1. Add GitHub Actions CI workflow (Shabas) - Sprint 2
 2. Create shared UI components (Marva) - Sprint 2
-3. Add env var validation (Farhan) - Day 12
+3. Add env var validation (Sinan) - Day 12
 4. Adjust story point estimates (All) - Ongoing
 5. Add loading skeletons (Marva) - Day 13-14
 
@@ -335,8 +335,8 @@ Create `docs/sprint-2-plan.md`:
 
 | Task | Assignee | Points | Description |
 |------|----------|--------|-------------|
-| AG-49 | Shahid | 5 | Add should_iterate function |
-| AG-50 | Farhan | 5 | Conditional edge routing logic |
+| AG-49 | Shabas | 5 | Add should_iterate function |
+| AG-50 | Sinan | 5 | Conditional edge routing logic |
 | AG-51 | Marva | 3 | Test iteration with poor resumes |
 
 ## Success Metrics
@@ -446,7 +446,7 @@ CREATE INDEX idx_agent_runs_created_at ON agent_runs(created_at DESC);
 
 ### Schema Verification in Supabase
 
-**Shahid:** *Opens Supabase dashboard*
+**Shabas:** *Opens Supabase dashboard*
 
 "Let me check the tables..."
 
@@ -459,7 +459,7 @@ CREATE INDEX idx_agent_runs_created_at ON agent_runs(created_at DESC);
    - Foreign key to users ✅
    - Indexes on user_id and created_at ✅
 
-**Farhan:** "Do we need any schema changes for Sprint 2?"
+**Sinan:** "Do we need any schema changes for Sprint 2?"
 
 **Marva:** "We'll need to track iterations and store cover letters. Let me check the model..."
 
@@ -578,9 +578,9 @@ git push origin main
 
 ### Casual Conversation
 
-**Shahid:** "I'm excited about the iteration logic! It's like giving the agent a 'try again' button."
+**Shabas:** "I'm excited about the iteration logic! It's like giving the agent a 'try again' button."
 
-**Farhan:** "Yeah, and conditional edges are a core LangGraph feature. Should be straightforward to implement."
+**Sinan:** "Yeah, and conditional edges are a core LangGraph feature. Should be straightforward to implement."
 
 **Marva:** "The cover letter feature will be really valuable for users. I've spent hours writing custom cover letters before!"
 
@@ -592,12 +592,12 @@ git push origin main
 
 ### Task Handoff
 
-**Shahid (Dev 1):**
+**Shabas (Dev 1):**
 - **Assigned:** AG-49 - Add should_iterate decision function
 - **Points:** 5
 - **Branch:** `feature/AG-49-should-iterate`
 
-**Farhan (Dev 2):**
+**Sinan (Dev 2):**
 - **Assigned:** AG-50 - Add conditional edges to workflow  
 - **Points:** 5
 - **Branch:** `feature/AG-50-conditional-edges`
@@ -632,12 +632,12 @@ git push origin main
 
 | Task | Assignee | Points | Status |
 |------|----------|--------|--------|
-| AG-46: Sprint 1 Retrospective | Dev 2 (Farhan) | 1 | ✅ Done |
+| AG-46: Sprint 1 Retrospective | Dev 2 (Sinan) | 1 | ✅ Done |
 | AG-47: Sprint 2 Planning | Dev 3 (Marva) | 1 | ✅ Done |
 | AG-48: Database Review | Team | 1 | ✅ Done |
 
 **Total Story Points Completed:** 3  
-**Dev 1 (Shahid):** 0 points (participated in reviews) | **Dev 2 (Farhan):** 1 point | **Dev 3 (Marva):** 1 point | **Team:** 1 point
+**Dev 1 (Shabas):** 0 points (participated in reviews) | **Dev 2 (Sinan):** 1 point | **Dev 3 (Marva):** 1 point | **Team:** 1 point
 
 ---
 
@@ -941,7 +941,7 @@ git push origin feature/AG-40-user-model
 ### Step 1: Create Branch
 
 ```bash
-git checkout dev-shabas && git pull origin main
+git checkout shabas-Dev && git pull origin main
 git checkout -b feature/AG-41-run-model
 ```
 

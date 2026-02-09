@@ -176,7 +176,7 @@ class Person(TypedDict):
 cd resume-agent
 
 # Make sure you have the latest code
-git checkout dev-shabas
+git checkout shabas-Dev
 git pull origin main
 ```
 
@@ -542,7 +542,7 @@ python test_state.py
 #### Step 11: Cleanup After Merge
 
 ```bash
-git checkout dev-shabas
+git checkout shabas-Dev
 git pull origin main
 git branch -d feature/AG-14-agent-state-schema
 ```

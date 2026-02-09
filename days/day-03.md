@@ -188,7 +188,7 @@ print(result.content)
 
 ```bash
 cd resume-agent
-git checkout dev-shabas
+git checkout shabas-Dev
 git pull origin main
 git checkout -b feature/AG-15-job-requirements-node
 ```
@@ -493,7 +493,7 @@ PR Title: `AG-15: Create job requirements extraction node`
 
 After merge:
 ```bash
-git checkout dev-shabas
+git checkout shabas-Dev
 git pull origin main
 git branch -d feature/AG-15-job-requirements-node
 ```
